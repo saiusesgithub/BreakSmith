@@ -1,8 +1,8 @@
 <html lang="en"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="NORTH/FORM — Independent creative studio shaping campaigns, identities and digital experiences.">
-<title>NORTH/FORM — Creative Studio</title>
+<meta name="description" content="BreakSmith — Break your app before attackers do.">
+<title>BreakSmith — Scan Before You Ship</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
@@ -276,7 +276,7 @@ white-space:nowrap;
 :root{
 --pad:clamp(20px,2.25vw,38px);
 --max:1720px;
---acid:#d7ff45;
+--acid:#c24f20;
 }
 .container{max-width:var(--max);margin-inline:auto;padding-inline:var(--pad)}
 .section{min-height:auto}
@@ -294,7 +294,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 .hero-topcopy{top:19vh;max-width:420px;padding:18px;border-left:1px solid rgba(255,255,255,.5);font-size:13px}
 .hero-markers{top:auto;bottom:30vh}
 .hero-word{left:var(--pad);right:var(--pad);bottom:.02em;font-size:clamp(76px,15.5vw,290px);letter-spacing:-.085em}
-.hero-word:before{content:"Independent / 2026";display:block;font:500 10px Inter;letter-spacing:.18em;text-transform:uppercase;margin:0 0 18px .7vw}
+.hero-word:before{content:"Build session / 2026";display:block;font:500 10px Inter;letter-spacing:.18em;text-transform:uppercase;margin:0 0 18px .7vw}
 .hero-spacer{height:110vh}
 .diagonal-top{clip-path:none;margin-top:0;padding-top:0}
 .intro{padding:140px 0 160px}
@@ -310,17 +310,17 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 .ticker-track{padding:14px 0}
 .ticker span{font-size:clamp(20px,2vw,34px);text-transform:uppercase}
 .projects{padding:180px 0 100px}
-.projects-head{position:sticky;top:95px;z-index:4;pointer-events:none;margin-bottom:30px;mix-blend-mode:difference;color:#fff}
+.projects-head{position:relative;top:auto;z-index:4;pointer-events:none;margin-bottom:80px;color:#111}
 .project{min-height:112vh;padding:10vh 0}
 .project-media{grid-column:3/11;height:76vh;border-radius:3px;clip-path:inset(0 0 0 0 round 3px)}
 .project:nth-of-type(even) .project-media{grid-column:2/10}
 .project-copy{grid-column:1/6;align-self:end;padding:0 0 6vh;mix-blend-mode:difference;color:#fff}
 .project:nth-of-type(even) .project-copy{grid-column:8/13;text-align:right}
-.project-copy h3{font-size:clamp(52px,7.2vw,128px);white-space:nowrap}
+.project-copy h3{font-size:clamp(46px,5.5vw,98px);white-space:normal;line-height:.86;max-width:760px}
 .project-side{grid-column:11/13;padding-top:3vh;border-top:1px solid var(--line)}
 .project:nth-of-type(even) .project-side{grid-column:10/13}
 .project-thumb{display:none}
-.project-media:after{content:"Open case ↗";position:absolute;right:18px;bottom:18px;background:rgba(0,0,0,.62);color:#fff;border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(10px);padding:11px 14px;border-radius:999px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;transform:translateY(10px);opacity:0;transition:.3s}
+.project-media:after{content:"Story frame ↗";position:absolute;right:18px;bottom:18px;background:rgba(0,0,0,.62);color:#fff;border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(10px);padding:11px 14px;border-radius:999px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;transform:translateY(10px);opacity:0;transition:.3s}
 .project-media:hover:after{opacity:1;transform:none}
 .capabilities{padding:150px 0 180px;background:#101010}
 .cap-intro{min-height:115vh}
@@ -379,7 +379,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 .journal-img,.journal-item:nth-child(2) .journal-img{position:absolute;inset:0;height:auto;opacity:.38;filter:grayscale(1);transition:.5s}
 .journal-item:hover .journal-img{opacity:.75;filter:grayscale(0);transform:scale(1.035)}
 .journal-meta{position:relative;z-index:2;border-top:1px solid rgba(255,255,255,.4);padding-top:14px}
-.journal-item:before{content:"Read /";position:relative;z-index:2;font-family:"Space Grotesk";font-size:clamp(55px,7vw,110px);letter-spacing:-.07em;line-height:.85;margin-bottom:auto}
+.journal-item:before{content:"Reference /";position:relative;z-index:2;font-family:"Space Grotesk";font-size:clamp(55px,7vw,110px);letter-spacing:-.07em;line-height:.85;margin-bottom:auto}
 .faq{padding:170px 0}.faq h2{max-width:900px}
 .faq-q{padding:34px 0;transition:.3s}.faq-item:hover .faq-q{padding-left:18px;color:var(--accent)}
 .footer{padding-top:170px}.footer-main{gap:12vw}.footer-word{letter-spacing:-.09em}
@@ -390,67 +390,79 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 :root{--pad:16px}.site-header{top:9px;height:54px}.logo{font-size:14px}.header-cta{font-size:8px}.hero-topcopy{top:16vh}.hero-word{font-size:22vw}.intro{padding:110px 0}.intro-title .line-mask:nth-child(n){padding-left:0}.intro-lower{display:block}.intro-portrait{width:78%;height:55vh;margin-bottom:45px}.project{min-height:auto}.project-media,.project:nth-of-type(even) .project-media{height:62vh}.project-copy,.project:nth-of-type(even) .project-copy{color:#111;mix-blend-mode:normal;text-align:left}.projects-head{position:relative;top:auto;color:#111;mix-blend-mode:normal}.cap-statement span:nth-child(n){padding-left:0}.cap-row{min-height:260px}.quote-photo{width:130px;height:130px}.quote{margin-top:35px}.archive-row{grid-template-columns:.5fr 1.2fr 1.5fr}.archive-thumb{display:none}.journal-grid{display:block}.journal-item:nth-child(n){margin:0 0 14px;min-height:390px}.stats-grid{display:block}.stat{min-height:290px}.metric{min-height:200px;padding:22px}
 }
 </style>
+<style>
+.story-return{padding:170px 0 200px;overflow:hidden}
+.story-return-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(14px,2vw,30px);align-items:end}
+.story-return .eyebrow{grid-column:1/-1;margin-bottom:90px}
+.story-return-media{grid-column:1/6;height:72vh;min-height:560px;overflow:hidden;position:relative;clip-path:polygon(0 0,88% 0,100% 100%,0 100%)}
+.story-return-media:after{content:"07:42 AM / REVIEW COMPLETE";position:absolute;left:24px;bottom:24px;padding:9px 12px;background:#0b0b0b;color:#fff;font-size:9px;letter-spacing:.14em}
+.story-return-copy{grid-column:6/13;padding-bottom:5vh}
+.story-return-copy h2{font-size:clamp(66px,9vw,154px);margin:0;line-height:.84}
+.story-return-copy h2 span{display:block;color:var(--accent)}
+.story-return-copy blockquote{font-size:clamp(20px,2.3vw,36px);line-height:1.25;max-width:780px;margin:60px 0 0;border-top:1px solid var(--line);padding-top:24px}
+@media(max-width:760px){.story-return{padding:110px 0}.story-return .eyebrow{margin-bottom:45px}.story-return-media{grid-column:1/-1;height:60vh;min-height:430px}.story-return-copy{grid-column:1/-1;padding-top:55px}.story-return-copy blockquote{margin-top:35px}}
+</style>
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
   <body class=""><div class="scroll-progress" aria-hidden="true"></div>
     <div class="noise"></div>
-    <div class="preloader"><span>NORTH/FORM</span></div>
+    <div class="preloader"><span>BREAK/SMITH</span></div>
 
     <header class="site-header" style="transition: background-color 0.35s, backdrop-filter 0.35s, -webkit-backdrop-filter 0.35s, border-color 0.35s, box-shadow 0.35s, height 0.35s;">
       <a href="#top" class="logo">
-        <b>NORTH</b>
+        <b>BREAK</b>
         <i>/</i>
-        <b>FORM</b>
+        <b>SMITH</b>
       </a>
       <nav class="nav">
-        <a href="#work">Work</a>
-        <a href="#studio">Studio</a>
-        <a href="#capabilities">Capabilities</a>
-        <a href="#contact">Contact</a>
+        <a href="#story">Story</a>
+        <a href="#reality">Reality</a>
+        <a href="#checkpoint">Checkpoint</a>
+        <a href="#method">Method</a>
       </nav>
-      <a href="#contact" class="header-cta">Start a project ↗</a>
+      <a href="#checkpoint" class="header-cta">Scan before you ship ↗</a>
     </header>
 
     <main id="top">
       <section class="hero section">
-        <div class="hero-media">
+        <div class="hero-media" data-video-slot="developer-night">
           <video src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/8bd0314a-9525-4a13-996e-2c37cbd9e514/1784436357607-9c22882e-f726-4971-b85d-f7b5276000ff.mp4" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d1d195f0-17d7-4654-a1fc-c9e3192705c4_1600w.webp" data-aura-generated-video="true" data-aura-video-preset="play-once" muted="" playsinline="" preload="metadata" aria-label="Editorial portrait" class="h-full w-full object-cover"></video>
         </div>
         <div class="hero-topcopy">
           <div class="line-mask">
             <span>
-              Independent creative studio shaping campaigns, identities, and
-              digital experiences for ambitious brands.
+              One developer. One idea. One night. Software has never moved
+              faster—and neither has the attack surface.
             </span>
           </div>
-          <a class="hero-link" href="#work">View selected work</a>
+          <a class="hero-link" href="#story">Enter the story</a>
         </div>
         <div class="hero-markers">
-          <span>Montréal, CA</span>
-          <span>45.5019° N</span>
+          <span>Home office</span>
+          <span>02:13 AM</span>
           <span class="cross"></span>
         </div>
         <div class="hero-word display line-mask">
           <span>
-            NORTH
+            IT
             <span class="slash">/</span>
-            FORM
+            WORKS.
           </span>
         </div>
         <div class="hero-spacer"></div>
       </section>
 
-      <section class="intro paper diagonal-top" id="studio">
+      <section class="intro paper diagonal-top" id="story">
         <div class="container grid12">
           <div class="intro-meta eyebrow">
-            <span>01 / Studio</span>
-            <span>© 2026</span>
+            <span>01 / The developer</span>
+            <span>Build session / 2026</span>
           </div>
           <h1 class="intro-title display">
-            <div class="line-mask"><span>We build visual systems</span></div>
-            <div class="line-mask"><span>where identity, motion,</span></div>
-            <div class="line-mask"><span>image and digital become</span></div>
-            <div class="line-mask"><span>one language.</span></div>
+            <div class="line-mask"><span>Tonight, it works.</span></div>
+            <div class="line-mask"><span>The login resolves.</span></div>
+            <div class="line-mask"><span>The API responds.</span></div>
+            <div class="line-mask"><span>The demo is live.</span></div>
           </h1>
         </div>
         <div class="container grid12 intro-lower">
@@ -458,36 +470,36 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
             <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/1cad46d6-7825-49c7-aa11-2764c150eb8c_800w.webp" alt="Creative portrait">
           </div>
           <div class="keywords">
-            Direction
+            Prompt
             <br>
-            Identity
+            Generate
             <br>
-            Motion
+            Paste
             <br>
-            Digital
+            Ship
           </div>
           <div class="intro-copy">
             <p>
-              We partner with ambitious teams to turn strategic thinking into
-              memorable visual systems.
+              The developer leans back. The application does what it was asked
+              to do. Every visible path appears to work.
             </p>
             <p>
-              From the first idea to the final interaction, every detail is
-              built to communicate with precision.
+              “I’ll clean it up before launch.” The repository becomes public
+              before that moment arrives.
             </p>
           </div>
           <div class="stats-mini">
             <div>
-              <strong data-count="84">0</strong>
-              <span>Projects delivered</span>
+              <strong data-count="3.47" data-suffix="H">0</strong>
+              <span>Build time</span>
             </div>
             <div>
-              <strong data-count="11">0</strong>
-              <span>Countries reached</span>
+              <strong data-count="0">0</strong>
+              <span>Security review</span>
             </div>
             <div>
-              <strong data-count="72">0</strong>
-              <span>Returning clients %</span>
+              <strong data-count="1">0</strong>
+              <span>Public repository</span>
             </div>
           </div>
         </div>
@@ -495,42 +507,38 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 
       <div class="ticker paper">
         <div class="ticker-track">
-          <span>Kanto</span>
-          <span>Axiom</span>
-          <span>Lumen</span>
-          <span>Vestra</span>
-          <span>Monocle</span>
-          <span>Terrain</span>
-          <span>Noma</span>
-          <span>Circa</span>
-          <span>Kanto</span>
-          <span>Axiom</span>
-          <span>Lumen</span>
-          <span>Vestra</span>
-          <span>Monocle</span>
-          <span>Terrain</span>
-          <span>Noma</span>
-          <span>Circa</span>
+          <span>Prompt.</span>
+          <span>Generate.</span>
+          <span>Paste.</span>
+          <span>Run.</span>
+          <span>Deploy.</span>
+          <span>Public.</span>
+          <span>Prompt.</span>
+          <span>Generate.</span>
+          <span>Paste.</span>
+          <span>Run.</span>
+          <span>Deploy.</span>
+          <span>Public.</span>
         </div>
       </div>
 
       <section class="projects paper" id="work">
         <div class="container">
           <div class="projects-head">
-            <h2 class="display">Selected Work</h2>
-            <div class="eyebrow">2024—2026</div>
+            <h2 class="display">One night / Four moments</h2>
+            <div class="eyebrow">Speed → Exposure</div>
           </div>
 
           <article class="project">
             <div class="project-copy">
-              <h3 class="display line-mask"><span>Silent Geometry</span></h3>
+              <h3 class="display line-mask"><span>Software moves fast now.</span></h3>
               <p>
-                Brand film
+                02:13 / Creation
                 <br>
-                2026
+                The developer
               </p>
             </div>
-            <div class="project-media hover-media">
+            <div class="project-media hover-media" data-video-slot="developer-speed">
               <video src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/8bd0314a-9525-4a13-996e-2c37cbd9e514/1784436916049-996a1369-4925-4293-9614-7cc8a1164acb.mp4" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ee8e4ce6-9691-46fc-9cbf-8f995d7e8488_1600w.webp" data-aura-generated-video="true" data-aura-video-preset="loop-in-view" muted="" playsinline="" preload="metadata" loop="" aria-label="Silent Geometry" class="h-full w-full object-cover"></video>
             </div>
             <div class="project-side">
@@ -543,14 +551,14 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 
           <article class="project">
             <div class="project-copy">
-              <h3 class="display line-mask"><span>Outer State</span></h3>
+              <h3 class="display line-mask"><span>Public is public.</span></h3>
               <p>
-                Fashion campaign
+                03:48 / Deployment
                 <br>
-                2025
+                The assumption
               </p>
             </div>
-            <div class="project-media hover-media">
+            <div class="project-media hover-media" data-video-slot="public-deployment">
               <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&amp;fit=crop&amp;w=2000&amp;q=90" alt="Outer State">
             </div>
             <div class="project-side">
@@ -563,14 +571,14 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 
           <article class="project">
             <div class="project-copy">
-              <h3 class="display line-mask"><span>Still Moving</span></h3>
+              <h3 class="display line-mask"><span>They used what you shipped.</span></h3>
               <p>
-                Digital experience
+                04:06 / Inspection
                 <br>
-                2025
+                The other user
               </p>
             </div>
-            <div class="project-media hover-media">
+            <div class="project-media hover-media" data-video-slot="attacker-inspection">
               <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e2449689-711a-4092-9414-985b099e2099_1600w.webp" alt="Still Moving">
             </div>
             <div class="project-side">
@@ -583,14 +591,14 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 
           <article class="project">
             <div class="project-copy">
-              <h3 class="display line-mask"><span>Future Matter</span></h3>
+              <h3 class="display line-mask"><span>Vulnerabilities have users.</span></h3>
               <p>
-                Art direction
+                04:09 / Consequence
                 <br>
-                2024
+                The person affected
               </p>
             </div>
-            <div class="project-media hover-media">
+            <div class="project-media hover-media" data-video-slot="user-consequence">
               <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/3fff90e0-12ec-478c-9afa-a8550e9b52e3_1600w.webp" alt="Future Matter">
             </div>
             <div class="project-side">
@@ -603,14 +611,14 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
         </div>
       </section>
 
-      <section class="capabilities dark diagonal-top" id="capabilities">
+      <section class="capabilities dark diagonal-top" id="exposure">
         <div class="container">
-          <div class="eyebrow">02 / Capabilities</div>
+          <div class="eyebrow">02 / The exposure</div>
           <div class="cap-intro">
             <div class="cap-statement display">
-              <span>Strategy becomes structure.</span>
-              <span>Structure becomes image.</span>
-              <span>Image becomes experience.</span>
+              <span>A request becomes access.</span>
+              <span>Access becomes impact.</span>
+              <span>Impact becomes a headline.</span>
             </div>
             <div class="cap-photo">
               <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e6366a9f-2edd-47bf-90c2-c450208e3cfb_800w.webp" alt="Studio portrait">
@@ -622,10 +630,10 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
             <div class="image">
               <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Art direction">
             </div>
-            <h3 class="display">Art Direction</h3>
+            <h3 class="display">The surface</h3>
             <p>
-              Visual concepts, campaign worlds, casting direction, styling
-              systems, and image frameworks.
+              A public endpoint. A permissive configuration. A secret left in
+              source. Nothing looks broken from the developer’s screen.
             </p>
           </div>
           <div class="cap-row">
@@ -633,10 +641,10 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
             <div class="image">
               <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/variants/520a171e-7d8c-49b9-af99-096a7a699892/320w.png" alt="Identity systems">
             </div>
-            <h3 class="display">Identity Systems</h3>
+            <h3 class="display">The request</h3>
             <p>
-              Brand language, typography, art systems, guidelines, and scalable
-              creative direction.
+              The attacker does not need cinematic tools. They change a value,
+              replay a request, and test what the application assumes.
             </p>
           </div>
           <div class="cap-row">
@@ -644,64 +652,64 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
             <div class="image">
               <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Digital experiences">
             </div>
-            <h3 class="display">Digital Experiences</h3>
+            <h3 class="display">The consequence</h3>
             <p>
-              Interactive websites, motion systems, prototypes, and expressive
-              digital launches.
+              Private data becomes visible. An unauthorized action succeeds.
+              A technical shortcut reaches a real person.
             </p>
           </div>
         </div>
       </section>
 
-      <section class="engagement paper diagonal-top">
+      <section class="engagement paper diagonal-top" id="failure">
         <div class="container">
-          <div class="eyebrow">03 / Engagement</div>
-          <h2 class="section-title display">Ways to Work Together</h2>
+          <div class="eyebrow">03 / The failure path</div>
+          <h2 class="section-title display">One missed line. A different system.</h2>
           <div class="plans">
             <div class="plan">
-              <small>01 / Sprint</small>
-              <h3>Direction Sprint</h3>
-              <div class="price">$2,400</div>
+              <small>01 / The shortcut</small>
+              <h3>It works locally.</h3>
+              <div class="price">03:31 AM</div>
               <ul>
-                <li>Visual direction</li>
-                <li>Moodboard system</li>
-                <li>Two core concepts</li>
-                <li>Final presentation</li>
+                <li>A secret remains in source</li>
+                <li>Debug configuration stays enabled</li>
+                <li>User input reaches a dangerous sink</li>
+                <li>The happy path still passes</li>
               </ul>
               <a href="#contact">
-                <span>Begin project</span>
+                <span>Everything looks ready</span>
                 <span>↗</span>
               </a>
             </div>
             <div class="plan">
-              <small>02 / Identity</small>
-              <h3>Identity System</h3>
-              <div class="price">$7,800</div>
+              <small>02 / The assumption</small>
+              <h3>It’s only a demo.</h3>
+              <div class="price">03:48 AM</div>
               <ul>
-                <li>Brand strategy</li>
-                <li>Identity design</li>
-                <li>Typography and color</li>
-                <li>Brand guidelines</li>
-                <li>Launch assets</li>
+                <li>The repository becomes public</li>
+                <li>The endpoint accepts outside traffic</li>
+                <li>The browser reveals application logic</li>
+                <li>The assumptions become inspectable</li>
+                <li>Public is public</li>
               </ul>
               <a href="#contact">
-                <span>Begin project</span>
+                <span>The surface is live</span>
                 <span>↗</span>
               </a>
             </div>
             <div class="plan dark-card">
-              <small>03 / Full</small>
-              <h3>Full Experience</h3>
-              <div class="price">From $14,500</div>
+              <small>03 / The result</small>
+              <h3>Someone tests it.</h3>
+              <div class="price">04:06 AM</div>
               <ul>
-                <li>Creative direction</li>
-                <li>Brand system</li>
-                <li>Campaign assets</li>
-                <li>Motion language</li>
-                <li>Website design</li>
+                <li>A request value changes</li>
+                <li>An authorization boundary disappears</li>
+                <li>A dangerous operation succeeds</li>
+                <li>Private information crosses the screen</li>
+                <li>A user inherits the consequence</li>
               </ul>
               <a href="#contact">
-                <span>Begin project</span>
+                <span>The assumption breaks</span>
                 <span>↗</span>
               </a>
             </div>
@@ -715,132 +723,116 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
             <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/95a6559d-388d-45c7-9ed3-b3d3fe4efa9a_800w.webp" alt="Client portrait">
           </div>
           <blockquote class="quote display">
-            “NORTH/FORM gave us more than a visual identity. They gave the
-            entire team a clearer way to think, communicate and launch.”
+            “I trusted this application with something that mattered.”
           </blockquote>
           <div class="quote-author">
-            <strong>Mara Ellison</strong>
+            <strong>The person on the other side</strong>
             <br>
-            Founder, Field Assembly
+            Every user / every public application
           </div>
           <div class="quote-metrics">
             <div class="metric">
-              <strong data-count="84">0</strong>
-              <span>Launches</span>
+              <strong data-count="1">0</strong>
+              <span>Missed line</span>
             </div>
             <div class="metric">
-              <strong data-count="96">0</strong>
-              <span>Client retention %</span>
+              <strong data-count="1">0</strong>
+              <span>Public endpoint</span>
             </div>
             <div class="metric">
-              <strong data-count="14">0</strong>
-              <span>International awards</span>
+              <strong data-count="0">0</strong>
+              <span>Warnings before launch</span>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="archive paper">
+      <section class="archive paper" id="reality">
         <div class="container">
-          <h2 class="display">Archive / Selected Collaborations</h2>
+          <div class="eyebrow">04 / Outside the story</div>
+          <h2 class="display">This isn’t fiction.</h2>
           <div class="archive-list">
-            <div class="archive-row" data-preview="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&amp;fit=crop&amp;w=900&amp;q=85">
+            <a class="archive-row" href="https://www.axios.com/2026/05/07/loveable-replit-vibe-coding-privacy" target="_blank" rel="noreferrer" data-preview="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&amp;fit=crop&amp;w=900&amp;q=85">
               <span>2026</span>
-              <span>Axiom</span>
-              <span>Campaign Direction</span>
+              <span>380,000 public assets</span>
+              <span>5,000 containing sensitive corporate data / Axios</span>
               <div class="archive-thumb">
-                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/cdb06f1d-ba81-4122-995e-6f03d6cfbea8_320w.webp" alt="Axiom">
+                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/cdb06f1d-ba81-4122-995e-6f03d6cfbea8_320w.webp" alt="Public application exposure">
               </div>
-            </div>
-            <div class="archive-row" data-preview="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&amp;fit=crop&amp;w=900&amp;q=85">
-              <span>2026</span>
-              <span>Noma</span>
-              <span>Digital Launch</span>
-              <div class="archive-thumb">
-                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/68393d27-4c21-415a-aafc-cf5a31b57682_320w.webp" alt="Noma">
-              </div>
-            </div>
-            <div class="archive-row" data-preview="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&amp;fit=crop&amp;w=900&amp;q=85">
+            </a>
+            <a class="archive-row" href="https://www.securityweek.com/flaw-in-vibe-coding-platform-base44-exposed-private-enterprise-applications/" target="_blank" rel="noreferrer" data-preview="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&amp;fit=crop&amp;w=900&amp;q=85">
               <span>2025</span>
-              <span>Terrain</span>
-              <span>Identity System</span>
+              <span>Private applications exposed</span>
+              <span>A basic API path / Base44 research</span>
               <div class="archive-thumb">
-                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a41d3a65-8d6a-4d01-9658-ed45cbcdcce6_320w.webp" alt="Terrain">
+                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/68393d27-4c21-415a-aafc-cf5a31b57682_320w.webp" alt="API exposure report">
               </div>
-            </div>
-            <div class="archive-row" data-preview="https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&amp;fit=crop&amp;w=900&amp;q=85">
+            </a>
+            <a class="archive-row" href="https://apnews.com/article/24c6e3ca6e8256f0594f80588607ba11" target="_blank" rel="noreferrer" data-preview="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&amp;fit=crop&amp;w=900&amp;q=85">
               <span>2025</span>
-              <span>Mono</span>
-              <span>Brand Film</span>
+              <span>Thousands of identities exposed</span>
+              <span>Photos and private messages / Tea incident</span>
               <div class="archive-thumb">
-                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/variants/0a4aa3d6-d721-49ae-8f1d-fae6a49994ee/320w.png" alt="Mono">
+                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a41d3a65-8d6a-4d01-9658-ed45cbcdcce6_320w.webp" alt="User data breach">
               </div>
-            </div>
-            <div class="archive-row" data-preview="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&amp;fit=crop&amp;w=900&amp;q=85">
-              <span>2024</span>
-              <span>Circa</span>
-              <span>Editorial Platform</span>
+            </a>
+            <a class="archive-row" href="https://www.sec.gov/Archives/edgar/data/789570/000119312523251667/d461062d8k.htm" target="_blank" rel="noreferrer" data-preview="https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&amp;fit=crop&amp;w=900&amp;q=85">
+              <span>2023</span>
+              <span>$100M estimated impact</span>
+              <span>One cybersecurity incident / MGM SEC filing</span>
               <div class="archive-thumb">
-                <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&amp;fit=crop&amp;w=400&amp;q=75" alt="Circa">
+                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/variants/0a4aa3d6-d721-49ae-8f1d-fae6a49994ee/320w.png" alt="Cybersecurity business impact">
               </div>
-            </div>
-            <div class="archive-row" data-preview="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&amp;fit=crop&amp;w=900&amp;q=85">
-              <span>2024</span>
-              <span>Vestra</span>
-              <span>Art Direction</span>
-              <div class="archive-thumb">
-                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&amp;fit=crop&amp;w=400&amp;q=75" alt="Vestra">
-              </div>
-            </div>
+            </a>
           </div>
         </div>
       </section>
 
-      <section class="cinematic section">
-        <div class="cinematic-bg">
-          <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/variants/df48517c-b34b-4aa2-b653-96984538305d/3840w.jpg" alt="Architecture">
+      <section class="cinematic section" id="checkpoint">
+        <div class="cinematic-bg" data-video-slot="breaksmith-interception">
+          <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/variants/df48517c-b34b-4aa2-b653-96984538305d/3840w.jpg" alt="BreakSmith checkpoint">
         </div>
         <div class="cinematic-inner">
-          <h2 class="display">We shape what comes next.</h2>
+          <h2 class="display">Break it here. Not out there.</h2>
           <div class="cinematic-card">
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d1d195f0-17d7-4654-a1fc-c9e3192705c4_800w.webp" alt="Editorial portrait">
+            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d1d195f0-17d7-4654-a1fc-c9e3192705c4_800w.webp" alt="Developer reviewing evidence">
           </div>
-          <a href="#contact" class="cinematic-cta">Start a project ↗</a>
+          <a href="#method" class="cinematic-cta">Enter BreakSmith ↗</a>
         </div>
       </section>
 
       <section class="big-stats paper diagonal-top">
         <div class="container stats-grid">
           <div class="stat">
-            <strong data-count="2.4" data-suffix="M">0</strong>
-            <p>Total audience reach across campaigns and digital launches</p>
+            <strong data-count="1">0</strong>
+            <p>Repository enters an isolated, bounded security scan</p>
           </div>
           <div class="stat">
-            <strong data-count="118" data-suffix="K">0</strong>
-            <p>Creative assets delivered across identity, motion and web</p>
+            <strong data-count="9">0</strong>
+            <p>Risk categories organize the application’s attack surface</p>
           </div>
           <div class="stat">
-            <strong data-count="93" data-suffix="+">0</strong>
-            <p>Brand launches shaped from strategy to final experience</p>
+            <strong data-count="100">0</strong>
+            <p>Point score turns scattered findings into one readable verdict</p>
           </div>
           <div class="stat">
-            <strong data-count="21">0</strong>
-            <p>Countries reached through international collaborations</p>
+            <strong data-count="57">0</strong>
+            <p>Automated regression tests protect the scanner and API contract</p>
           </div>
         </div>
       </section>
 
-      <section class="journal paper">
+      <section class="journal paper" id="method">
         <div class="container">
-          <div class="eyebrow" style="margin-bottom:60px">04 / Journal</div>
+          <div class="eyebrow" style="margin-bottom:60px">05 / Method, not magic</div>
           <div class="journal-grid">
             <article class="journal-item">
               <div class="journal-img">
                 <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" alt="Journal portrait">
               </div>
               <div class="journal-meta">
-                <span>01 / Casting Notes</span>
-                <span>2026</span>
+                <span>01 / OWASP Top 10</span>
+                <span>2025</span>
               </div>
             </article>
             <article class="journal-item">
@@ -848,8 +840,8 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
                 <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/611c8074-3c56-4810-a604-812a2791a1f9_800w.webp" alt="Journal fashion">
               </div>
               <div class="journal-meta">
-                <span>02 / Material Study</span>
-                <span>2026</span>
+                <span>02 / OWASP API Security</span>
+                <span>2023</span>
               </div>
             </article>
             <article class="journal-item">
@@ -857,8 +849,8 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
                 <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/cd2c33e1-4bcd-452f-ad23-223a9029f74b_800w.webp" alt="Journal studio">
               </div>
               <div class="journal-meta">
-                <span>03 / Process</span>
-                <span>2025</span>
+                <span>03 / MITRE CWE</span>
+                <span>Weakness mapping</span>
               </div>
             </article>
             <article class="journal-item">
@@ -866,8 +858,8 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
                 <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" alt="Journal campaign">
               </div>
               <div class="journal-meta">
-                <span>04 / Campaign Still</span>
-                <span>2025</span>
+                <span>04 / Regression corpus</span>
+                <span>Fixed cases</span>
               </div>
             </article>
           </div>
@@ -876,70 +868,84 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 
       <section class="faq paper diagonal-top">
         <div class="container">
-          <h2 class="display">Common Questions</h2>
+          <h2 class="display">What the checkpoint means.</h2>
           <div class="faq-item">
             <button class="faq-q">
-              <span>What types of projects do you take on?</span>
+              <span>What does BreakSmith inspect?</span>
               <span class="faq-plus cross"></span>
             </button>
             <div class="faq-a">
               <p>
-                We focus on identity systems, campaign direction, motion design
-                and expressive digital experiences. Most engagements combine at
-                least two of these disciplines.
+                Source code, configuration, dependency manifests, secrets,
+                authentication patterns, dangerous input paths, API exposure,
+                and common weak cryptography in public GitHub repositories.
               </p>
             </div>
           </div>
           <div class="faq-item">
             <button class="faq-q">
-              <span>Do you work with international clients?</span>
+              <span>What is the method informed by?</span>
               <span class="faq-plus cross"></span>
             </button>
             <div class="faq-a">
               <p>
-                Yes. Our process is built for remote collaboration, with clear
-                milestones, live reviews and a structured communication rhythm.
+                Rule coverage is informed by established application-security
+                guidance including the OWASP Top 10, OWASP API Security Top 10,
+                and standardized MITRE CWE weakness identifiers.
               </p>
             </div>
           </div>
           <div class="faq-item">
             <button class="faq-q">
-              <span>Can you handle both identity and web design?</span>
+              <span>Does a scan certify an application as secure?</span>
               <span class="faq-plus cross"></span>
             </button>
             <div class="faq-a">
               <p>
-                Yes. Many of our strongest projects begin with identity and
-                extend into a complete digital system, motion language and
-                launch campaign.
+                No. It is a practical pre-ship checkpoint, not a certification
+                or a substitute for threat modeling, review, testing, and
+                ongoing production monitoring.
               </p>
             </div>
           </div>
           <div class="faq-item">
             <button class="faq-q">
-              <span>What is the typical project timeline?</span>
+              <span>Does BreakSmith change the repository?</span>
               <span class="faq-plus cross"></span>
             </button>
             <div class="faq-a">
               <p>
-                Focused direction sprints usually take two to three weeks. Full
-                identity and digital projects generally run from eight to
-                sixteen weeks.
+                No. The repository is cloned temporarily for inspection and
+                removed afterward. Suggested patches remain review-only until a
+                developer chooses what to apply.
               </p>
             </div>
           </div>
           <div class="faq-item">
             <button class="faq-q">
-              <span>How does the process begin?</span>
+              <span>What comes back?</span>
               <span class="faq-plus cross"></span>
             </button>
             <div class="faq-a">
               <p>
-                Every project begins with a short conversation about your goals,
-                audience, timing and ambition. From there, we shape the right
-                scope and working model.
+                A security score, severity summary, category distribution,
+                file-and-line findings, repository risk intelligence, and a
+                prioritized path toward remediation.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="story-return paper">
+        <div class="container story-return-grid">
+          <div class="eyebrow">07 / Same developer / different morning</div>
+          <div class="story-return-media" data-video-slot="developer-morning">
+            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e6366a9f-2edd-47bf-90c2-c450208e3cfb_800w.webp" alt="Developer reviewing the BreakSmith report in the morning">
+          </div>
+          <div class="story-return-copy">
+            <h2 class="display">Unknown.<span>Exposed.</span>Under control.</h2>
+            <blockquote>“I checked what could break before I shipped.”</blockquote>
           </div>
         </div>
       </section>
@@ -947,61 +953,40 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
       <footer class="footer dark" id="contact">
         <div class="container footer-main">
           <div>
-            <div class="eyebrow">05 / Contact</div>
-            <h2 class="display">Have a project in mind?</h2>
-            <a class="footer-email" href="mailto:studio@northform.design">
-              studio@northform.design
+            <div class="eyebrow">06 / Control restored</div>
+            <h2 class="display">Scan before you ship.</h2>
+            <a class="footer-email" href="https://github.com/">
+              github.com/you/next-project
             </a>
           </div>
-          <form onsubmit="event.preventDefault(); this.querySelector('button').textContent='Message received ✓';">
-            <div class="form-row">
-              <div class="field">
-                <label>Name</label>
-                <input required="">
-              </div>
-              <div class="field">
-                <label>Email</label>
-                <input type="email" required="">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="field">
-                <label>Company</label>
-                <input>
-              </div>
-              <div class="field">
-                <label>Project type</label>
-                <select>
-                  <option>Identity</option>
-                  <option>Campaign</option>
-                  <option>Digital</option>
-                  <option>Full experience</option>
-                </select>
-              </div>
+          <form onsubmit="event.preventDefault(); this.querySelector('button').textContent='CHECKPOINT READY ✓';">
+            <div class="field">
+              <label>Public GitHub repository</label>
+              <input type="url" placeholder="https://github.com/user/repository" required="">
             </div>
             <div class="field">
-              <label>Message</label>
-              <textarea required=""></textarea>
+              <label>Before the next deploy</label>
+              <textarea readonly>Know what breaks. See where it lives. Fix what matters first.</textarea>
             </div>
-            <button class="form-submit" type="submit">Send inquiry ↗</button>
+            <button class="form-submit" type="submit">Forge scan ↗</button>
           </form>
         </div>
         <div class="container footer-meta">
           <div class="socials">
-            <a href="#">Instagram</a>
-            <a href="#">Behance</a>
-            <a href="#">LinkedIn</a>
-            <a href="#">Are.na</a>
+            <a href="#story">Story</a>
+            <a href="#reality">Reality</a>
+            <a href="#checkpoint">Checkpoint</a>
+            <a href="#method">Method</a>
           </div>
           <div>
-            Montréal /
+            Local time /
             <span id="clock">18:42 EST</span>
           </div>
         </div>
         <div class="footer-word display">
-          NORTH
+          BREAK
           <span class="slash">/</span>
-          FORM
+          SMITH
         </div>
       </footer>
     </main>
@@ -1067,7 +1052,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
           .from('.hero-link', { y:15, opacity:0, duration:.7 }, '-=.45')
           .from('.hero-word .line-mask span, .hero-word > span', { yPercent:110, duration:1.15, ease:'power4.out' }, '-=.9');
 
-        gsap.to('.hero-media img', { scale:1, duration:1.8, ease:'power3.out' });
+        gsap.to('.hero-media img, .hero-media video', { scale:1, duration:1.8, ease:'power3.out' });
         gsap.to('.hero-media', { yPercent:20, scale:.96, ease:'none', scrollTrigger:{ trigger:'.hero', start:'top top', end:'bottom top', scrub:true } });
         gsap.to('.hero-word', { yPercent:35, ease:'none', scrollTrigger:{ trigger:'.hero', start:'top top', end:'bottom top', scrub:true } });
 
@@ -1084,7 +1069,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 
         document.querySelectorAll('.project').forEach((project, i) => {
           const media = project.querySelector('.project-media');
-          const img = media.querySelector('img');
+          const img = media.querySelector('img, video');
           const title = project.querySelector('h3 span');
           const side = project.querySelector('.project-side');
           gsap.fromTo(media, { scale:.84 }, { scale:1.04, ease:'none', scrollTrigger:{ trigger:project, start:'top bottom', end:'bottom top', scrub:true } });
