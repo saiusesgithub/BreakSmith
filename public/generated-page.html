@@ -29,6 +29,7 @@ overflow-x: hidden;
 body.is-loading { overflow: hidden; }
 .no-js .preloader { display:none; }
 img { display:block; width:100%; height:100%; object-fit:cover; }
+video { display:block; width:100%; height:100%; object-fit:cover; }
 a { color: inherit; text-decoration: none; }
 button, input, textarea, select { font: inherit; }
 button { cursor:pointer; }
@@ -328,12 +329,23 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 .cap-statement span{display:block}
 .cap-statement span:nth-child(2){padding-left:8vw}.cap-statement span:nth-child(3){padding-left:16vw}
 .cap-photo{display:none}
-.cap-row{grid-template-columns:70px 1fr 2.4fr;min-height:210px;cursor:pointer;overflow:hidden;position:relative}
-.cap-row .image{position:absolute;right:3%;width:180px;height:230px;opacity:0;transform:rotate(7deg) scale(.8);z-index:2;transition:.45s cubic-bezier(.2,.8,.2,1);pointer-events:none}
-.cap-row h3{grid-column:2;font-size:clamp(45px,6vw,92px);transition:.35s}
-.cap-row p{grid-column:3;justify-self:end;max-width:370px}
-.cap-row:hover .image{opacity:1;transform:rotate(-4deg) scale(1)}
-.cap-row:hover h3{transform:translateX(24px);color:var(--acid)}
+.cap-row{grid-template-columns:90px minmax(260px,.9fr) minmax(360px,1.15fr);min-height:290px;cursor:pointer;overflow:hidden;position:relative;gap:clamp(28px,5vw,90px)}
+.cap-row:before{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--acid);transform:scaleX(0);transform-origin:left;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.cap-row .image{display:none}
+.cap-row .num{width:54px;height:54px;border:1px solid rgba(255,255,255,.32);border-radius:50%;display:grid;place-items:center;transition:.35s}
+.cap-row h3{grid-column:2;font-size:clamp(54px,6.4vw,104px);transition:.45s cubic-bezier(.2,.8,.2,1);position:relative}
+.cap-row h3:after{content:attr(data-signal);display:block;margin-top:18px;font:600 9px Inter,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#777}
+.cap-detail{grid-column:3;align-self:stretch;display:flex;flex-direction:column;justify-content:center;border-left:1px solid rgba(255,255,255,.15);padding-left:clamp(24px,4vw,64px)}
+.cap-row p{justify-self:auto;max-width:520px;color:#b8b8b8;font-size:clamp(16px,1.45vw,21px);line-height:1.55;margin:0 0 46px}
+.cap-path{display:grid;grid-template-columns:auto 1fr auto 1fr auto;align-items:center;gap:12px;max-width:580px}
+.cap-path span{padding:9px 12px;border:1px solid rgba(255,255,255,.22);border-radius:999px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#aaa;transition:.35s;white-space:nowrap}
+.cap-path i{display:block;height:1px;background:rgba(255,255,255,.2);position:relative;overflow:hidden}
+.cap-path i:after{content:"";position:absolute;inset:0;background:var(--acid);transform:translateX(-101%);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.cap-row:hover:before{transform:scaleX(1)}
+.cap-row:hover .num{background:var(--acid);border-color:var(--acid);color:#111}
+.cap-row:hover h3{transform:translateX(14px);color:var(--acid)}
+.cap-row:hover .cap-path span{border-color:var(--acid);color:#fff}
+.cap-row:hover .cap-path i:after{transform:translateX(0)}
 .engagement{padding:170px 0;background:#e8e6df}
 .section-title{max-width:1100px;margin:15px 0 100px}
 .plans{border:0;display:flex;gap:14px;align-items:stretch}
@@ -349,7 +361,10 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 .quote-photo{grid-column:1/4;height:300px;border-radius:50%;aspect-ratio:1;width:300px}
 .quote{grid-column:4/13;font-size:clamp(50px,7vw,116px);line-height:.92}
 .quote:before{content:"“";position:absolute;font-size:32vw;line-height:.7;left:22%;top:-18%;opacity:.045}
-.quote-author{grid-column:4/8;border-top:1px solid var(--line);padding-top:18px}
+.quote-author{grid-column:4/10;margin-top:56px;border:0;border-left:6px solid var(--accent);padding:24px 28px;background:var(--ink);color:#fff;display:grid;grid-template-columns:1fr auto;gap:14px 28px;align-items:end;box-shadow:18px 18px 0 rgba(194,79,32,.16)}
+.quote-author:before{content:"Human impact / 04:09";grid-column:1/-1;color:var(--accent);font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
+.quote-author strong{font-family:"Space Grotesk",sans-serif;font-size:clamp(25px,2.4vw,40px);letter-spacing:-.045em;line-height:1}
+.quote-author span{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#aaa;text-align:right}
 .quote-metrics{grid-template-columns:repeat(3,1fr);margin-top:140px;border-bottom:1px solid var(--line)}
 .metric{min-height:270px;display:flex;flex-direction:column;justify-content:space-between;padding:35px}
 .metric strong{font-size:clamp(64px,8vw,125px)}
@@ -384,10 +399,10 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 .faq-q{padding:34px 0;transition:.3s}.faq-item:hover .faq-q{padding-left:18px;color:var(--accent)}
 .footer{padding-top:170px}.footer-main{gap:12vw}.footer-word{letter-spacing:-.09em}
 @media(max-width:900px){
-.site-header{left:12px;right:12px}.nav{display:none}.project-copy h3{white-space:normal}.plans{flex-direction:column}.plan:nth-child(2){transform:none}.plan:hover{transform:none}.cap-row{grid-template-columns:50px 1fr}.cap-row p{grid-column:2;justify-self:start}.cap-row .image{display:none}.journal-item:nth-child(n){grid-column:span 6;margin-top:0}.quote-photo{width:190px;height:190px}
+.site-header{left:12px;right:12px}.nav{display:none}.project-copy h3{white-space:normal}.plans{flex-direction:column}.plan:nth-child(2){transform:none}.plan:hover{transform:none}.cap-row{grid-template-columns:64px 1fr;gap:24px}.cap-row h3{grid-column:2}.cap-detail{grid-column:2;border-left:0;padding:0 0 34px}.cap-row p{justify-self:start;margin-bottom:30px}.cap-row .image{display:none}.journal-item:nth-child(n){grid-column:span 6;margin-top:0}.quote-photo{width:190px;height:190px}.quote-author{grid-column:4/-1;grid-template-columns:1fr}
 }
 @media(max-width:640px){
-:root{--pad:16px}.site-header{top:9px;height:54px}.logo{font-size:14px}.header-cta{font-size:8px}.hero-topcopy{top:16vh}.hero-word{font-size:22vw}.intro{padding:110px 0}.intro-title .line-mask:nth-child(n){padding-left:0}.intro-lower{display:block}.intro-portrait{width:78%;height:55vh;margin-bottom:45px}.project{min-height:auto}.project-media,.project:nth-of-type(even) .project-media{height:62vh}.project-copy,.project:nth-of-type(even) .project-copy{color:#111;mix-blend-mode:normal;text-align:left}.projects-head{position:relative;top:auto;color:#111;mix-blend-mode:normal}.cap-statement span:nth-child(n){padding-left:0}.cap-row{min-height:260px}.quote-photo{width:130px;height:130px}.quote{margin-top:35px}.archive-row{grid-template-columns:.5fr 1.2fr 1.5fr}.archive-thumb{display:none}.journal-grid{display:block}.journal-item:nth-child(n){margin:0 0 14px;min-height:390px}.stats-grid{display:block}.stat{min-height:290px}.metric{min-height:200px;padding:22px}
+:root{--pad:16px}.site-header{top:9px;height:54px}.logo{font-size:14px}.header-cta{font-size:8px}.hero-topcopy{top:16vh}.hero-word{font-size:22vw}.intro{padding:110px 0}.intro-title .line-mask:nth-child(n){padding-left:0}.intro-lower{display:block}.intro-portrait{width:78%;height:55vh;margin-bottom:45px}.project{min-height:auto}.project-media,.project:nth-of-type(even) .project-media{height:62vh}.project-copy,.project:nth-of-type(even) .project-copy{color:#111;mix-blend-mode:normal;text-align:left}.projects-head{position:relative;top:auto;color:#111;mix-blend-mode:normal}.cap-statement span:nth-child(n){padding-left:0}.cap-row{min-height:390px;grid-template-columns:1fr}.cap-row .num,.cap-row h3,.cap-detail{grid-column:1}.cap-row h3{margin-top:8px}.cap-detail{padding-bottom:42px}.cap-path{gap:7px}.cap-path span{font-size:7px;padding:7px 8px}.quote-photo{width:130px;height:130px}.quote{margin-top:35px}.quote-author{grid-column:auto;margin-top:34px;padding:20px;box-shadow:10px 10px 0 rgba(194,79,32,.16)}.quote-author span{text-align:left}.archive-row{grid-template-columns:.5fr 1.2fr 1.5fr}.archive-thumb{display:none}.journal-grid{display:block}.journal-item:nth-child(n){margin:0 0 14px;min-height:390px}.stats-grid{display:block}.stat{min-height:290px}.metric{min-height:200px;padding:22px}
 }
 </style>
 <style>
@@ -400,9 +415,18 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 .story-return-copy h2{font-size:clamp(66px,9vw,154px);margin:0;line-height:.84}
 .story-return-copy h2 span{display:block;color:var(--accent)}
 .story-return-copy blockquote{font-size:clamp(20px,2.3vw,36px);line-height:1.25;max-width:780px;margin:60px 0 0;border-top:1px solid var(--line);padding-top:24px}
-@media(max-width:760px){.story-return{padding:110px 0}.story-return .eyebrow{margin-bottom:45px}.story-return-media{grid-column:1/-1;height:60vh;min-height:430px}.story-return-copy{grid-column:1/-1;padding-top:55px}.story-return-copy blockquote{margin-top:35px}}
+[data-video-slot]{isolation:isolate}
+[data-video-slot]:before{content:attr(data-scene);position:absolute;z-index:6;top:18px;left:18px;padding:9px 12px;border:1px solid rgba(255,255,255,.28);border-radius:999px;background:rgba(8,8,8,.46);color:#fff;font:600 9px Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);pointer-events:none}
+.hero-media[data-video-slot]:before{top:92px;left:auto;right:var(--pad)}
+[data-video-slot] video,[data-video-slot] img{transition:filter .45s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+[data-video-slot]:hover video,[data-video-slot]:hover img{filter:saturate(.78) contrast(1.06)}
+.scene-index{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin:0 0 70px;background:var(--line);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.scene-index-item{background:var(--paper);padding:18px 20px;display:flex;justify-content:space-between;gap:16px;align-items:center;font-size:10px;text-transform:uppercase;letter-spacing:.12em;transition:.3s}
+.scene-index-item b{font-family:"Space Grotesk";font-size:17px;letter-spacing:-.04em}
+.scene-index-item:hover{background:var(--ink);color:#fff}
+.scene-index-item span:last-child{color:var(--accent)}
+@media(max-width:760px){.story-return{padding:110px 0}.story-return .eyebrow{margin-bottom:45px}.story-return-media{grid-column:1/-1;height:60vh;min-height:430px}.story-return-copy{grid-column:1/-1;padding-top:55px}.story-return-copy blockquote{margin-top:35px}.scene-index{grid-template-columns:1fr 1fr;margin-bottom:35px}.scene-index-item{padding:14px 12px}[data-video-slot]:before{top:12px;left:12px;font-size:8px}}
 </style>
-<script src="https://cdn.tailwindcss.com"></script>
 </head>
   <body class=""><div class="scroll-progress" aria-hidden="true"></div>
     <div class="noise"></div>
@@ -425,14 +449,13 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 
     <main id="top">
       <section class="hero section">
-        <div class="hero-media" data-video-slot="developer-night">
+        <div class="hero-media" data-video-slot="developer-night" data-scene="Scene 01 / The build">
           <video src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/8bd0314a-9525-4a13-996e-2c37cbd9e514/1784436357607-9c22882e-f726-4971-b85d-f7b5276000ff.mp4" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d1d195f0-17d7-4654-a1fc-c9e3192705c4_1600w.webp" data-aura-generated-video="true" data-aura-video-preset="play-once" muted="" playsinline="" preload="metadata" aria-label="Editorial portrait" class="h-full w-full object-cover"></video>
         </div>
         <div class="hero-topcopy">
           <div class="line-mask">
             <span>
-              One developer. One idea. One night. Software has never moved
-              faster—and neither has the attack surface.
+              He built it tonight. He shipped it before sunrise.
             </span>
           </div>
           <a class="hero-link" href="#story">Enter the story</a>
@@ -459,14 +482,13 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
             <span>Build session / 2026</span>
           </div>
           <h1 class="intro-title display">
-            <div class="line-mask"><span>Tonight, it works.</span></div>
-            <div class="line-mask"><span>The login resolves.</span></div>
-            <div class="line-mask"><span>The API responds.</span></div>
-            <div class="line-mask"><span>The demo is live.</span></div>
+            <div class="line-mask"><span>It runs.</span></div>
+            <div class="line-mask"><span>It looks ready.</span></div>
+            <div class="line-mask"><span>So he ships it.</span></div>
           </h1>
         </div>
         <div class="container grid12 intro-lower">
-          <div class="intro-portrait">
+          <div class="intro-portrait" data-video-slot="developer-closeup" data-scene="Scene 01B / Late-night close-up">
             <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/1cad46d6-7825-49c7-aa11-2764c150eb8c_800w.webp" alt="Creative portrait">
           </div>
           <div class="keywords">
@@ -480,12 +502,10 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
           </div>
           <div class="intro-copy">
             <p>
-              The developer leans back. The application does what it was asked
-              to do. Every visible path appears to work.
+              The app does what he asked. Every visible path works.
             </p>
             <p>
-              “I’ll clean it up before launch.” The repository becomes public
-              before that moment arrives.
+              “I’ll check security tomorrow.” The repository goes public tonight.
             </p>
           </div>
           <div class="stats-mini">
@@ -528,17 +548,23 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
             <h2 class="display">One night / Four moments</h2>
             <div class="eyebrow">Speed → Exposure</div>
           </div>
+          <div class="scene-index" aria-label="Story timeline">
+            <div class="scene-index-item"><b>02:13</b><span>Build</span></div>
+            <div class="scene-index-item"><b>03:48</b><span>Ship</span></div>
+            <div class="scene-index-item"><b>04:06</b><span>Find</span></div>
+            <div class="scene-index-item"><b>04:09</b><span>Impact</span></div>
+          </div>
 
           <article class="project">
             <div class="project-copy">
-              <h3 class="display line-mask"><span>Software moves fast now.</span></h3>
+              <h3 class="display line-mask"><span>He builds fast.</span></h3>
               <p>
                 02:13 / Creation
                 <br>
                 The developer
               </p>
             </div>
-            <div class="project-media hover-media" data-video-slot="developer-speed">
+            <div class="project-media hover-media" data-video-slot="developer-speed" data-scene="Scene 02 / Prompt to product">
               <video src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/8bd0314a-9525-4a13-996e-2c37cbd9e514/1784436916049-996a1369-4925-4293-9614-7cc8a1164acb.mp4" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ee8e4ce6-9691-46fc-9cbf-8f995d7e8488_1600w.webp" data-aura-generated-video="true" data-aura-video-preset="loop-in-view" muted="" playsinline="" preload="metadata" loop="" aria-label="Silent Geometry" class="h-full w-full object-cover"></video>
             </div>
             <div class="project-side">
@@ -551,14 +577,14 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 
           <article class="project">
             <div class="project-copy">
-              <h3 class="display line-mask"><span>Public is public.</span></h3>
+              <h3 class="display line-mask"><span>He ships it.</span></h3>
               <p>
                 03:48 / Deployment
                 <br>
                 The assumption
               </p>
             </div>
-            <div class="project-media hover-media" data-video-slot="public-deployment">
+            <div class="project-media hover-media" data-video-slot="public-deployment" data-scene="Scene 03 / The deploy">
               <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&amp;fit=crop&amp;w=2000&amp;q=90" alt="Outer State">
             </div>
             <div class="project-side">
@@ -571,14 +597,14 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 
           <article class="project">
             <div class="project-copy">
-              <h3 class="display line-mask"><span>They used what you shipped.</span></h3>
+              <h3 class="display line-mask"><span>Someone finds the gap.</span></h3>
               <p>
                 04:06 / Inspection
                 <br>
                 The other user
               </p>
             </div>
-            <div class="project-media hover-media" data-video-slot="attacker-inspection">
+            <div class="project-media hover-media" data-video-slot="attacker-inspection" data-scene="Scene 04 / The inspection">
               <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e2449689-711a-4092-9414-985b099e2099_1600w.webp" alt="Still Moving">
             </div>
             <div class="project-side">
@@ -591,14 +617,14 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 
           <article class="project">
             <div class="project-copy">
-              <h3 class="display line-mask"><span>Vulnerabilities have users.</span></h3>
+              <h3 class="display line-mask"><span>A user pays for it.</span></h3>
               <p>
                 04:09 / Consequence
                 <br>
                 The person affected
               </p>
             </div>
-            <div class="project-media hover-media" data-video-slot="user-consequence">
+            <div class="project-media hover-media" data-video-slot="user-consequence" data-scene="Scene 05 / The consequence">
               <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/3fff90e0-12ec-478c-9afa-a8550e9b52e3_1600w.webp" alt="Future Matter">
             </div>
             <div class="project-side">
@@ -616,9 +642,9 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
           <div class="eyebrow">02 / The exposure</div>
           <div class="cap-intro">
             <div class="cap-statement display">
-              <span>A request becomes access.</span>
-              <span>Access becomes impact.</span>
-              <span>Impact becomes a headline.</span>
+              <span>One weak line.</span>
+              <span>One open door.</span>
+              <span>One real cost.</span>
             </div>
             <div class="cap-photo">
               <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e6366a9f-2edd-47bf-90c2-c450208e3cfb_800w.webp" alt="Studio portrait">
@@ -627,36 +653,42 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 
           <div class="cap-row">
             <div class="num">01</div>
-            <div class="image">
-              <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Art direction">
+            <h3 class="display" data-signal="Where the risk begins">The surface</h3>
+            <div class="cap-detail">
+              <p>
+                A public endpoint. An open configuration. A secret in source.
+                The app still looks normal.
+              </p>
+              <div class="cap-path" aria-hidden="true">
+                <span>Public</span><i></i><span>Open</span><i></i><span>Exposed</span>
+              </div>
             </div>
-            <h3 class="display">The surface</h3>
-            <p>
-              A public endpoint. A permissive configuration. A secret left in
-              source. Nothing looks broken from the developer’s screen.
-            </p>
           </div>
           <div class="cap-row">
             <div class="num">02</div>
-            <div class="image">
-              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/variants/520a171e-7d8c-49b9-af99-096a7a699892/320w.png" alt="Identity systems">
+            <h3 class="display" data-signal="Where trust is tested">The request</h3>
+            <div class="cap-detail">
+              <p>
+                They change one value, replay one request, and test what the app
+                trusts.
+              </p>
+              <div class="cap-path" aria-hidden="true">
+                <span>Input</span><i></i><span>Replay</span><i></i><span>Trust</span>
+              </div>
             </div>
-            <h3 class="display">The request</h3>
-            <p>
-              The attacker does not need cinematic tools. They change a value,
-              replay a request, and test what the application assumes.
-            </p>
           </div>
           <div class="cap-row">
             <div class="num">03</div>
-            <div class="image">
-              <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Digital experiences">
+            <h3 class="display" data-signal="Where software becomes human">The consequence</h3>
+            <div class="cap-detail">
+              <p>
+                Private data appears. An action succeeds. A shortcut reaches a
+                real person.
+              </p>
+              <div class="cap-path" aria-hidden="true">
+                <span>Data</span><i></i><span>Access</span><i></i><span>Impact</span>
+              </div>
             </div>
-            <h3 class="display">The consequence</h3>
-            <p>
-              Private data becomes visible. An unauthorized action succeeds.
-              A technical shortcut reaches a real person.
-            </p>
           </div>
         </div>
       </section>
@@ -664,7 +696,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
       <section class="engagement paper diagonal-top" id="failure">
         <div class="container">
           <div class="eyebrow">03 / The failure path</div>
-          <h2 class="section-title display">One missed line. A different system.</h2>
+          <h2 class="section-title display">The app works. The risk does too.</h2>
           <div class="plans">
             <div class="plan">
               <small>01 / The shortcut</small>
@@ -723,12 +755,11 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
             <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/95a6559d-388d-45c7-9ed3-b3d3fe4efa9a_800w.webp" alt="Client portrait">
           </div>
           <blockquote class="quote display">
-            “I trusted this application with something that mattered.”
+            “I thought my data was safe.”
           </blockquote>
           <div class="quote-author">
             <strong>The person on the other side</strong>
-            <br>
-            Every user / every public application
+            <span>Every user / every public application</span>
           </div>
           <div class="quote-metrics">
             <div class="metric">
@@ -789,11 +820,11 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
       </section>
 
       <section class="cinematic section" id="checkpoint">
-        <div class="cinematic-bg" data-video-slot="breaksmith-interception">
+        <div class="cinematic-bg" data-video-slot="breaksmith-interception" data-scene="Scene 06 / BreakSmith intercepts">
           <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/variants/df48517c-b34b-4aa2-b653-96984538305d/3840w.jpg" alt="BreakSmith checkpoint">
         </div>
         <div class="cinematic-inner">
-          <h2 class="display">Break it here. Not out there.</h2>
+          <h2 class="display">Find it before they do.</h2>
           <div class="cinematic-card">
             <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d1d195f0-17d7-4654-a1fc-c9e3192705c4_800w.webp" alt="Developer reviewing evidence">
           </div>
@@ -824,7 +855,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 
       <section class="journal paper" id="method">
         <div class="container">
-          <div class="eyebrow" style="margin-bottom:60px">05 / Method, not magic</div>
+          <div class="eyebrow" style="margin-bottom:60px">05 / Rules, not guesses</div>
           <div class="journal-grid">
             <article class="journal-item">
               <div class="journal-img">
@@ -939,13 +970,13 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 
       <section class="story-return paper">
         <div class="container story-return-grid">
-          <div class="eyebrow">07 / Same developer / different morning</div>
-          <div class="story-return-media" data-video-slot="developer-morning">
+          <div class="eyebrow">07 / Same developer / safer morning</div>
+          <div class="story-return-media" data-video-slot="developer-morning" data-scene="Scene 07 / The morning after">
             <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e6366a9f-2edd-47bf-90c2-c450208e3cfb_800w.webp" alt="Developer reviewing the BreakSmith report in the morning">
           </div>
           <div class="story-return-copy">
-            <h2 class="display">Unknown.<span>Exposed.</span>Under control.</h2>
-            <blockquote>“I checked what could break before I shipped.”</blockquote>
+            <h2 class="display">Found.<span>Fixed.</span>Ready.</h2>
+            <blockquote>“I scanned it. I fixed it. Then I shipped.”</blockquote>
           </div>
         </div>
       </section>
@@ -1000,14 +1031,12 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
     <script>
       // The page must remain usable even if an animation CDN is unavailable.
       document.body.classList.remove('is-loading');
       const preloader = document.querySelector('.preloader');
       const hasGSAP = typeof window.gsap !== 'undefined';
       const hasScrollTrigger = typeof window.ScrollTrigger !== 'undefined';
-      const hasLenis = typeof window.Lenis !== 'undefined';
 
       if (!hasGSAP || !hasScrollTrigger) {
         if (preloader) preloader.remove();
@@ -1084,11 +1113,6 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
         capWords.forEach((w, i) => capTL.to(w, { color:'#fff', duration:1 }, i));
         capTL.to('.cap-statement', { y:-40, duration:1 }, 0);
         gsap.to('.cap-photo', { y:100, ease:'none', scrollTrigger:{ trigger:'.cap-intro', start:'top bottom', end:'bottom top', scrub:true } });
-        gsap.utils.toArray('.cap-row').forEach(row => {
-          gsap.from(row.children, { y:50, opacity:0, stagger:.08, duration:.9, ease:'power3.out', scrollTrigger:{ trigger:row, start:'top 82%' } });
-          gsap.from(row.querySelector('.image'), { clipPath:'inset(0 100% 0 0)', duration:1, ease:'power4.out', scrollTrigger:{ trigger:row, start:'top 80%' } });
-        });
-
         gsap.from('.section-title', { yPercent:100, opacity:0, duration:1, scrollTrigger:{ trigger:'.engagement', start:'top 75%' } });
         gsap.from('.plan', { y:90, opacity:0, stagger:.12, duration:1, ease:'power3.out', scrollTrigger:{ trigger:'.plans', start:'top 78%' } });
 
