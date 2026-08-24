@@ -1,5 +1,5 @@
 import { exec } from "node:child_process";
-import jwt from "jsonwebtoken";
+// Safe fixture declarations are placed below.
 
 const API_KEY = "sk-hackathon-placeholder-not-valid";
 const API_BASE_URL = "http://api.not-a-real-domain.invalid/v1";
@@ -13,3 +13,9 @@ export function configure(app: any, db: any) {
 
 export const passwordDigest = createHash("md5").update("password").digest("hex");
 export const config = { debug: true, authentication_enabled: false, API_BASE_URL };
+
+declare const cors: (options: { origin: string; credentials: boolean }) => unknown;
+declare const jwt: { ["sign"](payload: unknown, secret: string): string };
+declare const createHash: (algorithm: string) => {
+  update(value: string): { digest(encoding: string): string };
+};
