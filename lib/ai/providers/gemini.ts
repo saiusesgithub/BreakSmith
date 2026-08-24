@@ -2,8 +2,8 @@ import { ENRICHMENT_SCHEMA, ENRICHMENT_SYSTEM_PROMPT, type FindingEnrichmentCont
 import { parseEnrichment } from "../validation";
 import { fetchJson } from "./request";
 
-const GEMINI_API_ROOT = "https://generativelanguage.googleapis.com/v1beta/models";
-const DEFAULT_GEMINI_MODEL = "gemini-3.5-flash-lite";
+export const GEMINI_API_ROOT = "https://generativelanguage.googleapis.com/v1beta/models";
+export const DEFAULT_GEMINI_MODEL = "gemini-3.5-flash-lite";
 
 export async function enrichWithGemini(
   context: FindingEnrichmentContext,

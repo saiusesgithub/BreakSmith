@@ -2,8 +2,8 @@ import { ENRICHMENT_SCHEMA, ENRICHMENT_SYSTEM_PROMPT, type FindingEnrichmentCont
 import { parseEnrichment } from "../validation";
 import { fetchJson } from "./request";
 
-const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
-const DEFAULT_GROQ_MODEL = "openai/gpt-oss-20b";
+export const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
+export const DEFAULT_GROQ_MODEL = "openai/gpt-oss-20b";
 
 export async function enrichWithGroq(
   context: FindingEnrichmentContext,

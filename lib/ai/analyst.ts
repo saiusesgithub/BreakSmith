@@ -2,13 +2,11 @@ import { redactSecrets } from "../scanner/rules/helpers";
 import type { Finding } from "../scanner/types";
 import { enrichWithGemini } from "./providers/gemini";
 import { enrichWithGroq } from "./providers/groq";
+import { aiTimeoutMs } from "./providers/request";
 import type { AiProviderName, FindingEnrichmentContext, ProviderEnrichmentResult } from "./types";
 
 const DEFAULT_MAX_FINDINGS = 8;
 const MAX_FINDINGS_CAP = 20;
-const DEFAULT_TIMEOUT_MS = 3_000;
-const MIN_TIMEOUT_MS = 500;
-const MAX_TIMEOUT_MS = 5_000;
 const ENRICHMENT_CONCURRENCY = 5;
 const SEVERITY_ORDER = { critical: 0, high: 1, medium: 2, low: 3, info: 4 } as const;
 
@@ -87,12 +85,7 @@ export async function enrichFindings(findings: Finding[]): Promise<Finding[]> {
     1,
     MAX_FINDINGS_CAP,
   );
-  const timeoutMs = boundedInteger(
-    process.env.BREAKSMITH_AI_TIMEOUT_MS,
-    DEFAULT_TIMEOUT_MS,
-    MIN_TIMEOUT_MS,
-    MAX_TIMEOUT_MS,
-  );
+  const timeoutMs = aiTimeoutMs();
   const selected = [...findings]
     .sort((a, b) => SEVERITY_ORDER[a.severity] - SEVERITY_ORDER[b.severity])
     .slice(0, maxFindings);
