@@ -1,0 +1,8 @@
+{
+  "name": "safe-intentionally-vulnerable-fixture",
+  "private": true,
+  "dependencies": {
+    "request": "latest",
+    "node-serialize": "0.0.4"
+  }
+}
