@@ -1,8 +1,13 @@
 <html lang="en"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="NORTH/FORM — Independent creative studio shaping campaigns, identities and digital experiences.">
-<title>NORTH/FORM — Creative Studio</title>
+<meta name="description" content="BreakSmith — Break your app before attackers do.">
+<title>BreakSmith — Scan Before You Ship</title>
+<script>
+  if (window.location.protocol === 'file:') {
+    window.location.replace(`http://localhost:3000/generated-page.html${window.location.search}${window.location.hash}`);
+  }
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
@@ -29,6 +34,7 @@ overflow-x: hidden;
 body.is-loading { overflow: hidden; }
 .no-js .preloader { display:none; }
 img { display:block; width:100%; height:100%; object-fit:cover; }
+video { display:block; width:100%; height:100%; object-fit:cover; }
 a { color: inherit; text-decoration: none; }
 button, input, textarea, select { font: inherit; }
 button { cursor:pointer; }
@@ -276,7 +282,7 @@ white-space:nowrap;
 :root{
 --pad:clamp(20px,2.25vw,38px);
 --max:1720px;
---acid:#d7ff45;
+--acid:#c24f20;
 }
 .container{max-width:var(--max);margin-inline:auto;padding-inline:var(--pad)}
 .section{min-height:auto}
@@ -294,7 +300,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 .hero-topcopy{top:19vh;max-width:420px;padding:18px;border-left:1px solid rgba(255,255,255,.5);font-size:13px}
 .hero-markers{top:auto;bottom:30vh}
 .hero-word{left:var(--pad);right:var(--pad);bottom:.02em;font-size:clamp(76px,15.5vw,290px);letter-spacing:-.085em}
-.hero-word:before{content:"Independent / 2026";display:block;font:500 10px Inter;letter-spacing:.18em;text-transform:uppercase;margin:0 0 18px .7vw}
+.hero-word:before{content:"Build session / 2026";display:block;font:500 10px Inter;letter-spacing:.18em;text-transform:uppercase;margin:0 0 18px .7vw}
 .hero-spacer{height:110vh}
 .diagonal-top{clip-path:none;margin-top:0;padding-top:0}
 .intro{padding:140px 0 160px}
@@ -310,17 +316,17 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 .ticker-track{padding:14px 0}
 .ticker span{font-size:clamp(20px,2vw,34px);text-transform:uppercase}
 .projects{padding:180px 0 100px}
-.projects-head{position:sticky;top:95px;z-index:4;pointer-events:none;margin-bottom:30px;mix-blend-mode:difference;color:#fff}
+.projects-head{position:relative;top:auto;z-index:4;pointer-events:none;margin-bottom:80px;color:#111}
 .project{min-height:112vh;padding:10vh 0}
 .project-media{grid-column:3/11;height:76vh;border-radius:3px;clip-path:inset(0 0 0 0 round 3px)}
 .project:nth-of-type(even) .project-media{grid-column:2/10}
 .project-copy{grid-column:1/6;align-self:end;padding:0 0 6vh;mix-blend-mode:difference;color:#fff}
 .project:nth-of-type(even) .project-copy{grid-column:8/13;text-align:right}
-.project-copy h3{font-size:clamp(52px,7.2vw,128px);white-space:nowrap}
+.project-copy h3{font-size:clamp(46px,5.5vw,98px);white-space:normal;line-height:.86;max-width:760px}
 .project-side{grid-column:11/13;padding-top:3vh;border-top:1px solid var(--line)}
 .project:nth-of-type(even) .project-side{grid-column:10/13}
 .project-thumb{display:none}
-.project-media:after{content:"Open case ↗";position:absolute;right:18px;bottom:18px;background:rgba(0,0,0,.62);color:#fff;border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(10px);padding:11px 14px;border-radius:999px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;transform:translateY(10px);opacity:0;transition:.3s}
+.project-media:after{content:"Story frame ↗";position:absolute;right:18px;bottom:18px;background:rgba(0,0,0,.62);color:#fff;border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(10px);padding:11px 14px;border-radius:999px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;transform:translateY(10px);opacity:0;transition:.3s}
 .project-media:hover:after{opacity:1;transform:none}
 .capabilities{padding:150px 0 180px;background:#101010}
 .cap-intro{min-height:115vh}
@@ -328,12 +334,23 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 .cap-statement span{display:block}
 .cap-statement span:nth-child(2){padding-left:8vw}.cap-statement span:nth-child(3){padding-left:16vw}
 .cap-photo{display:none}
-.cap-row{grid-template-columns:70px 1fr 2.4fr;min-height:210px;cursor:pointer;overflow:hidden;position:relative}
-.cap-row .image{position:absolute;right:3%;width:180px;height:230px;opacity:0;transform:rotate(7deg) scale(.8);z-index:2;transition:.45s cubic-bezier(.2,.8,.2,1);pointer-events:none}
-.cap-row h3{grid-column:2;font-size:clamp(45px,6vw,92px);transition:.35s}
-.cap-row p{grid-column:3;justify-self:end;max-width:370px}
-.cap-row:hover .image{opacity:1;transform:rotate(-4deg) scale(1)}
-.cap-row:hover h3{transform:translateX(24px);color:var(--acid)}
+.cap-row{grid-template-columns:90px minmax(260px,.9fr) minmax(360px,1.15fr);min-height:290px;cursor:pointer;overflow:hidden;position:relative;gap:clamp(28px,5vw,90px)}
+.cap-row:before{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--acid);transform:scaleX(0);transform-origin:left;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.cap-row .image{display:none}
+.cap-row .num{width:54px;height:54px;border:1px solid rgba(255,255,255,.32);border-radius:50%;display:grid;place-items:center;transition:.35s}
+.cap-row h3{grid-column:2;font-size:clamp(54px,6.4vw,104px);transition:.45s cubic-bezier(.2,.8,.2,1);position:relative}
+.cap-row h3:after{content:attr(data-signal);display:block;margin-top:18px;font:600 9px Inter,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#777}
+.cap-detail{grid-column:3;align-self:stretch;display:flex;flex-direction:column;justify-content:center;border-left:1px solid rgba(255,255,255,.15);padding-left:clamp(24px,4vw,64px)}
+.cap-row p{justify-self:auto;max-width:520px;color:#b8b8b8;font-size:clamp(16px,1.45vw,21px);line-height:1.55;margin:0 0 46px}
+.cap-path{display:grid;grid-template-columns:auto 1fr auto 1fr auto;align-items:center;gap:12px;max-width:580px}
+.cap-path span{padding:9px 12px;border:1px solid rgba(255,255,255,.22);border-radius:999px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#aaa;transition:.35s;white-space:nowrap}
+.cap-path i{display:block;height:1px;background:rgba(255,255,255,.2);position:relative;overflow:hidden}
+.cap-path i:after{content:"";position:absolute;inset:0;background:var(--acid);transform:translateX(-101%);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.cap-row:hover:before{transform:scaleX(1)}
+.cap-row:hover .num{background:var(--acid);border-color:var(--acid);color:#111}
+.cap-row:hover h3{transform:translateX(14px);color:var(--acid)}
+.cap-row:hover .cap-path span{border-color:var(--acid);color:#fff}
+.cap-row:hover .cap-path i:after{transform:translateX(0)}
 .engagement{padding:170px 0;background:#e8e6df}
 .section-title{max-width:1100px;margin:15px 0 100px}
 .plans{border:0;display:flex;gap:14px;align-items:stretch}
@@ -349,7 +366,10 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 .quote-photo{grid-column:1/4;height:300px;border-radius:50%;aspect-ratio:1;width:300px}
 .quote{grid-column:4/13;font-size:clamp(50px,7vw,116px);line-height:.92}
 .quote:before{content:"“";position:absolute;font-size:32vw;line-height:.7;left:22%;top:-18%;opacity:.045}
-.quote-author{grid-column:4/8;border-top:1px solid var(--line);padding-top:18px}
+.quote-author{grid-column:4/10;margin-top:56px;border:0;border-left:6px solid var(--accent);padding:24px 28px;background:var(--ink);color:#fff;display:grid;grid-template-columns:1fr auto;gap:14px 28px;align-items:end;box-shadow:18px 18px 0 rgba(194,79,32,.16)}
+.quote-author:before{content:"Human impact / 04:09";grid-column:1/-1;color:var(--accent);font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
+.quote-author strong{font-family:"Space Grotesk",sans-serif;font-size:clamp(25px,2.4vw,40px);letter-spacing:-.045em;line-height:1}
+.quote-author span{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#aaa;text-align:right}
 .quote-metrics{grid-template-columns:repeat(3,1fr);margin-top:140px;border-bottom:1px solid var(--line)}
 .metric{min-height:270px;display:flex;flex-direction:column;justify-content:space-between;padding:35px}
 .metric strong{font-size:clamp(64px,8vw,125px)}
@@ -379,115 +399,170 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 .journal-img,.journal-item:nth-child(2) .journal-img{position:absolute;inset:0;height:auto;opacity:.38;filter:grayscale(1);transition:.5s}
 .journal-item:hover .journal-img{opacity:.75;filter:grayscale(0);transform:scale(1.035)}
 .journal-meta{position:relative;z-index:2;border-top:1px solid rgba(255,255,255,.4);padding-top:14px}
-.journal-item:before{content:"Read /";position:relative;z-index:2;font-family:"Space Grotesk";font-size:clamp(55px,7vw,110px);letter-spacing:-.07em;line-height:.85;margin-bottom:auto}
+.journal-item:before{content:"Reference /";position:relative;z-index:2;font-family:"Space Grotesk";font-size:clamp(55px,7vw,110px);letter-spacing:-.07em;line-height:.85;margin-bottom:auto}
 .faq{padding:170px 0}.faq h2{max-width:900px}
 .faq-q{padding:34px 0;transition:.3s}.faq-item:hover .faq-q{padding-left:18px;color:var(--accent)}
 .footer{padding-top:170px}.footer-main{gap:12vw}.footer-word{letter-spacing:-.09em}
 @media(max-width:900px){
-.site-header{left:12px;right:12px}.nav{display:none}.project-copy h3{white-space:normal}.plans{flex-direction:column}.plan:nth-child(2){transform:none}.plan:hover{transform:none}.cap-row{grid-template-columns:50px 1fr}.cap-row p{grid-column:2;justify-self:start}.cap-row .image{display:none}.journal-item:nth-child(n){grid-column:span 6;margin-top:0}.quote-photo{width:190px;height:190px}
+.site-header{left:12px;right:12px}.nav{display:none}.project-copy h3{white-space:normal}.plans{flex-direction:column}.plan:nth-child(2){transform:none}.plan:hover{transform:none}.cap-row{grid-template-columns:64px 1fr;gap:24px}.cap-row h3{grid-column:2}.cap-detail{grid-column:2;border-left:0;padding:0 0 34px}.cap-row p{justify-self:start;margin-bottom:30px}.cap-row .image{display:none}.journal-item:nth-child(n){grid-column:span 6;margin-top:0}.quote-photo{width:190px;height:190px}.quote-author{grid-column:4/-1;grid-template-columns:1fr}
 }
 @media(max-width:640px){
-:root{--pad:16px}.site-header{top:9px;height:54px}.logo{font-size:14px}.header-cta{font-size:8px}.hero-topcopy{top:16vh}.hero-word{font-size:22vw}.intro{padding:110px 0}.intro-title .line-mask:nth-child(n){padding-left:0}.intro-lower{display:block}.intro-portrait{width:78%;height:55vh;margin-bottom:45px}.project{min-height:auto}.project-media,.project:nth-of-type(even) .project-media{height:62vh}.project-copy,.project:nth-of-type(even) .project-copy{color:#111;mix-blend-mode:normal;text-align:left}.projects-head{position:relative;top:auto;color:#111;mix-blend-mode:normal}.cap-statement span:nth-child(n){padding-left:0}.cap-row{min-height:260px}.quote-photo{width:130px;height:130px}.quote{margin-top:35px}.archive-row{grid-template-columns:.5fr 1.2fr 1.5fr}.archive-thumb{display:none}.journal-grid{display:block}.journal-item:nth-child(n){margin:0 0 14px;min-height:390px}.stats-grid{display:block}.stat{min-height:290px}.metric{min-height:200px;padding:22px}
+:root{--pad:16px}.site-header{top:9px;height:54px}.logo{font-size:14px}.header-cta{font-size:8px}.hero-topcopy{top:16vh}.hero-word{font-size:22vw}.intro{padding:110px 0}.intro-title .line-mask:nth-child(n){padding-left:0}.intro-lower{display:block}.intro-portrait{width:78%;height:55vh;margin-bottom:45px}.project{min-height:auto}.project-media,.project:nth-of-type(even) .project-media{height:62vh}.project-copy,.project:nth-of-type(even) .project-copy{color:#111;mix-blend-mode:normal;text-align:left}.projects-head{position:relative;top:auto;color:#111;mix-blend-mode:normal}.cap-statement span:nth-child(n){padding-left:0}.cap-row{min-height:390px;grid-template-columns:1fr}.cap-row .num,.cap-row h3,.cap-detail{grid-column:1}.cap-row h3{margin-top:8px}.cap-detail{padding-bottom:42px}.cap-path{gap:7px}.cap-path span{font-size:7px;padding:7px 8px}.quote-photo{width:130px;height:130px}.quote{margin-top:35px}.quote-author{grid-column:auto;margin-top:34px;padding:20px;box-shadow:10px 10px 0 rgba(194,79,32,.16)}.quote-author span{text-align:left}.archive-row{grid-template-columns:.5fr 1.2fr 1.5fr}.archive-thumb{display:none}.journal-grid{display:block}.journal-item:nth-child(n){margin:0 0 14px;min-height:390px}.stats-grid{display:block}.stat{min-height:290px}.metric{min-height:200px;padding:22px}
 }
 </style>
-<script src="https://cdn.tailwindcss.com"></script>
+<style>
+.story-return{padding:170px 0 200px;overflow:hidden}
+.story-return-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(14px,2vw,30px);align-items:end}
+.story-return .eyebrow{grid-column:1/-1;margin-bottom:90px}
+.story-return-media{grid-column:1/6;height:72vh;min-height:560px;overflow:hidden;position:relative;clip-path:polygon(0 0,88% 0,100% 100%,0 100%)}
+.story-return-media:after{content:"07:42 AM / REVIEW COMPLETE";position:absolute;left:24px;bottom:24px;padding:9px 12px;background:#0b0b0b;color:#fff;font-size:9px;letter-spacing:.14em}
+.story-return-copy{grid-column:6/13;padding-bottom:5vh}
+.story-return-copy h2{font-size:clamp(66px,9vw,154px);margin:0;line-height:.84}
+.story-return-copy h2 span{display:block;color:var(--accent)}
+.story-return-copy blockquote{font-size:clamp(20px,2.3vw,36px);line-height:1.25;max-width:780px;margin:60px 0 0;border-top:1px solid var(--line);padding-top:24px}
+[data-video-slot]{isolation:isolate}
+[data-video-slot]:before{content:attr(data-scene);position:absolute;z-index:6;top:18px;left:18px;padding:9px 12px;border:1px solid rgba(255,255,255,.28);border-radius:999px;background:rgba(8,8,8,.46);color:#fff;font:600 9px Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);pointer-events:none}
+.hero-media[data-video-slot]:before{top:92px;left:auto;right:var(--pad)}
+[data-video-slot] video,[data-video-slot] img{transition:filter .45s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+[data-video-slot]:hover video,[data-video-slot]:hover img{filter:saturate(.78) contrast(1.06)}
+.scene-index{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin:0 0 70px;background:var(--line);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.scene-index-item{background:var(--paper);padding:18px 20px;display:flex;justify-content:space-between;gap:16px;align-items:center;font-size:10px;text-transform:uppercase;letter-spacing:.12em;transition:.3s}
+.scene-index-item b{font-family:"Space Grotesk";font-size:17px;letter-spacing:-.04em}
+.scene-index-item:hover{background:var(--ink);color:#fff}
+.scene-index-item span:last-child{color:var(--accent)}
+.scan-overlay{position:fixed;inset:0;z-index:2000;background:#070707;color:#fff;visibility:hidden;opacity:0;pointer-events:none;transition:opacity .45s ease,visibility .45s;overflow:hidden}
+.scan-overlay.is-open{visibility:visible;opacity:1;pointer-events:auto}
+.scan-tunnel{position:absolute;inset:0;background:radial-gradient(circle at center,rgba(194,79,32,.22),transparent 34%),repeating-radial-gradient(circle at center,rgba(255,255,255,.09) 0 1px,transparent 2px 52px),#070707}
+.scan-tunnel:before{content:"";position:absolute;inset:-30%;background:repeating-conic-gradient(from 0deg,transparent 0 11deg,rgba(194,79,32,.09) 12deg,transparent 13deg 24deg);animation:scanFallback 8s linear infinite}
+.scan-tunnel canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.9}
+.scan-shade{position:absolute;inset:0;background:radial-gradient(circle at center,transparent 0 22%,rgba(0,0,0,.32) 52%,rgba(0,0,0,.92) 100%),linear-gradient(180deg,rgba(0,0,0,.2),transparent 35%,rgba(0,0,0,.76));pointer-events:none}
+.scan-shell{position:relative;z-index:2;min-height:100svh;padding:24px var(--pad) 28px;display:grid;grid-template-rows:auto 1fr auto}
+.scan-head,.scan-foot{display:flex;justify-content:space-between;align-items:center;font-size:10px;text-transform:uppercase;letter-spacing:.16em}
+.scan-brand{font-family:"Space Grotesk",sans-serif;font-size:18px;font-weight:700;letter-spacing:-.04em}.scan-brand i{font-style:normal;color:var(--accent);padding:0 6px}
+.scan-close{border:1px solid rgba(255,255,255,.3);border-radius:999px;background:rgba(0,0,0,.32);color:#fff;padding:11px 15px;font-size:9px;text-transform:uppercase;letter-spacing:.14em;backdrop-filter:blur(12px)}
+.scan-main{display:flex;align-items:center;justify-content:center;text-align:center;padding:80px 0}
+.scan-loading{width:min(900px,92vw)}
+.scan-kicker{font-size:10px;text-transform:uppercase;letter-spacing:.22em;color:var(--accent);margin-bottom:25px}
+.scan-stage{font-family:"Space Grotesk",sans-serif;font-size:clamp(54px,9.5vw,152px);letter-spacing:-.075em;line-height:.82;margin:0;text-transform:uppercase;text-shadow:0 10px 50px rgba(0,0,0,.55)}
+.scan-stage-meta{margin:34px auto 0;display:flex;justify-content:space-between;max-width:720px;font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:#aaa}
+.scan-progress{height:2px;max-width:720px;margin:16px auto 0;background:rgba(255,255,255,.18);overflow:hidden}.scan-progress span{display:block;width:8%;height:100%;background:var(--accent);transition:width .7s cubic-bezier(.2,.8,.2,1)}
+.scan-repo{margin:18px auto 0;font-family:"Space Grotesk",sans-serif;font-size:clamp(14px,1.6vw,22px);color:#ddd;overflow-wrap:anywhere}
+.scan-complete{display:none;width:min(1180px,94vw);text-align:left;padding:72px 0 100px}.scan-overlay.is-complete{overflow-y:auto}.scan-overlay.is-complete .scan-shell{min-height:auto}.scan-overlay.is-complete .scan-main{align-items:flex-start;padding:0}.scan-overlay.is-complete .scan-loading{display:none}.scan-overlay.is-complete .scan-complete{display:block}
+.scan-verdict-top{display:flex;justify-content:space-between;align-items:end;border-bottom:1px solid rgba(255,255,255,.25);padding-bottom:24px}.scan-verdict-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+.scan-score{display:flex;align-items:end;gap:14px;margin:34px 0}.scan-score strong{font-family:"Space Grotesk",sans-serif;font-size:clamp(120px,22vw,330px);letter-spacing:-.1em;line-height:.68}.scan-score span{font-size:clamp(18px,2vw,30px);padding-bottom:10px;color:#aaa}
+.scan-risk{font-family:"Space Grotesk",sans-serif;font-size:clamp(44px,7vw,100px);letter-spacing:-.065em;color:var(--accent);line-height:.9}
+.scan-summary{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid rgba(255,255,255,.24);border-bottom:1px solid rgba(255,255,255,.24);margin-top:45px}.scan-summary div{padding:20px;border-right:1px solid rgba(255,255,255,.18)}.scan-summary div:last-child{border-right:0}.scan-summary strong{display:block;font-family:"Space Grotesk";font-size:34px}.scan-summary span{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#888}
+.report-dashboard{margin-top:90px;text-align:left}.report-label{font-size:9px;letter-spacing:.19em;text-transform:uppercase;color:#888}.report-title{font-family:"Space Grotesk",sans-serif;font-size:clamp(34px,5vw,70px);letter-spacing:-.06em;line-height:.92;margin:14px 0 0}.report-status{display:flex;align-items:center;gap:10px;margin-bottom:28px;color:#888;font-size:9px;text-transform:uppercase;letter-spacing:.16em}.report-status:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 18px rgba(194,79,32,.8)}
+.report-intelligence{display:grid;grid-template-columns:1.05fr 1.4fr 1.05fr;border-top:1px solid rgba(255,255,255,.25);border-bottom:1px solid rgba(255,255,255,.25)}.intel-block{min-height:190px;padding:28px 25px;border-right:1px solid rgba(255,255,255,.18);display:flex;flex-direction:column;justify-content:space-between}.intel-block:last-child{border-right:0}.intel-value{font-family:"Space Grotesk",sans-serif;font-size:clamp(26px,3.5vw,48px);letter-spacing:-.055em;line-height:1;overflow-wrap:anywhere}.intel-meta{margin-top:18px;color:#888;font-size:10px;letter-spacing:.09em;text-transform:uppercase}.intel-block.is-priority{background:var(--accent);color:#fff}.intel-block.is-priority .report-label,.intel-block.is-priority .intel-meta{color:rgba(255,255,255,.7)}
+.report-metrics{display:grid;grid-template-columns:repeat(4,1fr);margin-top:16px}.metric-cell{padding:20px 0;border-right:1px solid rgba(255,255,255,.16)}.metric-cell:not(:first-child){padding-left:22px}.metric-cell:last-child{border-right:0}.metric-cell strong{display:block;font-family:"Space Grotesk";font-size:30px;letter-spacing:-.05em}.metric-cell span{display:block;color:#777;font-size:8px;text-transform:uppercase;letter-spacing:.14em;margin-top:5px}
+.report-section{padding:82px 0 0}.report-section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.24)}.report-section-head p{max-width:470px;color:#888;font-size:12px;line-height:1.55;margin:0}.report-section h3{font-family:"Space Grotesk";font-size:clamp(30px,4vw,54px);letter-spacing:-.055em;line-height:.95;margin:8px 0 0}
+.priority-list,.hotspot-list{display:grid}.priority-row,.hotspot-row{display:grid;grid-template-columns:70px minmax(0,1.5fr) minmax(170px,.75fr) 120px;align-items:center;gap:20px;padding:22px 8px;border-bottom:1px solid rgba(255,255,255,.14);background:none;color:#fff;text-align:left;width:100%}.priority-row{cursor:pointer}.priority-row:hover{background:rgba(255,255,255,.04)}.priority-rank{font-family:"Space Grotesk";font-size:25px;color:var(--accent)}.priority-name strong,.hotspot-row strong{display:block;font-size:14px}.priority-name span,.hotspot-row span{display:block;color:#777;font-size:9px;text-transform:uppercase;letter-spacing:.11em;margin-top:5px}.priority-severity,.severity-pill{justify-self:start;padding:7px 9px;border:1px solid rgba(255,255,255,.28);font-size:8px;letter-spacing:.14em;text-transform:uppercase}.priority-score{text-align:right;font-family:"Space Grotesk";font-size:26px}.priority-score small{display:block;color:#777;font-family:Inter;font-size:7px;letter-spacing:.12em;text-transform:uppercase}
+.risk-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:70px}.category-list{padding-top:16px}.category-row{padding:17px 0;border-bottom:1px solid rgba(255,255,255,.12)}.category-top{display:flex;justify-content:space-between;gap:20px;font-size:10px;text-transform:uppercase;letter-spacing:.12em}.category-top span:last-child{color:#888}.category-bar{height:3px;background:rgba(255,255,255,.12);margin-top:12px}.category-bar span{display:block;height:100%;background:var(--accent)}.hotspot-list .hotspot-row{grid-template-columns:minmax(0,1.4fr) 80px 90px;padding-left:0;padding-right:0}.hotspot-score{text-align:right;font-family:"Space Grotesk";font-size:26px}
+.finding-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.finding-filter{border:1px solid rgba(255,255,255,.24);background:transparent;color:#aaa;padding:8px 11px;font-size:8px;letter-spacing:.12em;text-transform:uppercase}.finding-filter.is-active{background:#fff;color:#080808}.finding-category{margin-left:auto;background:#0b0b0b;color:#fff;border:1px solid rgba(255,255,255,.24);padding:8px 30px 8px 11px;font-size:8px;text-transform:uppercase;letter-spacing:.11em}.findings-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(360px,.78fr);gap:34px;margin-top:22px;align-items:start}.finding-list{border-top:1px solid rgba(255,255,255,.18)}.finding-row{display:grid;grid-template-columns:82px minmax(0,1fr) 150px;gap:18px;width:100%;padding:22px 10px;border:0;border-bottom:1px solid rgba(255,255,255,.14);background:transparent;color:#fff;text-align:left}.finding-row:hover,.finding-row.is-active{background:rgba(255,255,255,.05)}.finding-row.is-active{box-shadow:inset 3px 0 0 var(--accent)}.finding-row-title,.finding-row-meta{display:block}.finding-row-title{font-size:14px;font-weight:600}.finding-row-meta{font-size:9px;color:#777;letter-spacing:.09em;text-transform:uppercase;margin-top:7px;overflow-wrap:anywhere}.finding-location{text-align:right;font-size:10px;color:#aaa;overflow-wrap:anywhere}.finding-empty{padding:50px 0;color:#777;font-size:12px}.finding-detail{position:sticky;top:85px;border:1px solid rgba(255,255,255,.2);background:#0b0b0b;min-height:420px}.finding-detail-empty{padding:50px 35px;color:#777;line-height:1.6}.finding-detail-content{display:none}.finding-detail.has-finding .finding-detail-empty{display:none}.finding-detail.has-finding .finding-detail-content{display:block}.detail-head{padding:28px;border-bottom:1px solid rgba(255,255,255,.16)}.detail-title{font-family:"Space Grotesk";font-size:30px;letter-spacing:-.04em;line-height:1.05;margin:15px 0 0}.detail-meta{color:#777;font-size:8px;text-transform:uppercase;letter-spacing:.12em;margin-top:12px}.detail-code{margin:0;padding:24px 28px;background:#050505;color:#ddd;font:12px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere;border-bottom:1px solid rgba(255,255,255,.16)}.detail-copy{padding:25px 28px}.detail-copy h4{font-size:8px;text-transform:uppercase;letter-spacing:.16em;color:var(--accent);margin:0 0 8px}.detail-copy p{color:#bbb;font-size:11px;line-height:1.65;margin:0 0 24px}.fix-button{width:100%;border:0;background:var(--accent);color:#fff;padding:16px;font-size:9px;text-transform:uppercase;letter-spacing:.15em}.fix-button:disabled{opacity:.55;cursor:wait}
+.fix-result{display:none;margin-top:34px;border-top:1px solid rgba(255,255,255,.24);padding-top:32px}.fix-result.is-visible{display:block}.fix-result-head{display:flex;justify-content:space-between;align-items:start;gap:24px}.fix-result-head h4{font-family:"Space Grotesk";font-size:30px;letter-spacing:-.04em;margin:10px 0}.fix-provider{border:1px solid rgba(255,255,255,.25);padding:7px 9px;font-size:8px;text-transform:uppercase;letter-spacing:.12em}.fix-summary{font-size:12px;line-height:1.65;color:#bbb}.fix-steps{padding-left:18px;color:#aaa;font-size:11px;line-height:1.7}.fix-code-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.2);margin-top:22px}.fix-code-panel{background:#070707;min-width:0}.fix-code-panel span{display:block;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.15);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:#888}.fix-code-panel pre,.fix-diff{margin:0;padding:18px;color:#ddd;font:11px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere}.fix-diff{margin-top:1px;background:#050505;border:1px solid rgba(255,255,255,.2)}
+.severity-critical{color:#ff5b42}.severity-high{color:#ff7a45}.severity-medium{color:#e0a365}.severity-low{color:#9ca9b3}.severity-info{color:#8aaeb8}
+.scan-error{display:none;max-width:700px;margin:30px auto 0;padding:16px;border-left:3px solid var(--accent);background:rgba(0,0,0,.55);color:#ddd;line-height:1.5}.scan-overlay.has-error .scan-error{display:block}.scan-overlay.has-error .scan-progress span{background:#d34b32}
+.scan-foot span:last-child{color:#777}.scan-elapsed{font-variant-numeric:tabular-nums}
+body.scan-active{overflow:hidden}
+@keyframes scanFallback{to{transform:rotate(360deg)}}
+@media(max-width:900px){.report-intelligence,.risk-grid,.findings-layout{grid-template-columns:1fr}.intel-block{border-right:0;border-bottom:1px solid rgba(255,255,255,.18)}.intel-block:last-child{border-bottom:0}.finding-detail{position:relative;top:auto}.report-section-head{align-items:start;flex-direction:column}.finding-category{margin-left:0}.priority-row{grid-template-columns:45px minmax(0,1fr) 85px}.priority-row .priority-severity{display:none}.fix-code-grid{grid-template-columns:1fr}}
+@media(max-width:640px){.scan-shell{padding:17px 16px}.scan-head .scan-system{display:none}.scan-main{padding:60px 0}.scan-overlay.is-complete .scan-main{padding:0}.scan-stage{font-size:16vw}.scan-stage-meta{font-size:8px}.scan-verdict-top{align-items:start;gap:20px}.scan-score strong{font-size:42vw}.scan-summary{grid-template-columns:repeat(5,1fr)}.scan-summary div{padding:12px 6px}.scan-summary strong{font-size:24px}.scan-summary span{font-size:7px}.scan-foot{align-items:end}.scan-foot span:last-child{max-width:140px;text-align:right}.report-dashboard{margin-top:60px}.report-metrics{grid-template-columns:1fr 1fr}.metric-cell:nth-child(2){border-right:0}.metric-cell:nth-child(3){padding-left:0}.priority-row{grid-template-columns:38px minmax(0,1fr)}.priority-score{display:none}.finding-row{grid-template-columns:65px minmax(0,1fr)}.finding-location{grid-column:2;text-align:left}.findings-layout{grid-template-columns:minmax(0,1fr)}.detail-head,.detail-copy{padding:22px}.report-section{padding-top:62px}}
+@media(max-width:760px){.story-return{padding:110px 0}.story-return .eyebrow{margin-bottom:45px}.story-return-media{grid-column:1/-1;height:60vh;min-height:430px}.story-return-copy{grid-column:1/-1;padding-top:55px}.story-return-copy blockquote{margin-top:35px}.scene-index{grid-template-columns:1fr 1fr;margin-bottom:35px}.scene-index-item{padding:14px 12px}[data-video-slot]:before{top:12px;left:12px;font-size:8px}}
+@media(prefers-reduced-motion:reduce){.scan-tunnel:before{animation:none}.scan-tunnel canvas{display:none}}
+</style>
 </head>
   <body class=""><div class="scroll-progress" aria-hidden="true"></div>
     <div class="noise"></div>
-    <div class="preloader"><span>NORTH/FORM</span></div>
+    <div class="preloader"><span>BREAK/SMITH</span></div>
 
     <header class="site-header" style="transition: background-color 0.35s, backdrop-filter 0.35s, -webkit-backdrop-filter 0.35s, border-color 0.35s, box-shadow 0.35s, height 0.35s;">
       <a href="#top" class="logo">
-        <b>NORTH</b>
+        <b>BREAK</b>
         <i>/</i>
-        <b>FORM</b>
+        <b>SMITH</b>
       </a>
       <nav class="nav">
-        <a href="#work">Work</a>
-        <a href="#studio">Studio</a>
-        <a href="#capabilities">Capabilities</a>
-        <a href="#contact">Contact</a>
+        <a href="#story">Story</a>
+        <a href="#reality">Reality</a>
+        <a href="#checkpoint">Checkpoint</a>
+        <a href="#method">Method</a>
       </nav>
-      <a href="#contact" class="header-cta">Start a project ↗</a>
+      <a href="#checkpoint" class="header-cta">Scan before you ship ↗</a>
     </header>
 
     <main id="top">
       <section class="hero section">
-        <div class="hero-media">
+        <div class="hero-media" data-video-slot="developer-night" data-scene="Scene 01 / The build">
           <video src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/8bd0314a-9525-4a13-996e-2c37cbd9e514/1784436357607-9c22882e-f726-4971-b85d-f7b5276000ff.mp4" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d1d195f0-17d7-4654-a1fc-c9e3192705c4_1600w.webp" data-aura-generated-video="true" data-aura-video-preset="play-once" muted="" playsinline="" preload="metadata" aria-label="Editorial portrait" class="h-full w-full object-cover"></video>
         </div>
         <div class="hero-topcopy">
           <div class="line-mask">
             <span>
-              Independent creative studio shaping campaigns, identities, and
-              digital experiences for ambitious brands.
+              He built it tonight. He shipped it before sunrise.
             </span>
           </div>
-          <a class="hero-link" href="#work">View selected work</a>
+          <a class="hero-link" href="#story">Enter the story</a>
         </div>
         <div class="hero-markers">
-          <span>Montréal, CA</span>
-          <span>45.5019° N</span>
+          <span>Home office</span>
+          <span>02:13 AM</span>
           <span class="cross"></span>
         </div>
         <div class="hero-word display line-mask">
           <span>
-            NORTH
+            IT
             <span class="slash">/</span>
-            FORM
+            WORKS.
           </span>
         </div>
         <div class="hero-spacer"></div>
       </section>
 
-      <section class="intro paper diagonal-top" id="studio">
+      <section class="intro paper diagonal-top" id="story">
         <div class="container grid12">
           <div class="intro-meta eyebrow">
-            <span>01 / Studio</span>
-            <span>© 2026</span>
+            <span>01 / The developer</span>
+            <span>Build session / 2026</span>
           </div>
           <h1 class="intro-title display">
-            <div class="line-mask"><span>We build visual systems</span></div>
-            <div class="line-mask"><span>where identity, motion,</span></div>
-            <div class="line-mask"><span>image and digital become</span></div>
-            <div class="line-mask"><span>one language.</span></div>
+            <div class="line-mask"><span>It runs.</span></div>
+            <div class="line-mask"><span>It looks ready.</span></div>
+            <div class="line-mask"><span>So he ships it.</span></div>
           </h1>
         </div>
         <div class="container grid12 intro-lower">
-          <div class="intro-portrait">
+          <div class="intro-portrait" data-video-slot="developer-closeup" data-scene="Scene 01B / Late-night close-up">
             <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/1cad46d6-7825-49c7-aa11-2764c150eb8c_800w.webp" alt="Creative portrait">
           </div>
           <div class="keywords">
-            Direction
+            Prompt
             <br>
-            Identity
+            Generate
             <br>
-            Motion
+            Paste
             <br>
-            Digital
+            Ship
           </div>
           <div class="intro-copy">
             <p>
-              We partner with ambitious teams to turn strategic thinking into
-              memorable visual systems.
+              The app does what he asked. Every visible path works.
             </p>
             <p>
-              From the first idea to the final interaction, every detail is
-              built to communicate with precision.
+              “I’ll check security tomorrow.” The repository goes public tonight.
             </p>
           </div>
           <div class="stats-mini">
             <div>
-              <strong data-count="84">0</strong>
-              <span>Projects delivered</span>
+              <strong data-count="3.47" data-suffix="H">0</strong>
+              <span>Build time</span>
             </div>
             <div>
-              <strong data-count="11">0</strong>
-              <span>Countries reached</span>
+              <strong data-count="0">0</strong>
+              <span>Security review</span>
             </div>
             <div>
-              <strong data-count="72">0</strong>
-              <span>Returning clients %</span>
+              <strong data-count="1">0</strong>
+              <span>Public repository</span>
             </div>
           </div>
         </div>
@@ -495,42 +570,44 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 
       <div class="ticker paper">
         <div class="ticker-track">
-          <span>Kanto</span>
-          <span>Axiom</span>
-          <span>Lumen</span>
-          <span>Vestra</span>
-          <span>Monocle</span>
-          <span>Terrain</span>
-          <span>Noma</span>
-          <span>Circa</span>
-          <span>Kanto</span>
-          <span>Axiom</span>
-          <span>Lumen</span>
-          <span>Vestra</span>
-          <span>Monocle</span>
-          <span>Terrain</span>
-          <span>Noma</span>
-          <span>Circa</span>
+          <span>Prompt.</span>
+          <span>Generate.</span>
+          <span>Paste.</span>
+          <span>Run.</span>
+          <span>Deploy.</span>
+          <span>Public.</span>
+          <span>Prompt.</span>
+          <span>Generate.</span>
+          <span>Paste.</span>
+          <span>Run.</span>
+          <span>Deploy.</span>
+          <span>Public.</span>
         </div>
       </div>
 
       <section class="projects paper" id="work">
         <div class="container">
           <div class="projects-head">
-            <h2 class="display">Selected Work</h2>
-            <div class="eyebrow">2024—2026</div>
+            <h2 class="display">One night / Four moments</h2>
+            <div class="eyebrow">Speed → Exposure</div>
+          </div>
+          <div class="scene-index" aria-label="Story timeline">
+            <div class="scene-index-item"><b>02:13</b><span>Build</span></div>
+            <div class="scene-index-item"><b>03:48</b><span>Ship</span></div>
+            <div class="scene-index-item"><b>04:06</b><span>Find</span></div>
+            <div class="scene-index-item"><b>04:09</b><span>Impact</span></div>
           </div>
 
           <article class="project">
             <div class="project-copy">
-              <h3 class="display line-mask"><span>Silent Geometry</span></h3>
+              <h3 class="display line-mask"><span>He builds fast.</span></h3>
               <p>
-                Brand film
+                02:13 / Creation
                 <br>
-                2026
+                The developer
               </p>
             </div>
-            <div class="project-media hover-media">
+            <div class="project-media hover-media" data-video-slot="developer-speed" data-scene="Scene 02 / Prompt to product">
               <video src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/8bd0314a-9525-4a13-996e-2c37cbd9e514/1784436916049-996a1369-4925-4293-9614-7cc8a1164acb.mp4" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ee8e4ce6-9691-46fc-9cbf-8f995d7e8488_1600w.webp" data-aura-generated-video="true" data-aura-video-preset="loop-in-view" muted="" playsinline="" preload="metadata" loop="" aria-label="Silent Geometry" class="h-full w-full object-cover"></video>
             </div>
             <div class="project-side">
@@ -543,14 +620,14 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 
           <article class="project">
             <div class="project-copy">
-              <h3 class="display line-mask"><span>Outer State</span></h3>
+              <h3 class="display line-mask"><span>He ships it.</span></h3>
               <p>
-                Fashion campaign
+                03:48 / Deployment
                 <br>
-                2025
+                The assumption
               </p>
             </div>
-            <div class="project-media hover-media">
+            <div class="project-media hover-media" data-video-slot="public-deployment" data-scene="Scene 03 / The deploy">
               <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&amp;fit=crop&amp;w=2000&amp;q=90" alt="Outer State">
             </div>
             <div class="project-side">
@@ -563,14 +640,14 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 
           <article class="project">
             <div class="project-copy">
-              <h3 class="display line-mask"><span>Still Moving</span></h3>
+              <h3 class="display line-mask"><span>Someone finds the gap.</span></h3>
               <p>
-                Digital experience
+                04:06 / Inspection
                 <br>
-                2025
+                The other user
               </p>
             </div>
-            <div class="project-media hover-media">
+            <div class="project-media hover-media" data-video-slot="attacker-inspection" data-scene="Scene 04 / The inspection">
               <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e2449689-711a-4092-9414-985b099e2099_1600w.webp" alt="Still Moving">
             </div>
             <div class="project-side">
@@ -583,14 +660,14 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 
           <article class="project">
             <div class="project-copy">
-              <h3 class="display line-mask"><span>Future Matter</span></h3>
+              <h3 class="display line-mask"><span>A user pays for it.</span></h3>
               <p>
-                Art direction
+                04:09 / Consequence
                 <br>
-                2024
+                The person affected
               </p>
             </div>
-            <div class="project-media hover-media">
+            <div class="project-media hover-media" data-video-slot="user-consequence" data-scene="Scene 05 / The consequence">
               <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/3fff90e0-12ec-478c-9afa-a8550e9b52e3_1600w.webp" alt="Future Matter">
             </div>
             <div class="project-side">
@@ -603,14 +680,14 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
         </div>
       </section>
 
-      <section class="capabilities dark diagonal-top" id="capabilities">
+      <section class="capabilities dark diagonal-top" id="exposure">
         <div class="container">
-          <div class="eyebrow">02 / Capabilities</div>
+          <div class="eyebrow">02 / The exposure</div>
           <div class="cap-intro">
             <div class="cap-statement display">
-              <span>Strategy becomes structure.</span>
-              <span>Structure becomes image.</span>
-              <span>Image becomes experience.</span>
+              <span>One weak line.</span>
+              <span>One open door.</span>
+              <span>One real cost.</span>
             </div>
             <div class="cap-photo">
               <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e6366a9f-2edd-47bf-90c2-c450208e3cfb_800w.webp" alt="Studio portrait">
@@ -619,89 +696,95 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 
           <div class="cap-row">
             <div class="num">01</div>
-            <div class="image">
-              <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Art direction">
+            <h3 class="display" data-signal="Where the risk begins">The surface</h3>
+            <div class="cap-detail">
+              <p>
+                A public endpoint. An open configuration. A secret in source.
+                The app still looks normal.
+              </p>
+              <div class="cap-path" aria-hidden="true">
+                <span>Public</span><i></i><span>Open</span><i></i><span>Exposed</span>
+              </div>
             </div>
-            <h3 class="display">Art Direction</h3>
-            <p>
-              Visual concepts, campaign worlds, casting direction, styling
-              systems, and image frameworks.
-            </p>
           </div>
           <div class="cap-row">
             <div class="num">02</div>
-            <div class="image">
-              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/variants/520a171e-7d8c-49b9-af99-096a7a699892/320w.png" alt="Identity systems">
+            <h3 class="display" data-signal="Where trust is tested">The request</h3>
+            <div class="cap-detail">
+              <p>
+                They change one value, replay one request, and test what the app
+                trusts.
+              </p>
+              <div class="cap-path" aria-hidden="true">
+                <span>Input</span><i></i><span>Replay</span><i></i><span>Trust</span>
+              </div>
             </div>
-            <h3 class="display">Identity Systems</h3>
-            <p>
-              Brand language, typography, art systems, guidelines, and scalable
-              creative direction.
-            </p>
           </div>
           <div class="cap-row">
             <div class="num">03</div>
-            <div class="image">
-              <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Digital experiences">
+            <h3 class="display" data-signal="Where software becomes human">The consequence</h3>
+            <div class="cap-detail">
+              <p>
+                Private data appears. An action succeeds. A shortcut reaches a
+                real person.
+              </p>
+              <div class="cap-path" aria-hidden="true">
+                <span>Data</span><i></i><span>Access</span><i></i><span>Impact</span>
+              </div>
             </div>
-            <h3 class="display">Digital Experiences</h3>
-            <p>
-              Interactive websites, motion systems, prototypes, and expressive
-              digital launches.
-            </p>
           </div>
         </div>
       </section>
 
-      <section class="engagement paper diagonal-top">
+      <section class="engagement paper diagonal-top" id="failure">
         <div class="container">
-          <div class="eyebrow">03 / Engagement</div>
-          <h2 class="section-title display">Ways to Work Together</h2>
+          <div class="eyebrow">03 / The failure path</div>
+          <h2 class="section-title display">The app works. The risk does too.</h2>
           <div class="plans">
             <div class="plan">
-              <small>01 / Sprint</small>
-              <h3>Direction Sprint</h3>
-              <div class="price">$2,400</div>
+              <small>01 / The shortcut</small>
+              <h3>It works locally.</h3>
+              <div class="price">03:31 AM</div>
               <ul>
-                <li>Visual direction</li>
-                <li>Moodboard system</li>
-                <li>Two core concepts</li>
-                <li>Final presentation</li>
+                <li>A secret remains in source</li>
+                <li>Debug configuration stays enabled</li>
+                <li>User input reaches a dangerous sink</li>
+                <li>The happy path still passes</li>
               </ul>
               <a href="#contact">
-                <span>Begin project</span>
+                <span>Everything looks ready</span>
                 <span>↗</span>
               </a>
             </div>
             <div class="plan">
-              <small>02 / Identity</small>
-              <h3>Identity System</h3>
-              <div class="price">$7,800</div>
+              <small>02 / The assumption</small>
+              <h3>It’s only a demo.</h3>
+              <div class="price">03:48 AM</div>
               <ul>
-                <li>Brand strategy</li>
-                <li>Identity design</li>
-                <li>Typography and color</li>
-                <li>Brand guidelines</li>
-                <li>Launch assets</li>
+                <li>The repository becomes public</li>
+                <li>The endpoint accepts outside traffic</li>
+                <li>The browser reveals application logic</li>
+                <li>The assumptions become inspectable</li>
+                <li>Public is public</li>
               </ul>
               <a href="#contact">
-                <span>Begin project</span>
+                <span>The surface is live</span>
                 <span>↗</span>
               </a>
             </div>
             <div class="plan dark-card">
-              <small>03 / Full</small>
-              <h3>Full Experience</h3>
-              <div class="price">From $14,500</div>
+              <small>03 / The result</small>
+              <h3>Someone tests it.</h3>
+              <div class="price">04:06 AM</div>
               <ul>
-                <li>Creative direction</li>
-                <li>Brand system</li>
-                <li>Campaign assets</li>
-                <li>Motion language</li>
-                <li>Website design</li>
+                <li>A request value changes</li>
+                <li>An authorization boundary disappears</li>
+                <li>A dangerous operation succeeds</li>
+                <li>Private information crosses the screen</li>
+                <li>A user inherits the consequence</li>
               </ul>
               <a href="#contact">
-                <span>Begin project</span>
+                <span>The assumption breaks</span>
                 <span>↗</span>
               </a>
             </div>
@@ -715,132 +798,115 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
             <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/95a6559d-388d-45c7-9ed3-b3d3fe4efa9a_800w.webp" alt="Client portrait">
           </div>
           <blockquote class="quote display">
-            “NORTH/FORM gave us more than a visual identity. They gave the
-            entire team a clearer way to think, communicate and launch.”
+            “I thought my data was safe.”
           </blockquote>
           <div class="quote-author">
-            <strong>Mara Ellison</strong>
-            <br>
-            Founder, Field Assembly
+            <strong>The person on the other side</strong>
+            <span>Every user / every public application</span>
           </div>
           <div class="quote-metrics">
             <div class="metric">
-              <strong data-count="84">0</strong>
-              <span>Launches</span>
+              <strong data-count="1">0</strong>
+              <span>Missed line</span>
             </div>
             <div class="metric">
-              <strong data-count="96">0</strong>
-              <span>Client retention %</span>
+              <strong data-count="1">0</strong>
+              <span>Public endpoint</span>
             </div>
             <div class="metric">
-              <strong data-count="14">0</strong>
-              <span>International awards</span>
+              <strong data-count="0">0</strong>
+              <span>Warnings before launch</span>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="archive paper">
+      <section class="archive paper" id="reality">
         <div class="container">
-          <h2 class="display">Archive / Selected Collaborations</h2>
+          <div class="eyebrow">04 / Outside the story</div>
+          <h2 class="display">This isn’t fiction.</h2>
           <div class="archive-list">
-            <div class="archive-row" data-preview="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&amp;fit=crop&amp;w=900&amp;q=85">
+            <a class="archive-row" href="https://www.axios.com/2026/05/07/loveable-replit-vibe-coding-privacy" target="_blank" rel="noreferrer" data-preview="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&amp;fit=crop&amp;w=900&amp;q=85">
               <span>2026</span>
-              <span>Axiom</span>
-              <span>Campaign Direction</span>
+              <span>380,000 public assets</span>
+              <span>5,000 containing sensitive corporate data / Axios</span>
               <div class="archive-thumb">
-                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/cdb06f1d-ba81-4122-995e-6f03d6cfbea8_320w.webp" alt="Axiom">
+                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/cdb06f1d-ba81-4122-995e-6f03d6cfbea8_320w.webp" alt="Public application exposure">
               </div>
-            </div>
-            <div class="archive-row" data-preview="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&amp;fit=crop&amp;w=900&amp;q=85">
-              <span>2026</span>
-              <span>Noma</span>
-              <span>Digital Launch</span>
-              <div class="archive-thumb">
-                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/68393d27-4c21-415a-aafc-cf5a31b57682_320w.webp" alt="Noma">
-              </div>
-            </div>
-            <div class="archive-row" data-preview="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&amp;fit=crop&amp;w=900&amp;q=85">
+            </a>
+            <a class="archive-row" href="https://www.securityweek.com/flaw-in-vibe-coding-platform-base44-exposed-private-enterprise-applications/" target="_blank" rel="noreferrer" data-preview="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&amp;fit=crop&amp;w=900&amp;q=85">
               <span>2025</span>
-              <span>Terrain</span>
-              <span>Identity System</span>
+              <span>Private applications exposed</span>
+              <span>A basic API path / Base44 research</span>
               <div class="archive-thumb">
-                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a41d3a65-8d6a-4d01-9658-ed45cbcdcce6_320w.webp" alt="Terrain">
+                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/68393d27-4c21-415a-aafc-cf5a31b57682_320w.webp" alt="API exposure report">
               </div>
-            </div>
-            <div class="archive-row" data-preview="https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&amp;fit=crop&amp;w=900&amp;q=85">
+            </a>
+            <a class="archive-row" href="https://apnews.com/article/24c6e3ca6e8256f0594f80588607ba11" target="_blank" rel="noreferrer" data-preview="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&amp;fit=crop&amp;w=900&amp;q=85">
               <span>2025</span>
-              <span>Mono</span>
-              <span>Brand Film</span>
+              <span>Thousands of identities exposed</span>
+              <span>Photos and private messages / Tea incident</span>
               <div class="archive-thumb">
-                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/variants/0a4aa3d6-d721-49ae-8f1d-fae6a49994ee/320w.png" alt="Mono">
+                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a41d3a65-8d6a-4d01-9658-ed45cbcdcce6_320w.webp" alt="User data breach">
               </div>
-            </div>
-            <div class="archive-row" data-preview="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&amp;fit=crop&amp;w=900&amp;q=85">
-              <span>2024</span>
-              <span>Circa</span>
-              <span>Editorial Platform</span>
+            </a>
+            <a class="archive-row" href="https://www.sec.gov/Archives/edgar/data/789570/000119312523251667/d461062d8k.htm" target="_blank" rel="noreferrer" data-preview="https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&amp;fit=crop&amp;w=900&amp;q=85">
+              <span>2023</span>
+              <span>$100M estimated impact</span>
+              <span>One cybersecurity incident / MGM SEC filing</span>
               <div class="archive-thumb">
-                <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&amp;fit=crop&amp;w=400&amp;q=75" alt="Circa">
+                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/variants/0a4aa3d6-d721-49ae-8f1d-fae6a49994ee/320w.png" alt="Cybersecurity business impact">
               </div>
-            </div>
-            <div class="archive-row" data-preview="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&amp;fit=crop&amp;w=900&amp;q=85">
-              <span>2024</span>
-              <span>Vestra</span>
-              <span>Art Direction</span>
-              <div class="archive-thumb">
-                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&amp;fit=crop&amp;w=400&amp;q=75" alt="Vestra">
-              </div>
-            </div>
+            </a>
           </div>
         </div>
       </section>
 
-      <section class="cinematic section">
-        <div class="cinematic-bg">
-          <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/variants/df48517c-b34b-4aa2-b653-96984538305d/3840w.jpg" alt="Architecture">
+      <section class="cinematic section" id="checkpoint">
+        <div class="cinematic-bg" data-video-slot="breaksmith-interception" data-scene="Scene 06 / BreakSmith intercepts">
+          <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/variants/df48517c-b34b-4aa2-b653-96984538305d/3840w.jpg" alt="BreakSmith checkpoint">
         </div>
         <div class="cinematic-inner">
-          <h2 class="display">We shape what comes next.</h2>
+          <h2 class="display">Find it before they do.</h2>
           <div class="cinematic-card">
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d1d195f0-17d7-4654-a1fc-c9e3192705c4_800w.webp" alt="Editorial portrait">
+            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d1d195f0-17d7-4654-a1fc-c9e3192705c4_800w.webp" alt="Developer reviewing evidence">
           </div>
-          <a href="#contact" class="cinematic-cta">Start a project ↗</a>
+          <a href="#method" class="cinematic-cta">Enter BreakSmith ↗</a>
         </div>
       </section>
 
       <section class="big-stats paper diagonal-top">
         <div class="container stats-grid">
           <div class="stat">
-            <strong data-count="2.4" data-suffix="M">0</strong>
-            <p>Total audience reach across campaigns and digital launches</p>
+            <strong data-count="1">0</strong>
+            <p>Repository enters an isolated, bounded security scan</p>
           </div>
           <div class="stat">
-            <strong data-count="118" data-suffix="K">0</strong>
-            <p>Creative assets delivered across identity, motion and web</p>
+            <strong data-count="9">0</strong>
+            <p>Risk categories organize the application’s attack surface</p>
           </div>
           <div class="stat">
-            <strong data-count="93" data-suffix="+">0</strong>
-            <p>Brand launches shaped from strategy to final experience</p>
+            <strong data-count="100">0</strong>
+            <p>Point score turns scattered findings into one readable verdict</p>
           </div>
           <div class="stat">
-            <strong data-count="21">0</strong>
-            <p>Countries reached through international collaborations</p>
+            <strong data-count="57">0</strong>
+            <p>Automated regression tests protect the scanner and API contract</p>
           </div>
         </div>
       </section>
 
-      <section class="journal paper">
+      <section class="journal paper" id="method">
         <div class="container">
-          <div class="eyebrow" style="margin-bottom:60px">04 / Journal</div>
+          <div class="eyebrow" style="margin-bottom:60px">05 / Rules, not guesses</div>
           <div class="journal-grid">
             <article class="journal-item">
               <div class="journal-img">
                 <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" alt="Journal portrait">
               </div>
               <div class="journal-meta">
-                <span>01 / Casting Notes</span>
-                <span>2026</span>
+                <span>01 / OWASP Top 10</span>
+                <span>2025</span>
               </div>
             </article>
             <article class="journal-item">
@@ -848,8 +914,8 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
                 <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/611c8074-3c56-4810-a604-812a2791a1f9_800w.webp" alt="Journal fashion">
               </div>
               <div class="journal-meta">
-                <span>02 / Material Study</span>
-                <span>2026</span>
+                <span>02 / OWASP API Security</span>
+                <span>2023</span>
               </div>
             </article>
             <article class="journal-item">
@@ -857,8 +923,8 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
                 <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/cd2c33e1-4bcd-452f-ad23-223a9029f74b_800w.webp" alt="Journal studio">
               </div>
               <div class="journal-meta">
-                <span>03 / Process</span>
-                <span>2025</span>
+                <span>03 / MITRE CWE</span>
+                <span>Weakness mapping</span>
               </div>
             </article>
             <article class="journal-item">
@@ -866,8 +932,8 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
                 <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" alt="Journal campaign">
               </div>
               <div class="journal-meta">
-                <span>04 / Campaign Still</span>
-                <span>2025</span>
+                <span>04 / Regression corpus</span>
+                <span>Fixed cases</span>
               </div>
             </article>
           </div>
@@ -876,70 +942,84 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 
       <section class="faq paper diagonal-top">
         <div class="container">
-          <h2 class="display">Common Questions</h2>
+          <h2 class="display">What the checkpoint means.</h2>
           <div class="faq-item">
             <button class="faq-q">
-              <span>What types of projects do you take on?</span>
+              <span>What does BreakSmith inspect?</span>
               <span class="faq-plus cross"></span>
             </button>
             <div class="faq-a">
               <p>
-                We focus on identity systems, campaign direction, motion design
-                and expressive digital experiences. Most engagements combine at
-                least two of these disciplines.
+                Source code, configuration, dependency manifests, secrets,
+                authentication patterns, dangerous input paths, API exposure,
+                and common weak cryptography in public GitHub repositories.
               </p>
             </div>
           </div>
           <div class="faq-item">
             <button class="faq-q">
-              <span>Do you work with international clients?</span>
+              <span>What is the method informed by?</span>
               <span class="faq-plus cross"></span>
             </button>
             <div class="faq-a">
               <p>
-                Yes. Our process is built for remote collaboration, with clear
-                milestones, live reviews and a structured communication rhythm.
+                Rule coverage is informed by established application-security
+                guidance including the OWASP Top 10, OWASP API Security Top 10,
+                and standardized MITRE CWE weakness identifiers.
               </p>
             </div>
           </div>
           <div class="faq-item">
             <button class="faq-q">
-              <span>Can you handle both identity and web design?</span>
+              <span>Does a scan certify an application as secure?</span>
               <span class="faq-plus cross"></span>
             </button>
             <div class="faq-a">
               <p>
-                Yes. Many of our strongest projects begin with identity and
-                extend into a complete digital system, motion language and
-                launch campaign.
+                No. It is a practical pre-ship checkpoint, not a certification
+                or a substitute for threat modeling, review, testing, and
+                ongoing production monitoring.
               </p>
             </div>
           </div>
           <div class="faq-item">
             <button class="faq-q">
-              <span>What is the typical project timeline?</span>
+              <span>Does BreakSmith change the repository?</span>
               <span class="faq-plus cross"></span>
             </button>
             <div class="faq-a">
               <p>
-                Focused direction sprints usually take two to three weeks. Full
-                identity and digital projects generally run from eight to
-                sixteen weeks.
+                No. The repository is cloned temporarily for inspection and
+                removed afterward. Suggested patches remain review-only until a
+                developer chooses what to apply.
               </p>
             </div>
           </div>
           <div class="faq-item">
             <button class="faq-q">
-              <span>How does the process begin?</span>
+              <span>What comes back?</span>
               <span class="faq-plus cross"></span>
             </button>
             <div class="faq-a">
               <p>
-                Every project begins with a short conversation about your goals,
-                audience, timing and ambition. From there, we shape the right
-                scope and working model.
+                A security score, severity summary, category distribution,
+                file-and-line findings, repository risk intelligence, and a
+                prioritized path toward remediation.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="story-return paper">
+        <div class="container story-return-grid">
+          <div class="eyebrow">07 / Same developer / safer morning</div>
+          <div class="story-return-media" data-video-slot="developer-morning" data-scene="Scene 07 / The morning after">
+            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e6366a9f-2edd-47bf-90c2-c450208e3cfb_800w.webp" alt="Developer reviewing the BreakSmith report in the morning">
+          </div>
+          <div class="story-return-copy">
+            <h2 class="display">Found.<span>Fixed.</span>Ready.</h2>
+            <blockquote>“I scanned it. I fixed it. Then I shipped.”</blockquote>
           </div>
         </div>
       </section>
@@ -947,64 +1027,190 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
       <footer class="footer dark" id="contact">
         <div class="container footer-main">
           <div>
-            <div class="eyebrow">05 / Contact</div>
-            <h2 class="display">Have a project in mind?</h2>
-            <a class="footer-email" href="mailto:studio@northform.design">
-              studio@northform.design
+            <div class="eyebrow">06 / Control restored</div>
+            <h2 class="display">Scan before you ship.</h2>
+            <a class="footer-email" href="https://github.com/">
+              github.com/you/next-project
             </a>
           </div>
-          <form onsubmit="event.preventDefault(); this.querySelector('button').textContent='Message received ✓';">
-            <div class="form-row">
-              <div class="field">
-                <label>Name</label>
-                <input required="">
-              </div>
-              <div class="field">
-                <label>Email</label>
-                <input type="email" required="">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="field">
-                <label>Company</label>
-                <input>
-              </div>
-              <div class="field">
-                <label>Project type</label>
-                <select>
-                  <option>Identity</option>
-                  <option>Campaign</option>
-                  <option>Digital</option>
-                  <option>Full experience</option>
-                </select>
-              </div>
+          <form id="scan-form">
+            <div class="field">
+              <label>Public GitHub repository</label>
+              <input id="scan-repo-input" name="repoUrl" type="text" inputmode="url" autocomplete="url" placeholder="https://github.com/user/repository" required="">
             </div>
             <div class="field">
-              <label>Message</label>
-              <textarea required=""></textarea>
+              <label>Before the next deploy</label>
+              <textarea readonly>Know what breaks. See where it lives. Fix what matters first.</textarea>
             </div>
-            <button class="form-submit" type="submit">Send inquiry ↗</button>
+            <button class="form-submit" type="submit">Forge scan ↗</button>
           </form>
         </div>
         <div class="container footer-meta">
           <div class="socials">
-            <a href="#">Instagram</a>
-            <a href="#">Behance</a>
-            <a href="#">LinkedIn</a>
-            <a href="#">Are.na</a>
+            <a href="#story">Story</a>
+            <a href="#reality">Reality</a>
+            <a href="#checkpoint">Checkpoint</a>
+            <a href="#method">Method</a>
           </div>
           <div>
-            Montréal /
+            Local time /
             <span id="clock">18:42 EST</span>
           </div>
         </div>
         <div class="footer-word display">
-          NORTH
+          BREAK
           <span class="slash">/</span>
-          FORM
+          SMITH
         </div>
       </footer>
     </main>
+
+    <section class="scan-overlay" id="scan-overlay" aria-hidden="true" aria-live="polite">
+      <div class="scan-tunnel" id="scan-tunnel" aria-hidden="true"></div>
+      <div class="scan-shade" aria-hidden="true"></div>
+      <div class="scan-shell">
+        <div class="scan-head">
+          <div class="scan-brand">BREAK<i>/</i>SMITH</div>
+          <span class="scan-system">Isolated repository analysis</span>
+          <button class="scan-close" id="scan-close" type="button">Cancel scan</button>
+        </div>
+        <div class="scan-main">
+          <div class="scan-loading">
+            <div class="scan-kicker">Analysis in progress</div>
+            <h2 class="scan-stage" id="scan-stage">Securing repository</h2>
+            <div class="scan-stage-meta"><span id="scan-stage-index">01 / 08</span><span id="scan-stage-percent">08%</span></div>
+            <div class="scan-progress"><span id="scan-progress-bar"></span></div>
+            <div class="scan-repo" id="scan-repo-label"></div>
+            <div class="scan-error" id="scan-error"></div>
+          </div>
+          <div class="scan-complete">
+            <div class="scan-verdict-top">
+              <div><div class="scan-verdict-label">Analysis complete</div><div class="scan-repo" id="scan-complete-repo"></div></div>
+              <div class="scan-verdict-label" id="scan-duration"></div>
+            </div>
+            <div class="scan-score"><strong id="scan-score">100</strong><span>/ 100</span></div>
+            <div class="scan-risk" id="scan-risk">Low risk</div>
+            <div class="scan-summary">
+              <div><strong id="scan-total">0</strong><span>Total</span></div>
+              <div><strong id="scan-critical">0</strong><span>Critical</span></div>
+              <div><strong id="scan-high">0</strong><span>High</span></div>
+              <div><strong id="scan-medium">0</strong><span>Medium</span></div>
+              <div><strong id="scan-low">0</strong><span>Low</span></div>
+            </div>
+            <div class="report-dashboard" id="report-dashboard">
+              <div class="report-status" id="report-status">Building repository intelligence</div>
+              <div class="report-intelligence">
+                <article class="intel-block">
+                  <div class="report-label">Primary attack surface</div>
+                  <div>
+                    <div class="intel-value" id="intel-surface">—</div>
+                    <div class="intel-meta" id="intel-surface-meta">Analysing categories</div>
+                  </div>
+                </article>
+                <article class="intel-block is-priority">
+                  <div class="report-label">Top remediation priority</div>
+                  <div>
+                    <div class="intel-value" id="intel-priority">No findings detected</div>
+                    <div class="intel-meta" id="intel-priority-meta">Repository appears clean under current rules</div>
+                  </div>
+                </article>
+                <article class="intel-block">
+                  <div class="report-label">Most vulnerable file</div>
+                  <div>
+                    <div class="intel-value" id="intel-file">—</div>
+                    <div class="intel-meta" id="intel-file-meta">No affected file</div>
+                  </div>
+                </article>
+              </div>
+              <div class="report-metrics">
+                <div class="metric-cell"><strong id="metric-affected-files">0</strong><span>Affected files</span></div>
+                <div class="metric-cell"><strong id="metric-rules">0</strong><span>Unique rules</span></div>
+                <div class="metric-cell"><strong id="metric-concentration">0%</strong><span>Top file concentration</span></div>
+                <div class="metric-cell"><strong id="metric-high-risk">0%</strong><span>High / critical</span></div>
+              </div>
+
+              <section class="report-section">
+                <div class="report-section-head">
+                  <div><div class="report-label">01 / What to fix first</div><h3>Priority queue</h3></div>
+                  <p>Findings are ranked by severity, confidence, concentration, and category risk—not by raw count alone.</p>
+                </div>
+                <div class="priority-list" id="priority-list"></div>
+              </section>
+
+              <section class="report-section">
+                <div class="report-section-head">
+                  <div><div class="report-label">02 / Where risk lives</div><h3>Repository risk map</h3></div>
+                  <p>Category pressure and file-level hotspots reveal where the repository’s risk is concentrated.</p>
+                </div>
+                <div class="risk-grid">
+                  <div><div class="category-list" id="category-list"></div></div>
+                  <div><div class="hotspot-list" id="hotspot-list"></div></div>
+                </div>
+              </section>
+
+              <section class="report-section" id="findings-section">
+                <div class="report-section-head">
+                  <div><div class="report-label">03 / Evidence</div><h3>All findings</h3></div>
+                  <div class="finding-tools" id="finding-tools">
+                    <button class="finding-filter is-active" type="button" data-severity="all">All</button>
+                    <button class="finding-filter" type="button" data-severity="critical">Critical</button>
+                    <button class="finding-filter" type="button" data-severity="high">High</button>
+                    <button class="finding-filter" type="button" data-severity="medium">Medium</button>
+                    <button class="finding-filter" type="button" data-severity="low">Low</button>
+                    <select class="finding-category" id="finding-category" aria-label="Filter findings by category">
+                      <option value="all">All categories</option>
+                      <option value="secrets">Secrets</option>
+                      <option value="authentication">Authentication</option>
+                      <option value="authorization">Authorization</option>
+                      <option value="injection">Injection</option>
+                      <option value="api-security">API security</option>
+                      <option value="configuration">Configuration</option>
+                      <option value="dependencies">Dependencies</option>
+                      <option value="cryptography">Cryptography</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="findings-layout">
+                  <div class="finding-list" id="finding-list"></div>
+                  <aside class="finding-detail" id="finding-detail">
+                    <div class="finding-detail-empty">Select a finding to inspect its evidence, impact, remediation, and safe patch suggestion.</div>
+                    <div class="finding-detail-content">
+                      <div class="detail-head">
+                        <span class="severity-pill" id="detail-severity"></span>
+                        <div class="detail-title" id="detail-title"></div>
+                        <div class="detail-meta" id="detail-meta"></div>
+                      </div>
+                      <pre class="detail-code" id="detail-code"></pre>
+                      <div class="detail-copy">
+                        <h4>Why this matters</h4><p id="detail-description"></p>
+                        <h4>Impact</h4><p id="detail-impact"></p>
+                        <h4>Recommended remediation</h4><p id="detail-remediation"></p>
+                        <button class="fix-button" id="fix-button" type="button">Fix with BreakSmith ↗</button>
+                        <div class="fix-result" id="fix-result">
+                          <div class="fix-result-head">
+                            <div><div class="report-label">Suggested patch / Review required</div><h4 id="fix-title">Patch generated</h4></div>
+                            <span class="fix-provider" id="fix-provider"></span>
+                          </div>
+                          <p class="fix-summary" id="fix-summary"></p>
+                          <ol class="fix-steps" id="fix-steps"></ol>
+                          <div class="fix-code-grid">
+                            <div class="fix-code-panel"><span>Before</span><pre id="fix-before"></pre></div>
+                            <div class="fix-code-panel"><span>After</span><pre id="fix-after"></pre></div>
+                          </div>
+                          <pre class="fix-diff" id="fix-diff"></pre>
+                        </div>
+                      </div>
+                    </div>
+                  </aside>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+        <div class="scan-foot"><span class="scan-elapsed" id="scan-elapsed">00:00.0</span><span>Temporary clone / automatic cleanup</span></div>
+      </div>
+    </section>
 
     <div class="cursor-label">
       View
@@ -1013,16 +1219,517 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
     </div>
     <div class="archive-preview"><img src="" alt="Archive preview"></div>
 
+    <script>
+      (() => {
+        const form = document.querySelector('#scan-form');
+        const input = document.querySelector('#scan-repo-input');
+        const overlay = document.querySelector('#scan-overlay');
+        const closeButton = document.querySelector('#scan-close');
+        const submitButton = form?.querySelector('.form-submit');
+        if (!form || !input || !overlay || !closeButton || !submitButton) return;
+
+        const stages = [
+          ['Securing repository', 8],
+          ['Mapping source tree', 20],
+          ['Inspecting secrets', 34],
+          ['Analysing authentication', 48],
+          ['Tracing dangerous input', 62],
+          ['Checking configuration', 75],
+          ['Ranking findings', 88],
+          ['Forging report', 96],
+        ];
+
+        const stage = document.querySelector('#scan-stage');
+        const stageIndex = document.querySelector('#scan-stage-index');
+        const stagePercent = document.querySelector('#scan-stage-percent');
+        const progress = document.querySelector('#scan-progress-bar');
+        const repoLabel = document.querySelector('#scan-repo-label');
+        const elapsed = document.querySelector('#scan-elapsed');
+        const errorBox = document.querySelector('#scan-error');
+        let controller;
+        let stageTimer;
+        let elapsedTimer;
+        let startedAt = 0;
+        let activeStage = 0;
+        let currentResult;
+        let currentInsights;
+        let currentFinding;
+        let activeSeverity = 'all';
+        let activeCategory = 'all';
+
+        const severityWeight = { critical: 5, high: 4, medium: 3, low: 2, info: 1 };
+        const titleCase = (value = '') => value.replace(/-/g, ' ').replace(/\b\w/g, character => character.toUpperCase());
+        const escapeHtml = (value = '') => String(value).replace(/[&<>'"]/g, character => ({
+          '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;',
+        })[character]);
+        const locationLabel = finding => `${finding.file}${finding.line ? ` : ${finding.line}` : ''}`;
+
+        function deriveLocalInsights(result) {
+          const findings = result.findings || [];
+          const categoryMap = new Map();
+          const fileMap = new Map();
+          findings.forEach(finding => {
+            const category = categoryMap.get(finding.category) || { category: finding.category, count: 0, weightedRisk: 0 };
+            category.count += 1;
+            category.weightedRisk += severityWeight[finding.severity] || 1;
+            categoryMap.set(finding.category, category);
+            const file = fileMap.get(finding.file) || { file: finding.file, findingCount: 0, riskScore: 0, critical: 0, high: 0, medium: 0, low: 0, info: 0 };
+            file.findingCount += 1;
+            file[finding.severity] = (file[finding.severity] || 0) + 1;
+            file.riskScore = Math.min(100, file.riskScore + (severityWeight[finding.severity] || 1) * 10);
+            fileMap.set(finding.file, file);
+          });
+          const categories = [...categoryMap.values()].sort((a, b) => b.weightedRisk - a.weightedRisk).map(item => ({
+            ...item,
+            percentage: findings.length ? Math.round(item.count / findings.length * 1000) / 10 : 0,
+            riskScore: Math.min(100, item.weightedRisk * 10),
+            riskLevel: result.riskLevel,
+          }));
+          const hotspots = [...fileMap.values()].sort((a, b) => b.riskScore - a.riskScore || b.findingCount - a.findingCount);
+          const priorityQueue = [...findings].sort((a, b) => (severityWeight[b.severity] || 0) - (severityWeight[a.severity] || 0) || a.file.localeCompare(b.file)).map((finding, index) => ({
+            rank: index + 1, findingId: finding.id, title: finding.title, severity: finding.severity, file: finding.file,
+            line: finding.line, category: finding.category, confidence: finding.confidence,
+            priorityScore: Math.min(100, (severityWeight[finding.severity] || 1) * 20),
+          }));
+          return {
+            overview: {
+              primaryAttackSurface: categories[0] || null,
+              mostVulnerableFile: hotspots[0] || null,
+            },
+            topPriorityFinding: priorityQueue[0] || null,
+            priorityQueue,
+            hotspots,
+            categoryRisk: categories,
+            metrics: {
+              affectedFiles: hotspots.length,
+              uniqueRuleCount: new Set(findings.map(finding => finding.ruleId)).size,
+              highOrCriticalPercentage: findings.length ? Math.round(findings.filter(finding => ['critical', 'high'].includes(finding.severity)).length / findings.length * 1000) / 10 : 0,
+              findingConcentration: { topFilePercentage: findings.length && hotspots[0] ? Math.round(hotspots[0].findingCount / findings.length * 1000) / 10 : 0 },
+            },
+          };
+        }
+
+        function renderPriorityQueue(items = []) {
+          const host = document.querySelector('#priority-list');
+          if (!items.length) {
+            host.innerHTML = '<div class="finding-empty">No remediation queue is needed for the current deterministic findings.</div>';
+            return;
+          }
+          host.innerHTML = items.slice(0, 8).map(item => `
+            <button class="priority-row" type="button" data-finding-id="${escapeHtml(item.findingId)}">
+              <span class="priority-rank">${String(item.rank).padStart(2, '0')}</span>
+              <span class="priority-name"><strong>${escapeHtml(item.title)}</strong><span>${escapeHtml(locationLabel(item))} / ${escapeHtml(titleCase(item.category))}</span></span>
+              <span class="priority-severity severity-${escapeHtml(item.severity)}">${escapeHtml(item.severity)}</span>
+              <span class="priority-score">${item.priorityScore}<small>Priority</small></span>
+            </button>`).join('');
+        }
+
+        function renderRiskMap(insights) {
+          const categories = insights.categoryRisk || [];
+          const hotspots = insights.hotspots || [];
+          const categoryHost = document.querySelector('#category-list');
+          const hotspotHost = document.querySelector('#hotspot-list');
+          categoryHost.innerHTML = categories.length ? categories.map(item => `
+            <div class="category-row">
+              <div class="category-top"><span>${escapeHtml(titleCase(item.category))}</span><span>${item.count} findings / ${item.riskScore} risk</span></div>
+              <div class="category-bar"><span style="width:${Math.max(2, Math.min(100, item.riskScore))}%"></span></div>
+            </div>`).join('') : '<div class="finding-empty">No category risk detected.</div>';
+          hotspotHost.innerHTML = hotspots.length ? hotspots.slice(0, 7).map(item => `
+            <div class="hotspot-row">
+              <div><strong>${escapeHtml(item.file)}</strong><span>${item.findingCount} findings</span></div>
+              <span class="severity-${escapeHtml((item.riskLevel || '').toLowerCase())}">${escapeHtml(item.riskLevel || '')}</span>
+              <div class="hotspot-score">${item.riskScore}</div>
+            </div>`).join('') : '<div class="finding-empty">No vulnerable file hotspots detected.</div>';
+        }
+
+        function renderInsights(insights) {
+          currentInsights = insights;
+          const surface = insights.overview?.primaryAttackSurface;
+          const priority = insights.topPriorityFinding || insights.priorityQueue?.[0];
+          const vulnerableFile = insights.overview?.mostVulnerableFile;
+          document.querySelector('#intel-surface').textContent = surface ? titleCase(surface.category) : 'No active surface';
+          document.querySelector('#intel-surface-meta').textContent = surface ? `${surface.count} findings / ${surface.percentage ?? 0}% of repository risk` : 'No category pressure detected';
+          document.querySelector('#intel-priority').textContent = priority?.title || 'No findings detected';
+          document.querySelector('#intel-priority-meta').textContent = priority ? `${locationLabel(priority)} / Priority ${priority.priorityScore}` : 'Repository appears clean under current rules';
+          document.querySelector('#intel-file').textContent = vulnerableFile?.file || 'No affected file';
+          document.querySelector('#intel-file-meta').textContent = vulnerableFile ? `${vulnerableFile.findingCount} findings / ${vulnerableFile.riskLevel}` : 'No hotspot detected';
+          document.querySelector('#metric-affected-files').textContent = insights.metrics?.affectedFiles ?? 0;
+          document.querySelector('#metric-rules').textContent = insights.metrics?.uniqueRuleCount ?? 0;
+          document.querySelector('#metric-concentration').textContent = `${insights.metrics?.findingConcentration?.topFilePercentage ?? 0}%`;
+          document.querySelector('#metric-high-risk').textContent = `${insights.metrics?.highOrCriticalPercentage ?? 0}%`;
+          renderPriorityQueue(insights.priorityQueue);
+          renderRiskMap(insights);
+        }
+
+        function renderFindings() {
+          const host = document.querySelector('#finding-list');
+          const findings = (currentResult?.findings || []).filter(finding =>
+            (activeSeverity === 'all' || finding.severity === activeSeverity)
+            && (activeCategory === 'all' || finding.category === activeCategory));
+          if (!findings.length) {
+            host.innerHTML = '<div class="finding-empty">No findings match the selected filters.</div>';
+            return;
+          }
+          host.innerHTML = findings.map(finding => `
+            <button class="finding-row${currentFinding?.id === finding.id ? ' is-active' : ''}" type="button" data-finding-id="${escapeHtml(finding.id)}">
+              <span class="severity-pill severity-${escapeHtml(finding.severity)}">${escapeHtml(finding.severity)}</span>
+              <span><span class="finding-row-title">${escapeHtml(finding.title)}</span><span class="finding-row-meta">${escapeHtml(titleCase(finding.category))} / ${escapeHtml(finding.cwe || finding.ruleId)} / ${escapeHtml(finding.confidence)} confidence</span></span>
+              <span class="finding-location">${escapeHtml(locationLabel(finding))}</span>
+            </button>`).join('');
+        }
+
+        function openFinding(findingId, shouldScroll = false) {
+          const finding = currentResult?.findings?.find(item => item.id === findingId);
+          if (!finding) return;
+          currentFinding = finding;
+          const detail = document.querySelector('#finding-detail');
+          detail.classList.add('has-finding');
+          const severity = document.querySelector('#detail-severity');
+          severity.textContent = finding.severity;
+          severity.className = `severity-pill severity-${finding.severity}`;
+          document.querySelector('#detail-title').textContent = finding.title;
+          document.querySelector('#detail-meta').textContent = `${locationLabel(finding)} / ${finding.cwe || finding.ruleId} / ${finding.confidence} confidence`;
+          document.querySelector('#detail-code').textContent = finding.snippet || 'No source snippet is available for this finding.';
+          document.querySelector('#detail-description').textContent = finding.description;
+          document.querySelector('#detail-impact').textContent = finding.impact;
+          document.querySelector('#detail-remediation').textContent = finding.remediation;
+          document.querySelector('#fix-result').classList.remove('is-visible');
+          renderFindings();
+          if (shouldScroll && innerWidth < 901) detail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function languageForFile(file = '') {
+          const extension = file.split('.').pop()?.toLowerCase();
+          return ({ ts: 'TypeScript', tsx: 'TypeScript', js: 'JavaScript', jsx: 'JavaScript', py: 'Python', rb: 'Ruby', php: 'PHP', go: 'Go', java: 'Java', kt: 'Kotlin' })[extension] || undefined;
+        }
+
+        async function generateFix() {
+          if (!currentFinding) return;
+          const button = document.querySelector('#fix-button');
+          const resultHost = document.querySelector('#fix-result');
+          button.disabled = true;
+          button.textContent = 'Forging remediation…';
+          resultHost.classList.remove('is-visible');
+          try {
+            const response = await fetch('/api/fix', {
+              method: 'POST', headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ finding: currentFinding, language: languageForFile(currentFinding.file) }),
+            });
+            const fix = await response.json().catch(() => ({}));
+            if (!response.ok) throw new Error(fix.error || 'The fix suggestion could not be generated.');
+            document.querySelector('#fix-title').textContent = fix.status === 'suggested' ? 'Patch generated' : 'Suggested remediation';
+            document.querySelector('#fix-provider').textContent = fix.provider || 'deterministic';
+            document.querySelector('#fix-summary').textContent = fix.summary || currentFinding.remediation;
+            const steps = document.querySelector('#fix-steps');
+            steps.replaceChildren(...(fix.steps || []).map(step => { const item = document.createElement('li'); item.textContent = step.replace(/^\s*\d+[.)]\s*/, ''); return item; }));
+            document.querySelector('#fix-before').textContent = fix.before || currentFinding.snippet || '';
+            document.querySelector('#fix-after').textContent = fix.after || currentFinding.remediation;
+            document.querySelector('#fix-diff').textContent = fix.diff || 'Suggested change only — review before applying.';
+            resultHost.classList.add('is-visible');
+          } catch (error) {
+            document.querySelector('#fix-provider').textContent = 'deterministic';
+            document.querySelector('#fix-summary').textContent = error?.message || currentFinding.remediation;
+            document.querySelector('#fix-before').textContent = currentFinding.snippet || '';
+            document.querySelector('#fix-after').textContent = currentFinding.remediation;
+            document.querySelector('#fix-diff').textContent = 'Review the deterministic remediation above before changing the repository.';
+            resultHost.classList.add('is-visible');
+          } finally {
+            button.disabled = false;
+            button.textContent = 'Fix with BreakSmith ↗';
+          }
+        }
+
+        async function loadInsights(result) {
+          const status = document.querySelector('#report-status');
+          renderFindings();
+          try {
+            const response = await fetch('/api/insights', {
+              method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(result),
+            });
+            const insights = await response.json().catch(() => ({}));
+            if (!response.ok) throw new Error(insights.error || 'Insights unavailable');
+            renderInsights(insights);
+            status.textContent = 'Repository intelligence ready';
+          } catch {
+            renderInsights(deriveLocalInsights(result));
+            status.textContent = 'Deterministic report ready';
+          }
+          if (result.findings?.[0]) openFinding(result.findings[0].id);
+        }
+
+        function normalizeRepoUrl(value) {
+          const trimmed = value.trim();
+          if (/^github\.com\//i.test(trimmed)) return `https://${trimmed}`;
+          if (/^[\w.-]+\/[\w.-]+\/?$/.test(trimmed)) return `https://github.com/${trimmed.replace(/\/$/, '')}`;
+          return trimmed;
+        }
+
+        function setStage(index, percentOverride) {
+          activeStage = Math.max(0, Math.min(index, stages.length - 1));
+          const [label, defaultPercent] = stages[activeStage];
+          const percent = percentOverride ?? defaultPercent;
+          stage.textContent = label;
+          stageIndex.textContent = `${String(activeStage + 1).padStart(2, '0')} / ${String(stages.length).padStart(2, '0')}`;
+          stagePercent.textContent = `${percent}%`;
+          progress.style.width = `${percent}%`;
+        }
+
+        function stopTimers() {
+          clearInterval(stageTimer);
+          clearInterval(elapsedTimer);
+        }
+
+        function closeScan() {
+          controller?.abort();
+          stopTimers();
+          overlay.classList.remove('is-open', 'is-complete', 'has-error');
+          overlay.setAttribute('aria-hidden', 'true');
+          document.body.classList.remove('scan-active');
+          submitButton.disabled = false;
+          submitButton.textContent = 'Forge scan ↗';
+          closeButton.textContent = 'Cancel scan';
+          currentFinding = undefined;
+          document.querySelector('#finding-detail')?.classList.remove('has-finding');
+          document.querySelector('#fix-result')?.classList.remove('is-visible');
+          window.dispatchEvent(new Event('breaksmith:scan-close'));
+        }
+
+        function openScan(repoUrl) {
+          overlay.classList.remove('is-complete', 'has-error');
+          overlay.classList.add('is-open');
+          overlay.setAttribute('aria-hidden', 'false');
+          document.body.classList.add('scan-active');
+          repoLabel.textContent = repoUrl;
+          errorBox.textContent = '';
+          closeButton.textContent = 'Cancel scan';
+          startedAt = performance.now();
+          setStage(0);
+          window.dispatchEvent(new Event('breaksmith:scan-open'));
+
+          elapsedTimer = setInterval(() => {
+            const seconds = (performance.now() - startedAt) / 1000;
+            const minutes = Math.floor(seconds / 60);
+            elapsed.textContent = `${String(minutes).padStart(2, '0')}:${(seconds % 60).toFixed(1).padStart(4, '0')}`;
+          }, 100);
+
+          stageTimer = setInterval(() => {
+            if (activeStage < stages.length - 2) setStage(activeStage + 1);
+          }, 1150);
+        }
+
+        function showComplete(result) {
+          stopTimers();
+          currentResult = result;
+          activeSeverity = 'all';
+          activeCategory = 'all';
+          document.querySelectorAll('.finding-filter').forEach(button => button.classList.toggle('is-active', button.dataset.severity === 'all'));
+          document.querySelector('#finding-category').value = 'all';
+          setStage(stages.length - 1, 100);
+          document.querySelector('#scan-complete-repo').textContent = `${result.repo.owner} / ${result.repo.name}`;
+          document.querySelector('#scan-duration').textContent = `${result.scannedFiles} files / ${(result.durationMs / 1000).toFixed(1)}s`;
+          document.querySelector('#scan-score').textContent = result.score;
+          document.querySelector('#scan-risk').textContent = `${result.riskLevel} risk`;
+          document.querySelector('#scan-total').textContent = result.summary.total;
+          document.querySelector('#scan-critical').textContent = result.summary.critical;
+          document.querySelector('#scan-high').textContent = result.summary.high;
+          document.querySelector('#scan-medium').textContent = result.summary.medium;
+          document.querySelector('#scan-low').textContent = result.summary.low;
+          closeButton.textContent = 'Close report';
+          setTimeout(() => overlay.classList.add('is-complete'), 550);
+          loadInsights(result);
+          try { sessionStorage.setItem('breaksmith:lastScan', JSON.stringify(result)); } catch {}
+          window.breaksmithLastScan = result;
+          window.dispatchEvent(new CustomEvent('breaksmith:scan-complete', { detail: result }));
+        }
+
+        function showError(message) {
+          stopTimers();
+          overlay.classList.add('has-error');
+          stage.textContent = 'Scan interrupted';
+          stageIndex.textContent = 'ACTION REQUIRED';
+          stagePercent.textContent = '—';
+          errorBox.textContent = message || 'The repository could not be scanned. Check the URL and try again.';
+          closeButton.textContent = 'Return';
+          submitButton.disabled = false;
+          submitButton.textContent = 'Forge scan ↗';
+        }
+
+        form.addEventListener('submit', async (event) => {
+          event.preventDefault();
+          const repoUrl = normalizeRepoUrl(input.value);
+          if (!repoUrl) return;
+          input.value = repoUrl;
+          submitButton.disabled = true;
+          submitButton.textContent = 'Analysing…';
+          controller = new AbortController();
+          openScan(repoUrl);
+
+          try {
+            const response = await fetch('/api/scan', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ repoUrl }),
+              signal: controller.signal,
+            });
+            const payload = await response.json().catch(() => ({}));
+            if (!response.ok) throw new Error(payload.error || payload.message || 'The repository could not be scanned.');
+            showComplete(payload);
+          } catch (error) {
+            if (error?.name !== 'AbortError') showError(error?.message);
+          }
+        });
+
+        closeButton.addEventListener('click', closeScan);
+        document.querySelector('#priority-list').addEventListener('click', event => {
+          const row = event.target.closest('[data-finding-id]');
+          if (!row) return;
+          openFinding(row.dataset.findingId, true);
+          document.querySelector('#findings-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        document.querySelector('#finding-list').addEventListener('click', event => {
+          const row = event.target.closest('[data-finding-id]');
+          if (row) openFinding(row.dataset.findingId, true);
+        });
+        document.querySelector('#finding-tools').addEventListener('click', event => {
+          const button = event.target.closest('[data-severity]');
+          if (!button) return;
+          activeSeverity = button.dataset.severity;
+          document.querySelectorAll('.finding-filter').forEach(item => item.classList.toggle('is-active', item === button));
+          renderFindings();
+        });
+        document.querySelector('#finding-category').addEventListener('change', event => {
+          activeCategory = event.target.value;
+          renderFindings();
+        });
+        document.querySelector('#fix-button').addEventListener('click', generateFix);
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape' && overlay.classList.contains('is-open')) closeScan();
+        });
+      })();
+    </script>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.137.5/build/three.module.js",
+          "three/": "https://unpkg.com/three@0.137.5/",
+          "omega/": "https://cdn.jsdelivr.net/gh/ycw/omega@0.0.2/"
+        }
+      }
+    </script>
+    <script type="module">
+      // Tunnel geometry and post-processing adapted from ycw/omega (MIT).
+      let tunnelRuntime;
+      let tunnelLoading;
+
+      async function createTunnel() {
+        const host = document.querySelector('#scan-tunnel');
+        if (!host || matchMedia('(prefers-reduced-motion: reduce)').matches) return null;
+
+        const [THREE, composerModule, renderModule, curvesModule, stripModule, bloomModule, radialModule] = await Promise.all([
+          import('three'),
+          import('three/examples/jsm/postprocessing/EffectComposer.js'),
+          import('three/examples/jsm/postprocessing/RenderPass.js'),
+          import('three/examples/jsm/curves/CurveExtras.js'),
+          import('omega/dist/Strip.js'),
+          import('omega/dist/DualBloom.js'),
+          import('omega/dist/RadialBlur.js'),
+        ]);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true, powerPreference: 'high-performance' });
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, 2, .1, 100);
+        scene.fog = new THREE.FogExp2(0x060606, .028);
+        scene.add(new THREE.HemisphereLight(0xc24f20, 0x102332, 1.15));
+        scene.add(new THREE.AmbientLight(0x4a311f, .75));
+
+        const segments = innerWidth < 700 ? 650 : 1100;
+        const curve = new curvesModule.Curves.TorusKnot();
+        const radius = (i, total) => 2 * Math.abs(i / total - .5) * 10 + 1;
+        const strip = new stripModule.Strip(curve, radius, 0);
+        const firstFrames = strip.computeFrames(segments);
+        const deltaAngle = firstFrames[0][1].angleTo(firstFrames[firstFrames.length - 1][1]);
+        strip.tilt = (i, total) => i / total * -deltaAngle;
+        const frames = strip.computeFrames(segments);
+        const geometry = new stripModule.StripGeometry(strip, segments, stripModule.UvPreset.strip[1]);
+
+        const textureSource = document.createElement('canvas');
+        textureSource.width = 1024;
+        textureSource.height = 256;
+        const context = textureSource.getContext('2d');
+        context.fillStyle = '#070707';
+        context.fillRect(0, 0, 1024, 256);
+        context.strokeStyle = 'rgba(194,79,32,.72)';
+        context.lineWidth = 4;
+        for (let x = 0; x <= 1024; x += 128) {
+          context.beginPath(); context.moveTo(x, 0); context.lineTo(x, 256); context.stroke();
+        }
+        context.fillStyle = '#efeee9';
+        context.font = '700 54px Arial';
+        context.fillText('BREAK / SMITH', 44, 105);
+        context.fillStyle = '#c24f20';
+        context.font = '600 24px Arial';
+        context.fillText('REPOSITORY ANALYSIS / EVIDENCE LOCKED', 46, 158);
+
+        const map = new THREE.CanvasTexture(textureSource);
+        map.repeat.set(segments / 90, 2);
+        map.wrapT = map.wrapS = THREE.RepeatWrapping;
+        const material = new THREE.MeshLambertMaterial({ map, side: THREE.DoubleSide });
+        scene.add(new THREE.Mesh(geometry, material));
+
+        const composer = new composerModule.EffectComposer(renderer);
+        composer.addPass(new renderModule.RenderPass(scene, camera));
+        composer.addPass(new bloomModule.DualBloomPass({ intensity: .42, threshold: .12, blurriness: .32 }));
+        composer.addPass(new radialModule.RadialBlurPass({ intensity: .065, iterations: innerWidth < 700 ? 7 : 12 }));
+        camera.matrixAutoUpdate = false;
+        host.append(renderer.domElement);
+
+        const resize = () => {
+          const width = host.clientWidth || innerWidth;
+          const height = host.clientHeight || innerHeight;
+          const dpr = Math.min(devicePixelRatio || 1, 1.4);
+          renderer.setPixelRatio(dpr);
+          renderer.setSize(width, height, false);
+          composer.setPixelRatio(dpr);
+          composer.setSize(width, height);
+          camera.aspect = width / height;
+          camera.updateProjectionMatrix();
+        };
+        addEventListener('resize', resize, { passive: true });
+        resize();
+
+        const speed = .035 / 1000;
+        const renderFrame = (time) => {
+          const ratio = speed * time % 1;
+          const [B, N, T] = frames[Math.floor(ratio * segments)];
+          const position = curve.getPointAt(ratio).add(N.clone().multiplyScalar(2));
+          camera.matrix.makeBasis(B, N, T).setPosition(position);
+          camera.matrixWorldNeedsUpdate = true;
+          composer.render();
+        };
+
+        return {
+          start() { renderer.setAnimationLoop(renderFrame); },
+          stop() { renderer.setAnimationLoop(null); },
+        };
+      }
+
+      addEventListener('breaksmith:scan-open', async () => {
+        if (!tunnelRuntime && !tunnelLoading) tunnelLoading = createTunnel().catch(() => null);
+        if (!tunnelRuntime) tunnelRuntime = await tunnelLoading;
+        tunnelRuntime?.start();
+      });
+      addEventListener('breaksmith:scan-close', () => tunnelRuntime?.stop());
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
     <script>
       // The page must remain usable even if an animation CDN is unavailable.
       document.body.classList.remove('is-loading');
       const preloader = document.querySelector('.preloader');
       const hasGSAP = typeof window.gsap !== 'undefined';
       const hasScrollTrigger = typeof window.ScrollTrigger !== 'undefined';
-      const hasLenis = typeof window.Lenis !== 'undefined';
 
       if (!hasGSAP || !hasScrollTrigger) {
         if (preloader) preloader.remove();
@@ -1067,7 +1774,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
           .from('.hero-link', { y:15, opacity:0, duration:.7 }, '-=.45')
           .from('.hero-word .line-mask span, .hero-word > span', { yPercent:110, duration:1.15, ease:'power4.out' }, '-=.9');
 
-        gsap.to('.hero-media img', { scale:1, duration:1.8, ease:'power3.out' });
+        gsap.to('.hero-media img, .hero-media video', { scale:1, duration:1.8, ease:'power3.out' });
         gsap.to('.hero-media', { yPercent:20, scale:.96, ease:'none', scrollTrigger:{ trigger:'.hero', start:'top top', end:'bottom top', scrub:true } });
         gsap.to('.hero-word', { yPercent:35, ease:'none', scrollTrigger:{ trigger:'.hero', start:'top top', end:'bottom top', scrub:true } });
 
@@ -1084,7 +1791,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 
         document.querySelectorAll('.project').forEach((project, i) => {
           const media = project.querySelector('.project-media');
-          const img = media.querySelector('img');
+          const img = media.querySelector('img, video');
           const title = project.querySelector('h3 span');
           const side = project.querySelector('.project-side');
           gsap.fromTo(media, { scale:.84 }, { scale:1.04, ease:'none', scrollTrigger:{ trigger:project, start:'top bottom', end:'bottom top', scrub:true } });
@@ -1099,11 +1806,6 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
         capWords.forEach((w, i) => capTL.to(w, { color:'#fff', duration:1 }, i));
         capTL.to('.cap-statement', { y:-40, duration:1 }, 0);
         gsap.to('.cap-photo', { y:100, ease:'none', scrollTrigger:{ trigger:'.cap-intro', start:'top bottom', end:'bottom top', scrub:true } });
-        gsap.utils.toArray('.cap-row').forEach(row => {
-          gsap.from(row.children, { y:50, opacity:0, stagger:.08, duration:.9, ease:'power3.out', scrollTrigger:{ trigger:row, start:'top 82%' } });
-          gsap.from(row.querySelector('.image'), { clipPath:'inset(0 100% 0 0)', duration:1, ease:'power4.out', scrollTrigger:{ trigger:row, start:'top 80%' } });
-        });
-
         gsap.from('.section-title', { yPercent:100, opacity:0, duration:1, scrollTrigger:{ trigger:'.engagement', start:'top 75%' } });
         gsap.from('.plan', { y:90, opacity:0, stagger:.12, duration:1, ease:'power3.out', scrollTrigger:{ trigger:'.plans', start:'top 78%' } });
 
