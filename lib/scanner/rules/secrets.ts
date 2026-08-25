@@ -90,6 +90,8 @@ export const sensitiveFilesRule: ScannerRule = {
         title: serviceAccount ? "Service account credential file committed" : "Sensitive file committed",
         severity: serviceAccount || isPrivateKeyFile ? "critical" : "high",
         category: "secrets",
+        line: 1,
+        snippet: file.content ? file.content.split(/\r?\n/)[0]?.slice(0, 120) : "Exposed sensitive configuration file present in repository.",
         description: "A file commonly used to hold credentials or production secrets is present in the repository.",
         impact: "Committed secrets can be recovered from repository history even after the file is deleted.",
         remediation: "Remove the file from version control and history, rotate all contained credentials, and commit only a redacted example file.",
