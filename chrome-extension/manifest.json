@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "BreakSmith Security Checkpoint",
+  "version": "0.1.0",
+  "description": "Scan the current website or a public GitHub repository with BreakSmith.",
+  "permissions": ["activeTab", "tabs", "scripting", "storage"],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_title": "Scan with BreakSmith",
+    "default_popup": "popup.html"
+  }
+}

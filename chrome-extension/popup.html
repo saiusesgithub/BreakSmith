@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BreakSmith</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <header>
+      <div class="brand">BREAK <i>/</i> SMITH</div>
+      <span class="version">LIVE CHECKPOINT</span>
+    </header>
+
+    <main>
+      <section class="target">
+        <span class="label">Detected URL</span>
+        <strong id="detected-url">Detecting active tab…</strong>
+      </section>
+
+      <div class="actions">
+        <button id="scan-live" class="primary" type="button">Scan live page <span>↗</span></button>
+        <button id="scan-repo" type="button" hidden>Scan GitHub repository <span>↗</span></button>
+      </div>
+
+      <details class="configuration">
+        <summary>BreakSmith API configuration</summary>
+        <label for="api-url">Backend URL</label>
+        <div class="config-row">
+          <input id="api-url" type="url" value="http://localhost:3000" spellcheck="false">
+          <button id="save-api" type="button">Save</button>
+        </div>
+      </details>
+
+      <section id="status" class="status" aria-live="polite"></section>
+
+      <section id="report" class="report" hidden>
+        <div class="verdict">
+          <div>
+            <span class="label" id="report-type">Live surface scan</span>
+            <strong id="score">100</strong><small>/100</small>
+          </div>
+          <div class="risk" id="risk">LOW</div>
+        </div>
+        <div class="metrics">
+          <div><strong id="total">0</strong><span>Total</span></div>
+          <div><strong id="high">0</strong><span>High+</span></div>
+          <div><strong id="medium">0</strong><span>Medium</span></div>
+          <div><strong id="low">0</strong><span>Low</span></div>
+        </div>
+        <div class="findings-head">
+          <span class="label">Evidence</span>
+          <button id="export-report" type="button">Export JSON</button>
+        </div>
+        <div id="findings" class="findings"></div>
+      </section>
+    </main>
+
+    <footer>READ-ONLY / NO DATABASE / NO AUTOMATIC CHANGES</footer>
+    <script src="popup.js"></script>
+  </body>
+</html>
