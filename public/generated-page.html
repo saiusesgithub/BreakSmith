@@ -469,6 +469,536 @@ body.scan-active{overflow:hidden}
 @media(max-width:640px){.scan-shell{padding:17px 16px}.scan-head .scan-system{display:none}.scan-main{padding:60px 0}.scan-overlay.is-complete .scan-main{padding:0}.scan-stage{font-size:16vw}.scan-stage-meta{font-size:8px}.scan-verdict-top{align-items:start;gap:20px}.scan-score strong{font-size:42vw}.scan-summary{grid-template-columns:repeat(5,1fr)}.scan-summary div{padding:12px 6px}.scan-summary strong{font-size:24px}.scan-summary span{font-size:7px}.scan-foot{align-items:end}.scan-foot span:last-child{max-width:140px;text-align:right}.report-dashboard{margin-top:60px}.report-metrics{grid-template-columns:1fr 1fr}.metric-cell:nth-child(2){border-right:0}.metric-cell:nth-child(3){padding-left:0}.priority-row{grid-template-columns:38px minmax(0,1fr)}.priority-score{display:none}.finding-row{grid-template-columns:65px minmax(0,1fr)}.finding-location{grid-column:2;text-align:left}.findings-layout{grid-template-columns:minmax(0,1fr)}.detail-head,.detail-copy{padding:22px}.report-section{padding-top:62px}}
 @media(max-width:760px){.story-return{padding:110px 0}.story-return .eyebrow{margin-bottom:45px}.story-return-media{grid-column:1/-1;height:60vh;min-height:430px}.story-return-copy{grid-column:1/-1;padding-top:55px}.story-return-copy blockquote{margin-top:35px}.scene-index{grid-template-columns:1fr 1fr;margin-bottom:35px}.scene-index-item{padding:14px 12px}[data-video-slot]:before{top:12px;left:12px;font-size:8px}}
 @media(prefers-reduced-motion:reduce){.scan-tunnel:before{animation:none}.scan-tunnel canvas{display:none}}
+
+/* ===== AUTHENTIC VS CODE REPLICA STYLES (NO EMOJIS) ===== */
+.vulnerable-code-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+.vulnerable-card {
+  background: #1e1e1e;
+  border: 1px solid #333;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 200px;
+  position: relative;
+  transition: border-color .25s, transform .25s, background .25s;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+}
+.vulnerable-card:hover {
+  border-color: #007acc;
+  transform: translateY(-2px);
+}
+.vulnerable-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  font-family: Consolas, "Courier New", monospace;
+}
+.vulnerable-card-file {
+  font-weight: 600;
+  color: #9cdcfe;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.vulnerable-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: inline-block;
+}
+.vulnerable-dot.severity-critical { background: #f14c4c; box-shadow: 0 0 8px rgba(241,76,76,0.6); }
+.vulnerable-dot.severity-high { background: #cca700; box-shadow: 0 0 8px rgba(204,167,0,0.6); }
+.vulnerable-dot.severity-medium { background: #e0a365; }
+.vulnerable-dot.severity-low { background: #3794ff; }
+.vulnerable-dot.severity-info { background: #75beff; }
+
+.vulnerable-card-title {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 12px 0 4px;
+  color: #cccccc;
+}
+.vulnerable-card-line {
+  font-size: 11px;
+  color: #858585;
+  font-family: Consolas, monospace;
+  margin-bottom: 12px;
+}
+.vulnerable-card-snippet {
+  background: #141414;
+  border: 1px solid #2d2d2d;
+  padding: 10px 12px;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #ce9178;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 0 16px;
+}
+.vulnerable-card-snippet.resolved {
+  color: #6a9955;
+  text-decoration: line-through;
+}
+.vulnerable-ide-btn {
+  width: 100%;
+  border: 1px solid #3c3c3c;
+  background: #0e639c;
+  color: #ffffff;
+  padding: 10px 14px;
+  font-size: 11px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background .2s;
+}
+.vulnerable-ide-btn:hover {
+  background: #1177bb;
+}
+.vulnerable-card.is-resolved {
+  border-color: #388a34;
+  background: rgba(30, 50, 30, 0.4);
+}
+.vulnerable-card-badge-resolved {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  background: rgba(64, 192, 87, 0.2);
+  color: #4ec9b0;
+  border: 1px solid #388a34;
+  font-size: 10px;
+  font-family: Consolas, monospace;
+  border-radius: 2px;
+}
+
+/* VS CODE OVERLAY & WINDOW */
+.ide-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  color: #cccccc;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", system-ui, sans-serif;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease, visibility .25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.ide-overlay.is-open {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+.vscode-window {
+  width: 100%;
+  max-width: 1550px;
+  height: 90vh;
+  background: #1e1e1e;
+  border: 1px solid #454545;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+  display: grid;
+  grid-template-rows: 35px 1fr 24px;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+/* VS Code Title Bar */
+.vscode-titlebar {
+  background: #323233;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 12px;
+  font-size: 12px;
+  color: #cccccc;
+  border-bottom: 1px solid #252526;
+  user-select: none;
+}
+.vscode-title-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.vscode-menu-bar {
+  display: flex;
+  gap: 12px;
+}
+.vscode-menu-item {
+  font-size: 12px;
+  color: #cccccc;
+  cursor: pointer;
+  opacity: 0.85;
+}
+.vscode-menu-item:hover {
+  opacity: 1;
+  color: #ffffff;
+}
+.vscode-title-center {
+  font-size: 12px;
+  color: #aaaaaa;
+}
+.vscode-close-btn {
+  background: transparent;
+  border: 0;
+  color: #aaaaaa;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: 3px;
+}
+.vscode-close-btn:hover {
+  background: #e81123;
+  color: #ffffff;
+}
+
+/* VS Code Main Workspace */
+.vscode-main {
+  display: grid;
+  grid-template-columns: 48px 240px 1fr 360px;
+  height: 100%;
+  overflow: hidden;
+  background: #1e1e1e;
+}
+
+/* Activity Bar */
+.vscode-activity-bar {
+  background: #333333;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-right: 1px solid #252526;
+}
+.activity-top, .activity-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: center;
+}
+.activity-icon {
+  background: transparent;
+  border: 0;
+  color: #858585;
+  cursor: pointer;
+  position: relative;
+  transition: color .2s;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.activity-icon:hover, .activity-icon.is-active {
+  color: #ffffff;
+}
+.activity-icon.is-active {
+  border-left: 2px solid #ffffff;
+}
+.activity-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #f14c4c;
+  color: #ffffff;
+  font-size: 9px;
+  font-weight: bold;
+  padding: 1px 5px;
+  border-radius: 8px;
+}
+
+/* Primary Sidebar (Explorer) */
+.vscode-sidebar {
+  background: #252526;
+  border-right: 1px solid #1e1e1e;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 16px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #bbbbbb;
+  letter-spacing: .05em;
+}
+.sidebar-project-title {
+  padding: 6px 16px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #cccccc;
+  background: #2a2d2e;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.vscode-tree-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 6px 0;
+}
+.vscode-tree-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 16px;
+  font-family: Consolas, monospace;
+  font-size: 12px;
+  color: #cccccc;
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+}
+.vscode-tree-item:hover {
+  background: #2a2d2e;
+}
+.vscode-tree-item.is-active {
+  background: #37373d;
+  color: #ffffff;
+}
+.vscode-tree-item .tree-file-name {
+  color: #9cdcfe;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.vscode-tree-item .tree-badge {
+  font-size: 10px;
+  padding: 1px 5px;
+  border-radius: 2px;
+}
+
+/* Editor Area */
+.vscode-editor-area {
+  background: #1e1e1e;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.vscode-tab-bar {
+  display: flex;
+  background: #2d2d2d;
+  height: 35px;
+  border-bottom: 1px solid #1e1e1e;
+}
+.vscode-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+  background: #1e1e1e;
+  color: #ffffff;
+  font-family: Consolas, monospace;
+  font-size: 12px;
+  border-top: 2px solid #007acc;
+  border-right: 1px solid #252526;
+  cursor: pointer;
+}
+.vscode-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  font-family: Consolas, monospace;
+  font-size: 11px;
+  color: #a9a9a9;
+  background: #1e1e1e;
+  border-bottom: 1px solid #252526;
+}
+.vscode-code-viewport {
+  flex: 1;
+  overflow: auto;
+  background: #1e1e1e;
+  padding: 12px 0;
+}
+.vscode-code-editor {
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* Line & Diagnostic Styles */
+.vscode-code-line {
+  display: flex;
+  padding-right: 20px;
+  min-height: 22px;
+}
+.vscode-code-line.is-vulnerable {
+  background: rgba(241, 76, 76, 0.15);
+  box-shadow: inset 3px 0 0 #f14c4c;
+}
+.vscode-code-line.is-fixed {
+  background: rgba(78, 201, 176, 0.15);
+  box-shadow: inset 3px 0 0 #4ec9b0;
+}
+.vscode-line-num {
+  width: 50px;
+  padding-right: 16px;
+  text-align: right;
+  color: #858585;
+  user-select: none;
+  flex-shrink: 0;
+}
+.vscode-line-num.vuln-num {
+  color: #f14c4c;
+  font-weight: bold;
+}
+.vscode-line-num.fixed-num {
+  color: #4ec9b0;
+  font-weight: bold;
+}
+.vscode-line-code {
+  color: #d4d4d4;
+  white-space: pre-wrap;
+}
+
+/* VS Code Squiggle & Hover Box */
+.vscode-squiggle-wrapper {
+  margin: 4px 0 8px 50px;
+  padding: 8px 14px;
+  background: #252526;
+  border: 1px solid #f14c4c;
+  border-radius: 4px;
+  color: #cccccc;
+  font-size: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  max-width: 90%;
+}
+.vscode-squiggle-wrapper.fixed {
+  border-color: #4ec9b0;
+}
+.vscode-squiggle-title {
+  color: #f14c4c;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.vscode-squiggle-wrapper.fixed .vscode-squiggle-title {
+  color: #4ec9b0;
+}
+
+/* Right Extension Panel */
+.vscode-right-panel {
+  background: #252526;
+  border-left: 1px solid #1e1e1e;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+.vscode-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  background: #2d2d2d;
+  font-size: 11px;
+  font-weight: bold;
+  color: #ffffff;
+  border-bottom: 1px solid #1e1e1e;
+}
+.vscode-panel-title-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.vscode-panel-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+.vscode-btn {
+  border: 0;
+  padding: 10px 14px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background .2s;
+}
+.vscode-btn.primary {
+  background: #0e639c;
+  color: #ffffff;
+}
+.vscode-btn.primary:hover {
+  background: #1177bb;
+}
+.vscode-btn.secondary {
+  background: #3c3c3c;
+  color: #cccccc;
+}
+.vscode-btn.secondary:hover {
+  background: #4c4c4c;
+}
+.vscode-btn.confirm {
+  background: #388a34;
+  color: #ffffff;
+  width: 100%;
+}
+.vscode-btn.confirm:hover {
+  background: #409b3b;
+}
+
+/* Status Bar */
+.vscode-statusbar {
+  background: #007acc;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 12px;
+  font-size: 11px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  user-select: none;
+}
+.statusbar-left, .statusbar-right {
+  display: flex;
+  gap: 14px;
+}
+.statusbar-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+@media (max-width: 1000px) {
+  .vscode-main {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 300px auto;
+  }
+  .vscode-activity-bar { display: none; }
+  .vscode-sidebar { max-height: 140px; }
+  .vscode-right-panel { border-left: 0; border-top: 1px solid #1e1e1e; }
+}
 </style>
 </head>
   <body class=""><div class="scroll-progress" aria-hidden="true"></div>
@@ -1129,6 +1659,14 @@ body.scan-active{overflow:hidden}
                 <div class="metric-cell"><strong id="metric-high-risk">0%</strong><span>High / critical</span></div>
               </div>
 
+              <section class="report-section" id="vulnerable-code-section">
+                <div class="report-section-head">
+                  <div><div class="report-label">Evidence</div><h3>Vulnerable code</h3></div>
+                  <p>Actual vulnerable code findings returned by the scanner. Inspect evidence and remediate directly in the BreakSmith IDE.</p>
+                </div>
+                <div class="vulnerable-code-grid" id="vulnerable-code-grid"></div>
+              </section>
+
               <section class="report-section">
                 <div class="report-section-head">
                   <div><div class="report-label">01 / What to fix first</div><h3>Priority queue</h3></div>
@@ -1209,6 +1747,160 @@ body.scan-active{overflow:hidden}
           </div>
         </div>
         <div class="scan-foot"><span class="scan-elapsed" id="scan-elapsed">00:00.0</span><span>Temporary clone / automatic cleanup</span></div>
+      </div>
+    </section>
+
+    <section class="ide-overlay" id="ide-overlay" aria-hidden="true" aria-live="polite">
+      <div class="vscode-window">
+        <!-- VS Code Title Bar -->
+        <div class="vscode-titlebar">
+          <div class="vscode-title-left">
+            <div class="vscode-menu-bar">
+              <span class="vscode-menu-item">File</span>
+              <span class="vscode-menu-item">Edit</span>
+              <span class="vscode-menu-item">Selection</span>
+              <span class="vscode-menu-item">View</span>
+              <span class="vscode-menu-item">Go</span>
+              <span class="vscode-menu-item">Run</span>
+              <span class="vscode-menu-item">Terminal</span>
+              <span class="vscode-menu-item">Help</span>
+            </div>
+          </div>
+          <div class="vscode-title-center" id="vscode-title-file">src/api/auth.ts — BreakSmith Workspace</div>
+          <button class="vscode-close-btn" id="ide-close-btn" type="button" title="Close IDE (Esc)">✕</button>
+        </div>
+
+        <!-- VS Code Main Workspace -->
+        <div class="vscode-main">
+          <!-- Activity Bar (Far Left) -->
+          <nav class="vscode-activity-bar">
+            <div class="activity-top">
+              <button class="activity-icon is-active" title="Explorer (Ctrl+Shift+E)">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-6l-2-2H5a2 2 0 0 0-2 2z"/></svg>
+              </button>
+              <button class="activity-icon" title="Search">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+              </button>
+              <button class="activity-icon" title="Source Control">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9v2a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V6"/><circle cx="6" cy="6" r="3"/></svg>
+              </button>
+              <button class="activity-icon" title="BreakSmith Security Shield">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span class="activity-badge" id="activity-vuln-count">1</span>
+              </button>
+            </div>
+            <div class="activity-bottom">
+              <button class="activity-icon" title="Settings">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              </button>
+            </div>
+          </nav>
+
+          <!-- Primary Sidebar (Explorer) -->
+          <aside class="vscode-sidebar">
+            <div class="sidebar-header">
+              <span>EXPLORER</span>
+              <span>...</span>
+            </div>
+            <div class="sidebar-project-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+              <span>REPOSITORY FILES</span>
+            </div>
+            <div class="vscode-tree-list" id="ide-tree-list"></div>
+          </aside>
+
+          <!-- Editor Area -->
+          <main class="vscode-editor-area">
+            <!-- Editor Tabs -->
+            <div class="vscode-tab-bar">
+              <div class="vscode-tab">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3178c6" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                <span id="vscode-tab-title">auth.ts</span>
+                <span id="vscode-tab-status" style="color:#f14c4c;font-size:10px">●</span>
+              </div>
+            </div>
+            <!-- Breadcrumbs -->
+            <div class="vscode-breadcrumb">
+              <span>src</span> › <span>api</span> › <span id="vscode-breadcrumb-file">auth.ts</span> › <span id="vscode-breadcrumb-func">vulnerability</span>
+            </div>
+            <!-- Code Viewport -->
+            <div class="vscode-code-viewport" id="ide-code-container">
+              <div class="vscode-code-editor" id="ide-code-editor"></div>
+            </div>
+          </main>
+
+          <!-- Right Extension Panel -->
+          <aside class="vscode-right-panel">
+            <div class="vscode-panel-header">
+              <div class="vscode-panel-title-group">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4ec9b0" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>BREAKSMITH AUDIT</span>
+              </div>
+              <span class="fix-provider" id="ide-fix-provider">DETECTION</span>
+            </div>
+            <div class="vscode-panel-content">
+              <div class="ide-vuln-header">
+                <h3 class="ide-vuln-title" id="ide-vuln-title">SQL INJECTION</h3>
+                <span class="severity-pill" id="ide-vuln-severity">HIGH</span>
+              </div>
+              <div class="ide-meta-grid">
+                <div class="ide-meta-item"><span>File:</span><strong id="ide-vuln-file">src/api/auth.ts</strong></div>
+                <div class="ide-meta-item"><span>Line:</span><strong id="ide-vuln-line">43</strong></div>
+              </div>
+              <div class="ide-detail-block">
+                <h4>Description</h4>
+                <p id="ide-vuln-description"></p>
+              </div>
+              <div class="ide-detail-block">
+                <h4>Impact</h4>
+                <p id="ide-vuln-impact"></p>
+              </div>
+              <div class="ide-detail-block">
+                <h4>Remediation</h4>
+                <p id="ide-vuln-remediation"></p>
+              </div>
+              <div class="ide-actions" id="ide-actions">
+                <button class="vscode-btn secondary" id="ide-view-fix-btn" type="button">VIEW FIX</button>
+                <button class="vscode-btn primary" id="ide-apply-fix-btn" type="button">APPLY FIX</button>
+              </div>
+              <div class="ide-fix-panel" id="ide-fix-panel">
+                <div class="ide-fix-head">
+                  <span class="report-label">Proposed Fix / Review Diff</span>
+                </div>
+                <p class="fix-summary" id="ide-fix-summary"></p>
+                <pre class="fix-diff" id="ide-fix-diff"></pre>
+                <button class="vscode-btn confirm" id="ide-confirm-fix-btn" type="button">CONFIRM &amp; APPLY FIX</button>
+              </div>
+              <div class="ide-resolved-badge" id="ide-resolved-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>FIX APPLIED &amp; VERIFIED</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <!-- Status Bar -->
+        <footer class="vscode-statusbar">
+          <div class="statusbar-left">
+            <span class="statusbar-item">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+              <span>BreakSmith</span>
+            </span>
+            <span class="statusbar-item">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9v2a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V6"/><circle cx="6" cy="6" r="3"/></svg>
+              <span>main*</span>
+            </span>
+            <span class="statusbar-item" id="statusbar-errors">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              <span>1 Warning</span>
+            </span>
+          </div>
+          <div class="statusbar-right">
+            <span class="statusbar-item" id="statusbar-pos">Ln 43, Col 18</span>
+            <span class="statusbar-item">UTF-8</span>
+            <span class="statusbar-item">TypeScript</span>
+          </div>
+        </footer>
       </div>
     </section>
 
@@ -1517,6 +2209,300 @@ body.scan-active{overflow:hidden}
           }, 1150);
         }
 
+        function renderVulnerableCode(findings = []) {
+          const host = document.querySelector('#vulnerable-code-grid');
+          if (!host) return;
+          if (!findings.length) {
+            host.innerHTML = '<div class="finding-empty">No vulnerable code findings detected in this scan.</div>';
+            return;
+          }
+
+          host.innerHTML = findings.map(finding => {
+            const isResolved = Boolean(finding.isResolved);
+            const line = finding.line ?? 1;
+            const snippetText = finding.snippet
+              ? finding.snippet.trim().split('\n')[0]
+              : '// Code snippet not available in finding.';
+
+            return `
+              <article class="vulnerable-card ${isResolved ? 'is-resolved' : ''}" data-finding-id="${escapeHtml(finding.id)}">
+                <div class="vulnerable-card-head">
+                  <span class="vulnerable-card-file">${escapeHtml(finding.file)}</span>
+                  ${isResolved
+                    ? '<span class="vulnerable-card-badge-resolved"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>RESOLVED</span></span>'
+                    : `<span class="vulnerable-dot severity-${escapeHtml(finding.severity)}" title="${escapeHtml(finding.severity.toUpperCase())}"></span>`}
+                </div>
+                <div class="vulnerable-card-title">${escapeHtml(finding.title)}</div>
+                <div class="vulnerable-card-line">Line ${line}</div>
+                <div class="vulnerable-card-snippet ${isResolved ? 'resolved' : ''}">${escapeHtml(snippetText)}</div>
+                <button class="vulnerable-ide-btn" type="button" data-ide-open="${escapeHtml(finding.id)}">
+                  <span>${isResolved ? 'INSPECT IN IDE' : 'VIEW IN IDE'}</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </button>
+              </article>
+            `;
+          }).join('');
+        }
+
+        const ideOverlay = document.querySelector('#ide-overlay');
+        const ideCloseBtn = document.querySelector('#ide-close-btn');
+        let currentIdeFinding = null;
+
+        function openIde(findingId) {
+          if (!currentResult?.findings) return;
+          const finding = currentResult.findings.find(f => f.id === findingId);
+          if (!finding) return;
+          currentIdeFinding = finding;
+
+          ideOverlay.classList.add('is-open');
+          ideOverlay.setAttribute('aria-hidden', 'false');
+
+          const fileName = finding.file.split('/').pop() || finding.file;
+          document.querySelector('#vscode-title-file').textContent = `${finding.file} — BreakSmith`;
+          document.querySelector('#vscode-tab-title').textContent = fileName;
+          document.querySelector('#vscode-breadcrumb-file').textContent = fileName;
+          document.querySelector('#vscode-tab-status').style.color = finding.isResolved ? '#51cf66' : '#f14c4c';
+
+          renderIdeTree(currentResult.findings, finding.id);
+          renderIdeEditor(finding);
+          renderIdeRightPanel(finding);
+          updateVsCodeStatusBar();
+        }
+
+        function closeIde() {
+          ideOverlay.classList.remove('is-open');
+          ideOverlay.setAttribute('aria-hidden', 'true');
+          currentIdeFinding = null;
+        }
+
+        function updateVsCodeStatusBar() {
+          const findings = currentResult?.findings || [];
+          const activeCount = findings.filter(f => !f.isResolved).length;
+          const badge = document.querySelector('#activity-vuln-count');
+          const errStatus = document.querySelector('#statusbar-errors');
+          const linePos = document.querySelector('#statusbar-pos');
+
+          if (badge) badge.textContent = activeCount;
+          if (errStatus) {
+            errStatus.innerHTML = activeCount > 0
+              ? `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><span>${activeCount} Warning${activeCount > 1 ? 's' : ''}</span>`
+              : `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>0 Warnings</span>`;
+          }
+          if (linePos && currentIdeFinding) {
+            linePos.textContent = `Ln ${currentIdeFinding.line ?? 1}, Col 1`;
+          }
+        }
+
+        function renderIdeTree(findings, activeId) {
+          const treeHost = document.querySelector('#ide-tree-list');
+          if (!treeHost) return;
+
+          const filesMap = new Map();
+          findings.forEach(f => {
+            const list = filesMap.get(f.file) || [];
+            list.push(f);
+            filesMap.set(f.file, list);
+          });
+
+          let html = '';
+          filesMap.forEach((fileFindings, file) => {
+            html += `<div class="sidebar-project-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3178c6" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span>${escapeHtml(file)}</span></div>`;
+            fileFindings.forEach(f => {
+              const isActive = f.id === activeId;
+              const isResolved = Boolean(f.isResolved);
+              html += `
+                <button class="vscode-tree-item ${isActive ? 'is-active' : ''}" type="button" data-ide-tree-id="${escapeHtml(f.id)}">
+                  <span class="tree-file-name">line ${f.line ?? 1}: ${escapeHtml(f.title)}</span>
+                  ${isResolved
+                    ? '<span class="tree-badge" style="color:#4ec9b0">✓</span>'
+                    : `<span class="tree-badge severity-${escapeHtml(f.severity)}" style="font-size:9px">${escapeHtml(f.severity)}</span>`}
+                </button>
+              `;
+            });
+          });
+          treeHost.innerHTML = html;
+        }
+
+        function renderIdeEditor(finding) {
+          const editor = document.querySelector('#ide-code-editor');
+          if (!editor) return;
+
+          const targetLine = finding.line ?? 1;
+          const isResolved = Boolean(finding.isResolved);
+          
+          let lineCodeText = '';
+          if (isResolved) {
+            lineCodeText = finding.remediatedSnippet || finding.remediation;
+          } else {
+            lineCodeText = finding.snippet;
+          }
+
+          const hasSnippet = Boolean(lineCodeText && lineCodeText.trim());
+          const snippetLines = hasSnippet
+            ? lineCodeText.trim().split('\n')
+            : ['No code snippet available for this finding.'];
+
+          let lines = snippetLines.map((text, i) => ({
+            lineNum: targetLine + i,
+            code: text,
+            isVulnerable: i === 0 && !isResolved && hasSnippet,
+            isFixed: i === 0 && isResolved && hasSnippet,
+          }));
+
+          let editorHtml = '';
+          lines.forEach(l => {
+            const vulnClass = l.isVulnerable ? 'is-vulnerable' : (l.isFixed ? 'is-fixed' : '');
+            const numClass = l.isVulnerable ? 'vuln-num' : (l.isFixed ? 'fixed-num' : '');
+            const targetId = l.lineNum === targetLine ? 'id="vulnerable-target-line"' : '';
+
+            editorHtml += `
+              <div class="vscode-code-line ${vulnClass}" ${targetId}>
+                <span class="vscode-line-num ${numClass}">${l.lineNum}</span>
+                <span class="vscode-line-code">${escapeHtml(l.code)}</span>
+              </div>
+            `;
+
+            if (l.isVulnerable) {
+              editorHtml += `
+                <div class="vscode-squiggle-wrapper">
+                  <div class="vscode-squiggle-title">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f14c4c" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    <span>BreakSmith (Security Warning): ${escapeHtml(finding.title)}</span>
+                  </div>
+                  <div>Location: ${escapeHtml(finding.file)} (Line ${l.lineNum})</div>
+                  <div style="margin-top:4px">${escapeHtml(finding.description || 'Vulnerability detected in source code.')}</div>
+                </div>
+              `;
+            } else if (l.isFixed) {
+              editorHtml += `
+                <div class="vscode-squiggle-wrapper fixed">
+                  <div class="vscode-squiggle-title">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4ec9b0" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>BreakSmith: Remediation Applied</span>
+                  </div>
+                  <div>Location: ${escapeHtml(finding.file)} (Line ${l.lineNum})</div>
+                  <div style="margin-top:4px">Vulnerability remediated. Code safely updated.</div>
+                </div>
+              `;
+            }
+          });
+
+          editor.innerHTML = editorHtml;
+
+          setTimeout(() => {
+            const targetEl = document.querySelector('#vulnerable-target-line');
+            if (targetEl) targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 100);
+        }
+
+        function renderIdeRightPanel(finding) {
+          document.querySelector('#ide-vuln-title').textContent = finding.title.toUpperCase();
+          const sevEl = document.querySelector('#ide-vuln-severity');
+          sevEl.textContent = finding.severity.toUpperCase();
+          sevEl.className = `severity-pill severity-${finding.severity}`;
+
+          document.querySelector('#ide-vuln-file').textContent = finding.file;
+          document.querySelector('#ide-vuln-line').textContent = finding.line ?? 1;
+          document.querySelector('#ide-vuln-description').textContent = finding.description;
+          document.querySelector('#ide-vuln-impact').textContent = finding.impact;
+          document.querySelector('#ide-vuln-remediation').textContent = finding.remediation;
+
+          const actionsHost = document.querySelector('#ide-actions');
+          const fixPanel = document.querySelector('#ide-fix-panel');
+          const resolvedBadge = document.querySelector('#ide-resolved-badge');
+
+          fixPanel.classList.remove('is-visible');
+
+          if (finding.isResolved) {
+            actionsHost.style.display = 'none';
+            resolvedBadge.classList.add('is-visible');
+          } else {
+            actionsHost.style.display = 'grid';
+            resolvedBadge.classList.remove('is-visible');
+          }
+        }
+
+        async function ideViewFix() {
+          if (!currentIdeFinding) return;
+          const fixPanel = document.querySelector('#ide-fix-panel');
+          const viewBtn = document.querySelector('#ide-view-fix-btn');
+
+          viewBtn.disabled = true;
+          viewBtn.textContent = 'FETCHING…';
+
+          try {
+            const response = await fetch('/api/fix', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                finding: currentIdeFinding,
+                language: languageForFile(currentIdeFinding.file),
+              }),
+            });
+            const fix = await response.json().catch(() => ({}));
+            document.querySelector('#ide-fix-provider').textContent = fix.provider || 'deterministic';
+            document.querySelector('#ide-fix-summary').textContent = fix.summary || currentIdeFinding.remediation;
+            document.querySelector('#ide-fix-diff').textContent = fix.diff || `--- a/${currentIdeFinding.file}\n+++ b/${currentIdeFinding.file}\n@@ -${currentIdeFinding.line ?? 1} @@\n-${currentIdeFinding.snippet || ''}\n+${currentIdeFinding.remediation}`;
+            if (fix.after && fix.after.trim()) {
+              currentIdeFinding.remediatedSnippet = fix.after;
+            }
+            fixPanel.classList.add('is-visible');
+          } catch {
+            document.querySelector('#ide-fix-provider').textContent = 'deterministic';
+            document.querySelector('#ide-fix-summary').textContent = currentIdeFinding.remediation;
+            document.querySelector('#ide-fix-diff').textContent = `Suggested Remediation:\n${currentIdeFinding.remediation}`;
+            fixPanel.classList.add('is-visible');
+          } finally {
+            viewBtn.disabled = false;
+            viewBtn.textContent = 'VIEW FIX';
+          }
+        }
+
+        async function ideApplyFix() {
+          if (!currentIdeFinding) return;
+          const fixBtn = document.querySelector('#ide-apply-fix-btn');
+          fixBtn.disabled = true;
+          fixBtn.textContent = 'APPLYING…';
+
+          try {
+            const response = await fetch('/api/fix', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                finding: currentIdeFinding,
+                language: languageForFile(currentIdeFinding.file),
+              }),
+            });
+            const fix = await response.json().catch(() => ({}));
+            if (fix.after && fix.after.trim()) {
+              currentIdeFinding.remediatedSnippet = fix.after;
+            } else {
+              currentIdeFinding.remediatedSnippet = currentIdeFinding.remediation;
+            }
+          } catch {
+            currentIdeFinding.remediatedSnippet = currentIdeFinding.remediation;
+          } finally {
+            fixBtn.disabled = false;
+            fixBtn.textContent = 'APPLY FIX';
+          }
+
+          ideConfirmFix();
+        }
+
+        function ideConfirmFix() {
+          if (!currentIdeFinding) return;
+          currentIdeFinding.isResolved = true;
+          if (!currentIdeFinding.remediatedSnippet) {
+            currentIdeFinding.remediatedSnippet = currentIdeFinding.remediation;
+          }
+
+          renderIdeEditor(currentIdeFinding);
+          renderIdeRightPanel(currentIdeFinding);
+          renderVulnerableCode(currentResult?.findings || []);
+          renderIdeTree(currentResult?.findings || [], currentIdeFinding.id);
+          updateVsCodeStatusBar();
+        }
+
         function showComplete(result) {
           stopTimers();
           currentResult = result;
@@ -1536,6 +2522,7 @@ body.scan-active{overflow:hidden}
           document.querySelector('#scan-low').textContent = result.summary.low;
           closeButton.textContent = 'Close report';
           setTimeout(() => overlay.classList.add('is-complete'), 550);
+          renderVulnerableCode(result.findings);
           loadInsights(result);
           try { sessionStorage.setItem('breaksmith:lastScan', JSON.stringify(result)); } catch {}
           window.breaksmithLastScan = result;
@@ -1590,6 +2577,18 @@ body.scan-active{overflow:hidden}
           const row = event.target.closest('[data-finding-id]');
           if (row) openFinding(row.dataset.findingId, true);
         });
+        document.querySelector('#vulnerable-code-grid').addEventListener('click', event => {
+          const btn = event.target.closest('[data-ide-open]');
+          if (btn) openIde(btn.dataset.ideOpen);
+        });
+        document.querySelector('#ide-close-btn').addEventListener('click', closeIde);
+        document.querySelector('#ide-tree-list').addEventListener('click', event => {
+          const item = event.target.closest('[data-ide-tree-id]');
+          if (item) openIde(item.dataset.ideTreeId);
+        });
+        document.querySelector('#ide-view-fix-btn').addEventListener('click', ideViewFix);
+        document.querySelector('#ide-apply-fix-btn').addEventListener('click', ideApplyFix);
+        document.querySelector('#ide-confirm-fix-btn').addEventListener('click', ideConfirmFix);
         document.querySelector('#finding-tools').addEventListener('click', event => {
           const button = event.target.closest('[data-severity]');
           if (!button) return;
@@ -1603,7 +2602,13 @@ body.scan-active{overflow:hidden}
         });
         document.querySelector('#fix-button').addEventListener('click', generateFix);
         document.addEventListener('keydown', (event) => {
-          if (event.key === 'Escape' && overlay.classList.contains('is-open')) closeScan();
+          if (event.key === 'Escape') {
+            if (ideOverlay.classList.contains('is-open')) {
+              closeIde();
+            } else if (overlay.classList.contains('is-open')) {
+              closeScan();
+            }
+          }
         });
       })();
     </script>
