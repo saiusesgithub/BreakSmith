@@ -3,6 +3,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="BreakSmith — Break your app before attackers do.">
 <title>BreakSmith — Scan Before You Ship</title>
+<script>
+  if (window.location.protocol === 'file:') {
+    window.location.replace(`http://localhost:3000/generated-page.html${window.location.search}${window.location.hash}`);
+  }
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
@@ -425,7 +430,45 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
 .scene-index-item b{font-family:"Space Grotesk";font-size:17px;letter-spacing:-.04em}
 .scene-index-item:hover{background:var(--ink);color:#fff}
 .scene-index-item span:last-child{color:var(--accent)}
+.scan-overlay{position:fixed;inset:0;z-index:2000;background:#070707;color:#fff;visibility:hidden;opacity:0;pointer-events:none;transition:opacity .45s ease,visibility .45s;overflow:hidden}
+.scan-overlay.is-open{visibility:visible;opacity:1;pointer-events:auto}
+.scan-tunnel{position:absolute;inset:0;background:radial-gradient(circle at center,rgba(194,79,32,.22),transparent 34%),repeating-radial-gradient(circle at center,rgba(255,255,255,.09) 0 1px,transparent 2px 52px),#070707}
+.scan-tunnel:before{content:"";position:absolute;inset:-30%;background:repeating-conic-gradient(from 0deg,transparent 0 11deg,rgba(194,79,32,.09) 12deg,transparent 13deg 24deg);animation:scanFallback 8s linear infinite}
+.scan-tunnel canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.9}
+.scan-shade{position:absolute;inset:0;background:radial-gradient(circle at center,transparent 0 22%,rgba(0,0,0,.32) 52%,rgba(0,0,0,.92) 100%),linear-gradient(180deg,rgba(0,0,0,.2),transparent 35%,rgba(0,0,0,.76));pointer-events:none}
+.scan-shell{position:relative;z-index:2;min-height:100svh;padding:24px var(--pad) 28px;display:grid;grid-template-rows:auto 1fr auto}
+.scan-head,.scan-foot{display:flex;justify-content:space-between;align-items:center;font-size:10px;text-transform:uppercase;letter-spacing:.16em}
+.scan-brand{font-family:"Space Grotesk",sans-serif;font-size:18px;font-weight:700;letter-spacing:-.04em}.scan-brand i{font-style:normal;color:var(--accent);padding:0 6px}
+.scan-close{border:1px solid rgba(255,255,255,.3);border-radius:999px;background:rgba(0,0,0,.32);color:#fff;padding:11px 15px;font-size:9px;text-transform:uppercase;letter-spacing:.14em;backdrop-filter:blur(12px)}
+.scan-main{display:flex;align-items:center;justify-content:center;text-align:center;padding:80px 0}
+.scan-loading{width:min(900px,92vw)}
+.scan-kicker{font-size:10px;text-transform:uppercase;letter-spacing:.22em;color:var(--accent);margin-bottom:25px}
+.scan-stage{font-family:"Space Grotesk",sans-serif;font-size:clamp(54px,9.5vw,152px);letter-spacing:-.075em;line-height:.82;margin:0;text-transform:uppercase;text-shadow:0 10px 50px rgba(0,0,0,.55)}
+.scan-stage-meta{margin:34px auto 0;display:flex;justify-content:space-between;max-width:720px;font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:#aaa}
+.scan-progress{height:2px;max-width:720px;margin:16px auto 0;background:rgba(255,255,255,.18);overflow:hidden}.scan-progress span{display:block;width:8%;height:100%;background:var(--accent);transition:width .7s cubic-bezier(.2,.8,.2,1)}
+.scan-repo{margin:18px auto 0;font-family:"Space Grotesk",sans-serif;font-size:clamp(14px,1.6vw,22px);color:#ddd;overflow-wrap:anywhere}
+.scan-complete{display:none;width:min(1180px,94vw);text-align:left;padding:72px 0 100px}.scan-overlay.is-complete{overflow-y:auto}.scan-overlay.is-complete .scan-shell{min-height:auto}.scan-overlay.is-complete .scan-main{align-items:flex-start;padding:0}.scan-overlay.is-complete .scan-loading{display:none}.scan-overlay.is-complete .scan-complete{display:block}
+.scan-verdict-top{display:flex;justify-content:space-between;align-items:end;border-bottom:1px solid rgba(255,255,255,.25);padding-bottom:24px}.scan-verdict-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+.scan-score{display:flex;align-items:end;gap:14px;margin:34px 0}.scan-score strong{font-family:"Space Grotesk",sans-serif;font-size:clamp(120px,22vw,330px);letter-spacing:-.1em;line-height:.68}.scan-score span{font-size:clamp(18px,2vw,30px);padding-bottom:10px;color:#aaa}
+.scan-risk{font-family:"Space Grotesk",sans-serif;font-size:clamp(44px,7vw,100px);letter-spacing:-.065em;color:var(--accent);line-height:.9}
+.scan-summary{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid rgba(255,255,255,.24);border-bottom:1px solid rgba(255,255,255,.24);margin-top:45px}.scan-summary div{padding:20px;border-right:1px solid rgba(255,255,255,.18)}.scan-summary div:last-child{border-right:0}.scan-summary strong{display:block;font-family:"Space Grotesk";font-size:34px}.scan-summary span{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#888}
+.report-dashboard{margin-top:90px;text-align:left}.report-label{font-size:9px;letter-spacing:.19em;text-transform:uppercase;color:#888}.report-title{font-family:"Space Grotesk",sans-serif;font-size:clamp(34px,5vw,70px);letter-spacing:-.06em;line-height:.92;margin:14px 0 0}.report-status{display:flex;align-items:center;gap:10px;margin-bottom:28px;color:#888;font-size:9px;text-transform:uppercase;letter-spacing:.16em}.report-status:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 18px rgba(194,79,32,.8)}
+.report-intelligence{display:grid;grid-template-columns:1.05fr 1.4fr 1.05fr;border-top:1px solid rgba(255,255,255,.25);border-bottom:1px solid rgba(255,255,255,.25)}.intel-block{min-height:190px;padding:28px 25px;border-right:1px solid rgba(255,255,255,.18);display:flex;flex-direction:column;justify-content:space-between}.intel-block:last-child{border-right:0}.intel-value{font-family:"Space Grotesk",sans-serif;font-size:clamp(26px,3.5vw,48px);letter-spacing:-.055em;line-height:1;overflow-wrap:anywhere}.intel-meta{margin-top:18px;color:#888;font-size:10px;letter-spacing:.09em;text-transform:uppercase}.intel-block.is-priority{background:var(--accent);color:#fff}.intel-block.is-priority .report-label,.intel-block.is-priority .intel-meta{color:rgba(255,255,255,.7)}
+.report-metrics{display:grid;grid-template-columns:repeat(4,1fr);margin-top:16px}.metric-cell{padding:20px 0;border-right:1px solid rgba(255,255,255,.16)}.metric-cell:not(:first-child){padding-left:22px}.metric-cell:last-child{border-right:0}.metric-cell strong{display:block;font-family:"Space Grotesk";font-size:30px;letter-spacing:-.05em}.metric-cell span{display:block;color:#777;font-size:8px;text-transform:uppercase;letter-spacing:.14em;margin-top:5px}
+.report-section{padding:82px 0 0}.report-section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.24)}.report-section-head p{max-width:470px;color:#888;font-size:12px;line-height:1.55;margin:0}.report-section h3{font-family:"Space Grotesk";font-size:clamp(30px,4vw,54px);letter-spacing:-.055em;line-height:.95;margin:8px 0 0}
+.priority-list,.hotspot-list{display:grid}.priority-row,.hotspot-row{display:grid;grid-template-columns:70px minmax(0,1.5fr) minmax(170px,.75fr) 120px;align-items:center;gap:20px;padding:22px 8px;border-bottom:1px solid rgba(255,255,255,.14);background:none;color:#fff;text-align:left;width:100%}.priority-row{cursor:pointer}.priority-row:hover{background:rgba(255,255,255,.04)}.priority-rank{font-family:"Space Grotesk";font-size:25px;color:var(--accent)}.priority-name strong,.hotspot-row strong{display:block;font-size:14px}.priority-name span,.hotspot-row span{display:block;color:#777;font-size:9px;text-transform:uppercase;letter-spacing:.11em;margin-top:5px}.priority-severity,.severity-pill{justify-self:start;padding:7px 9px;border:1px solid rgba(255,255,255,.28);font-size:8px;letter-spacing:.14em;text-transform:uppercase}.priority-score{text-align:right;font-family:"Space Grotesk";font-size:26px}.priority-score small{display:block;color:#777;font-family:Inter;font-size:7px;letter-spacing:.12em;text-transform:uppercase}
+.risk-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:70px}.category-list{padding-top:16px}.category-row{padding:17px 0;border-bottom:1px solid rgba(255,255,255,.12)}.category-top{display:flex;justify-content:space-between;gap:20px;font-size:10px;text-transform:uppercase;letter-spacing:.12em}.category-top span:last-child{color:#888}.category-bar{height:3px;background:rgba(255,255,255,.12);margin-top:12px}.category-bar span{display:block;height:100%;background:var(--accent)}.hotspot-list .hotspot-row{grid-template-columns:minmax(0,1.4fr) 80px 90px;padding-left:0;padding-right:0}.hotspot-score{text-align:right;font-family:"Space Grotesk";font-size:26px}
+.finding-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.finding-filter{border:1px solid rgba(255,255,255,.24);background:transparent;color:#aaa;padding:8px 11px;font-size:8px;letter-spacing:.12em;text-transform:uppercase}.finding-filter.is-active{background:#fff;color:#080808}.finding-category{margin-left:auto;background:#0b0b0b;color:#fff;border:1px solid rgba(255,255,255,.24);padding:8px 30px 8px 11px;font-size:8px;text-transform:uppercase;letter-spacing:.11em}.findings-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(360px,.78fr);gap:34px;margin-top:22px;align-items:start}.finding-list{border-top:1px solid rgba(255,255,255,.18)}.finding-row{display:grid;grid-template-columns:82px minmax(0,1fr) 150px;gap:18px;width:100%;padding:22px 10px;border:0;border-bottom:1px solid rgba(255,255,255,.14);background:transparent;color:#fff;text-align:left}.finding-row:hover,.finding-row.is-active{background:rgba(255,255,255,.05)}.finding-row.is-active{box-shadow:inset 3px 0 0 var(--accent)}.finding-row-title,.finding-row-meta{display:block}.finding-row-title{font-size:14px;font-weight:600}.finding-row-meta{font-size:9px;color:#777;letter-spacing:.09em;text-transform:uppercase;margin-top:7px;overflow-wrap:anywhere}.finding-location{text-align:right;font-size:10px;color:#aaa;overflow-wrap:anywhere}.finding-empty{padding:50px 0;color:#777;font-size:12px}.finding-detail{position:sticky;top:85px;border:1px solid rgba(255,255,255,.2);background:#0b0b0b;min-height:420px}.finding-detail-empty{padding:50px 35px;color:#777;line-height:1.6}.finding-detail-content{display:none}.finding-detail.has-finding .finding-detail-empty{display:none}.finding-detail.has-finding .finding-detail-content{display:block}.detail-head{padding:28px;border-bottom:1px solid rgba(255,255,255,.16)}.detail-title{font-family:"Space Grotesk";font-size:30px;letter-spacing:-.04em;line-height:1.05;margin:15px 0 0}.detail-meta{color:#777;font-size:8px;text-transform:uppercase;letter-spacing:.12em;margin-top:12px}.detail-code{margin:0;padding:24px 28px;background:#050505;color:#ddd;font:12px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere;border-bottom:1px solid rgba(255,255,255,.16)}.detail-copy{padding:25px 28px}.detail-copy h4{font-size:8px;text-transform:uppercase;letter-spacing:.16em;color:var(--accent);margin:0 0 8px}.detail-copy p{color:#bbb;font-size:11px;line-height:1.65;margin:0 0 24px}.fix-button{width:100%;border:0;background:var(--accent);color:#fff;padding:16px;font-size:9px;text-transform:uppercase;letter-spacing:.15em}.fix-button:disabled{opacity:.55;cursor:wait}
+.fix-result{display:none;margin-top:34px;border-top:1px solid rgba(255,255,255,.24);padding-top:32px}.fix-result.is-visible{display:block}.fix-result-head{display:flex;justify-content:space-between;align-items:start;gap:24px}.fix-result-head h4{font-family:"Space Grotesk";font-size:30px;letter-spacing:-.04em;margin:10px 0}.fix-provider{border:1px solid rgba(255,255,255,.25);padding:7px 9px;font-size:8px;text-transform:uppercase;letter-spacing:.12em}.fix-summary{font-size:12px;line-height:1.65;color:#bbb}.fix-steps{padding-left:18px;color:#aaa;font-size:11px;line-height:1.7}.fix-code-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.2);margin-top:22px}.fix-code-panel{background:#070707;min-width:0}.fix-code-panel span{display:block;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.15);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:#888}.fix-code-panel pre,.fix-diff{margin:0;padding:18px;color:#ddd;font:11px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere}.fix-diff{margin-top:1px;background:#050505;border:1px solid rgba(255,255,255,.2)}
+.severity-critical{color:#ff5b42}.severity-high{color:#ff7a45}.severity-medium{color:#e0a365}.severity-low{color:#9ca9b3}.severity-info{color:#8aaeb8}
+.scan-error{display:none;max-width:700px;margin:30px auto 0;padding:16px;border-left:3px solid var(--accent);background:rgba(0,0,0,.55);color:#ddd;line-height:1.5}.scan-overlay.has-error .scan-error{display:block}.scan-overlay.has-error .scan-progress span{background:#d34b32}
+.scan-foot span:last-child{color:#777}.scan-elapsed{font-variant-numeric:tabular-nums}
+body.scan-active{overflow:hidden}
+@keyframes scanFallback{to{transform:rotate(360deg)}}
+@media(max-width:900px){.report-intelligence,.risk-grid,.findings-layout{grid-template-columns:1fr}.intel-block{border-right:0;border-bottom:1px solid rgba(255,255,255,.18)}.intel-block:last-child{border-bottom:0}.finding-detail{position:relative;top:auto}.report-section-head{align-items:start;flex-direction:column}.finding-category{margin-left:0}.priority-row{grid-template-columns:45px minmax(0,1fr) 85px}.priority-row .priority-severity{display:none}.fix-code-grid{grid-template-columns:1fr}}
+@media(max-width:640px){.scan-shell{padding:17px 16px}.scan-head .scan-system{display:none}.scan-main{padding:60px 0}.scan-overlay.is-complete .scan-main{padding:0}.scan-stage{font-size:16vw}.scan-stage-meta{font-size:8px}.scan-verdict-top{align-items:start;gap:20px}.scan-score strong{font-size:42vw}.scan-summary{grid-template-columns:repeat(5,1fr)}.scan-summary div{padding:12px 6px}.scan-summary strong{font-size:24px}.scan-summary span{font-size:7px}.scan-foot{align-items:end}.scan-foot span:last-child{max-width:140px;text-align:right}.report-dashboard{margin-top:60px}.report-metrics{grid-template-columns:1fr 1fr}.metric-cell:nth-child(2){border-right:0}.metric-cell:nth-child(3){padding-left:0}.priority-row{grid-template-columns:38px minmax(0,1fr)}.priority-score{display:none}.finding-row{grid-template-columns:65px minmax(0,1fr)}.finding-location{grid-column:2;text-align:left}.findings-layout{grid-template-columns:minmax(0,1fr)}.detail-head,.detail-copy{padding:22px}.report-section{padding-top:62px}}
 @media(max-width:760px){.story-return{padding:110px 0}.story-return .eyebrow{margin-bottom:45px}.story-return-media{grid-column:1/-1;height:60vh;min-height:430px}.story-return-copy{grid-column:1/-1;padding-top:55px}.story-return-copy blockquote{margin-top:35px}.scene-index{grid-template-columns:1fr 1fr;margin-bottom:35px}.scene-index-item{padding:14px 12px}[data-video-slot]:before{top:12px;left:12px;font-size:8px}}
+@media(prefers-reduced-motion:reduce){.scan-tunnel:before{animation:none}.scan-tunnel canvas{display:none}}
 </style>
 </head>
   <body class=""><div class="scroll-progress" aria-hidden="true"></div>
@@ -990,10 +1033,10 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
               github.com/you/next-project
             </a>
           </div>
-          <form onsubmit="event.preventDefault(); this.querySelector('button').textContent='CHECKPOINT READY ✓';">
+          <form id="scan-form">
             <div class="field">
               <label>Public GitHub repository</label>
-              <input type="url" placeholder="https://github.com/user/repository" required="">
+              <input id="scan-repo-input" name="repoUrl" type="text" inputmode="url" autocomplete="url" placeholder="https://github.com/user/repository" required="">
             </div>
             <div class="field">
               <label>Before the next deploy</label>
@@ -1022,12 +1065,662 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;ba
       </footer>
     </main>
 
+    <section class="scan-overlay" id="scan-overlay" aria-hidden="true" aria-live="polite">
+      <div class="scan-tunnel" id="scan-tunnel" aria-hidden="true"></div>
+      <div class="scan-shade" aria-hidden="true"></div>
+      <div class="scan-shell">
+        <div class="scan-head">
+          <div class="scan-brand">BREAK<i>/</i>SMITH</div>
+          <span class="scan-system">Isolated repository analysis</span>
+          <button class="scan-close" id="scan-close" type="button">Cancel scan</button>
+        </div>
+        <div class="scan-main">
+          <div class="scan-loading">
+            <div class="scan-kicker">Analysis in progress</div>
+            <h2 class="scan-stage" id="scan-stage">Securing repository</h2>
+            <div class="scan-stage-meta"><span id="scan-stage-index">01 / 08</span><span id="scan-stage-percent">08%</span></div>
+            <div class="scan-progress"><span id="scan-progress-bar"></span></div>
+            <div class="scan-repo" id="scan-repo-label"></div>
+            <div class="scan-error" id="scan-error"></div>
+          </div>
+          <div class="scan-complete">
+            <div class="scan-verdict-top">
+              <div><div class="scan-verdict-label">Analysis complete</div><div class="scan-repo" id="scan-complete-repo"></div></div>
+              <div class="scan-verdict-label" id="scan-duration"></div>
+            </div>
+            <div class="scan-score"><strong id="scan-score">100</strong><span>/ 100</span></div>
+            <div class="scan-risk" id="scan-risk">Low risk</div>
+            <div class="scan-summary">
+              <div><strong id="scan-total">0</strong><span>Total</span></div>
+              <div><strong id="scan-critical">0</strong><span>Critical</span></div>
+              <div><strong id="scan-high">0</strong><span>High</span></div>
+              <div><strong id="scan-medium">0</strong><span>Medium</span></div>
+              <div><strong id="scan-low">0</strong><span>Low</span></div>
+            </div>
+            <div class="report-dashboard" id="report-dashboard">
+              <div class="report-status" id="report-status">Building repository intelligence</div>
+              <div class="report-intelligence">
+                <article class="intel-block">
+                  <div class="report-label">Primary attack surface</div>
+                  <div>
+                    <div class="intel-value" id="intel-surface">—</div>
+                    <div class="intel-meta" id="intel-surface-meta">Analysing categories</div>
+                  </div>
+                </article>
+                <article class="intel-block is-priority">
+                  <div class="report-label">Top remediation priority</div>
+                  <div>
+                    <div class="intel-value" id="intel-priority">No findings detected</div>
+                    <div class="intel-meta" id="intel-priority-meta">Repository appears clean under current rules</div>
+                  </div>
+                </article>
+                <article class="intel-block">
+                  <div class="report-label">Most vulnerable file</div>
+                  <div>
+                    <div class="intel-value" id="intel-file">—</div>
+                    <div class="intel-meta" id="intel-file-meta">No affected file</div>
+                  </div>
+                </article>
+              </div>
+              <div class="report-metrics">
+                <div class="metric-cell"><strong id="metric-affected-files">0</strong><span>Affected files</span></div>
+                <div class="metric-cell"><strong id="metric-rules">0</strong><span>Unique rules</span></div>
+                <div class="metric-cell"><strong id="metric-concentration">0%</strong><span>Top file concentration</span></div>
+                <div class="metric-cell"><strong id="metric-high-risk">0%</strong><span>High / critical</span></div>
+              </div>
+
+              <section class="report-section">
+                <div class="report-section-head">
+                  <div><div class="report-label">01 / What to fix first</div><h3>Priority queue</h3></div>
+                  <p>Findings are ranked by severity, confidence, concentration, and category risk—not by raw count alone.</p>
+                </div>
+                <div class="priority-list" id="priority-list"></div>
+              </section>
+
+              <section class="report-section">
+                <div class="report-section-head">
+                  <div><div class="report-label">02 / Where risk lives</div><h3>Repository risk map</h3></div>
+                  <p>Category pressure and file-level hotspots reveal where the repository’s risk is concentrated.</p>
+                </div>
+                <div class="risk-grid">
+                  <div><div class="category-list" id="category-list"></div></div>
+                  <div><div class="hotspot-list" id="hotspot-list"></div></div>
+                </div>
+              </section>
+
+              <section class="report-section" id="findings-section">
+                <div class="report-section-head">
+                  <div><div class="report-label">03 / Evidence</div><h3>All findings</h3></div>
+                  <div class="finding-tools" id="finding-tools">
+                    <button class="finding-filter is-active" type="button" data-severity="all">All</button>
+                    <button class="finding-filter" type="button" data-severity="critical">Critical</button>
+                    <button class="finding-filter" type="button" data-severity="high">High</button>
+                    <button class="finding-filter" type="button" data-severity="medium">Medium</button>
+                    <button class="finding-filter" type="button" data-severity="low">Low</button>
+                    <select class="finding-category" id="finding-category" aria-label="Filter findings by category">
+                      <option value="all">All categories</option>
+                      <option value="secrets">Secrets</option>
+                      <option value="authentication">Authentication</option>
+                      <option value="authorization">Authorization</option>
+                      <option value="injection">Injection</option>
+                      <option value="api-security">API security</option>
+                      <option value="configuration">Configuration</option>
+                      <option value="dependencies">Dependencies</option>
+                      <option value="cryptography">Cryptography</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="findings-layout">
+                  <div class="finding-list" id="finding-list"></div>
+                  <aside class="finding-detail" id="finding-detail">
+                    <div class="finding-detail-empty">Select a finding to inspect its evidence, impact, remediation, and safe patch suggestion.</div>
+                    <div class="finding-detail-content">
+                      <div class="detail-head">
+                        <span class="severity-pill" id="detail-severity"></span>
+                        <div class="detail-title" id="detail-title"></div>
+                        <div class="detail-meta" id="detail-meta"></div>
+                      </div>
+                      <pre class="detail-code" id="detail-code"></pre>
+                      <div class="detail-copy">
+                        <h4>Why this matters</h4><p id="detail-description"></p>
+                        <h4>Impact</h4><p id="detail-impact"></p>
+                        <h4>Recommended remediation</h4><p id="detail-remediation"></p>
+                        <button class="fix-button" id="fix-button" type="button">Fix with BreakSmith ↗</button>
+                        <div class="fix-result" id="fix-result">
+                          <div class="fix-result-head">
+                            <div><div class="report-label">Suggested patch / Review required</div><h4 id="fix-title">Patch generated</h4></div>
+                            <span class="fix-provider" id="fix-provider"></span>
+                          </div>
+                          <p class="fix-summary" id="fix-summary"></p>
+                          <ol class="fix-steps" id="fix-steps"></ol>
+                          <div class="fix-code-grid">
+                            <div class="fix-code-panel"><span>Before</span><pre id="fix-before"></pre></div>
+                            <div class="fix-code-panel"><span>After</span><pre id="fix-after"></pre></div>
+                          </div>
+                          <pre class="fix-diff" id="fix-diff"></pre>
+                        </div>
+                      </div>
+                    </div>
+                  </aside>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+        <div class="scan-foot"><span class="scan-elapsed" id="scan-elapsed">00:00.0</span><span>Temporary clone / automatic cleanup</span></div>
+      </div>
+    </section>
+
     <div class="cursor-label">
       View
       <br>
       Case ↗
     </div>
     <div class="archive-preview"><img src="" alt="Archive preview"></div>
+
+    <script>
+      (() => {
+        const form = document.querySelector('#scan-form');
+        const input = document.querySelector('#scan-repo-input');
+        const overlay = document.querySelector('#scan-overlay');
+        const closeButton = document.querySelector('#scan-close');
+        const submitButton = form?.querySelector('.form-submit');
+        if (!form || !input || !overlay || !closeButton || !submitButton) return;
+
+        const stages = [
+          ['Securing repository', 8],
+          ['Mapping source tree', 20],
+          ['Inspecting secrets', 34],
+          ['Analysing authentication', 48],
+          ['Tracing dangerous input', 62],
+          ['Checking configuration', 75],
+          ['Ranking findings', 88],
+          ['Forging report', 96],
+        ];
+
+        const stage = document.querySelector('#scan-stage');
+        const stageIndex = document.querySelector('#scan-stage-index');
+        const stagePercent = document.querySelector('#scan-stage-percent');
+        const progress = document.querySelector('#scan-progress-bar');
+        const repoLabel = document.querySelector('#scan-repo-label');
+        const elapsed = document.querySelector('#scan-elapsed');
+        const errorBox = document.querySelector('#scan-error');
+        let controller;
+        let stageTimer;
+        let elapsedTimer;
+        let startedAt = 0;
+        let activeStage = 0;
+        let currentResult;
+        let currentInsights;
+        let currentFinding;
+        let activeSeverity = 'all';
+        let activeCategory = 'all';
+
+        const severityWeight = { critical: 5, high: 4, medium: 3, low: 2, info: 1 };
+        const titleCase = (value = '') => value.replace(/-/g, ' ').replace(/\b\w/g, character => character.toUpperCase());
+        const escapeHtml = (value = '') => String(value).replace(/[&<>'"]/g, character => ({
+          '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;',
+        })[character]);
+        const locationLabel = finding => `${finding.file}${finding.line ? ` : ${finding.line}` : ''}`;
+
+        function deriveLocalInsights(result) {
+          const findings = result.findings || [];
+          const categoryMap = new Map();
+          const fileMap = new Map();
+          findings.forEach(finding => {
+            const category = categoryMap.get(finding.category) || { category: finding.category, count: 0, weightedRisk: 0 };
+            category.count += 1;
+            category.weightedRisk += severityWeight[finding.severity] || 1;
+            categoryMap.set(finding.category, category);
+            const file = fileMap.get(finding.file) || { file: finding.file, findingCount: 0, riskScore: 0, critical: 0, high: 0, medium: 0, low: 0, info: 0 };
+            file.findingCount += 1;
+            file[finding.severity] = (file[finding.severity] || 0) + 1;
+            file.riskScore = Math.min(100, file.riskScore + (severityWeight[finding.severity] || 1) * 10);
+            fileMap.set(finding.file, file);
+          });
+          const categories = [...categoryMap.values()].sort((a, b) => b.weightedRisk - a.weightedRisk).map(item => ({
+            ...item,
+            percentage: findings.length ? Math.round(item.count / findings.length * 1000) / 10 : 0,
+            riskScore: Math.min(100, item.weightedRisk * 10),
+            riskLevel: result.riskLevel,
+          }));
+          const hotspots = [...fileMap.values()].sort((a, b) => b.riskScore - a.riskScore || b.findingCount - a.findingCount);
+          const priorityQueue = [...findings].sort((a, b) => (severityWeight[b.severity] || 0) - (severityWeight[a.severity] || 0) || a.file.localeCompare(b.file)).map((finding, index) => ({
+            rank: index + 1, findingId: finding.id, title: finding.title, severity: finding.severity, file: finding.file,
+            line: finding.line, category: finding.category, confidence: finding.confidence,
+            priorityScore: Math.min(100, (severityWeight[finding.severity] || 1) * 20),
+          }));
+          return {
+            overview: {
+              primaryAttackSurface: categories[0] || null,
+              mostVulnerableFile: hotspots[0] || null,
+            },
+            topPriorityFinding: priorityQueue[0] || null,
+            priorityQueue,
+            hotspots,
+            categoryRisk: categories,
+            metrics: {
+              affectedFiles: hotspots.length,
+              uniqueRuleCount: new Set(findings.map(finding => finding.ruleId)).size,
+              highOrCriticalPercentage: findings.length ? Math.round(findings.filter(finding => ['critical', 'high'].includes(finding.severity)).length / findings.length * 1000) / 10 : 0,
+              findingConcentration: { topFilePercentage: findings.length && hotspots[0] ? Math.round(hotspots[0].findingCount / findings.length * 1000) / 10 : 0 },
+            },
+          };
+        }
+
+        function renderPriorityQueue(items = []) {
+          const host = document.querySelector('#priority-list');
+          if (!items.length) {
+            host.innerHTML = '<div class="finding-empty">No remediation queue is needed for the current deterministic findings.</div>';
+            return;
+          }
+          host.innerHTML = items.slice(0, 8).map(item => `
+            <button class="priority-row" type="button" data-finding-id="${escapeHtml(item.findingId)}">
+              <span class="priority-rank">${String(item.rank).padStart(2, '0')}</span>
+              <span class="priority-name"><strong>${escapeHtml(item.title)}</strong><span>${escapeHtml(locationLabel(item))} / ${escapeHtml(titleCase(item.category))}</span></span>
+              <span class="priority-severity severity-${escapeHtml(item.severity)}">${escapeHtml(item.severity)}</span>
+              <span class="priority-score">${item.priorityScore}<small>Priority</small></span>
+            </button>`).join('');
+        }
+
+        function renderRiskMap(insights) {
+          const categories = insights.categoryRisk || [];
+          const hotspots = insights.hotspots || [];
+          const categoryHost = document.querySelector('#category-list');
+          const hotspotHost = document.querySelector('#hotspot-list');
+          categoryHost.innerHTML = categories.length ? categories.map(item => `
+            <div class="category-row">
+              <div class="category-top"><span>${escapeHtml(titleCase(item.category))}</span><span>${item.count} findings / ${item.riskScore} risk</span></div>
+              <div class="category-bar"><span style="width:${Math.max(2, Math.min(100, item.riskScore))}%"></span></div>
+            </div>`).join('') : '<div class="finding-empty">No category risk detected.</div>';
+          hotspotHost.innerHTML = hotspots.length ? hotspots.slice(0, 7).map(item => `
+            <div class="hotspot-row">
+              <div><strong>${escapeHtml(item.file)}</strong><span>${item.findingCount} findings</span></div>
+              <span class="severity-${escapeHtml((item.riskLevel || '').toLowerCase())}">${escapeHtml(item.riskLevel || '')}</span>
+              <div class="hotspot-score">${item.riskScore}</div>
+            </div>`).join('') : '<div class="finding-empty">No vulnerable file hotspots detected.</div>';
+        }
+
+        function renderInsights(insights) {
+          currentInsights = insights;
+          const surface = insights.overview?.primaryAttackSurface;
+          const priority = insights.topPriorityFinding || insights.priorityQueue?.[0];
+          const vulnerableFile = insights.overview?.mostVulnerableFile;
+          document.querySelector('#intel-surface').textContent = surface ? titleCase(surface.category) : 'No active surface';
+          document.querySelector('#intel-surface-meta').textContent = surface ? `${surface.count} findings / ${surface.percentage ?? 0}% of repository risk` : 'No category pressure detected';
+          document.querySelector('#intel-priority').textContent = priority?.title || 'No findings detected';
+          document.querySelector('#intel-priority-meta').textContent = priority ? `${locationLabel(priority)} / Priority ${priority.priorityScore}` : 'Repository appears clean under current rules';
+          document.querySelector('#intel-file').textContent = vulnerableFile?.file || 'No affected file';
+          document.querySelector('#intel-file-meta').textContent = vulnerableFile ? `${vulnerableFile.findingCount} findings / ${vulnerableFile.riskLevel}` : 'No hotspot detected';
+          document.querySelector('#metric-affected-files').textContent = insights.metrics?.affectedFiles ?? 0;
+          document.querySelector('#metric-rules').textContent = insights.metrics?.uniqueRuleCount ?? 0;
+          document.querySelector('#metric-concentration').textContent = `${insights.metrics?.findingConcentration?.topFilePercentage ?? 0}%`;
+          document.querySelector('#metric-high-risk').textContent = `${insights.metrics?.highOrCriticalPercentage ?? 0}%`;
+          renderPriorityQueue(insights.priorityQueue);
+          renderRiskMap(insights);
+        }
+
+        function renderFindings() {
+          const host = document.querySelector('#finding-list');
+          const findings = (currentResult?.findings || []).filter(finding =>
+            (activeSeverity === 'all' || finding.severity === activeSeverity)
+            && (activeCategory === 'all' || finding.category === activeCategory));
+          if (!findings.length) {
+            host.innerHTML = '<div class="finding-empty">No findings match the selected filters.</div>';
+            return;
+          }
+          host.innerHTML = findings.map(finding => `
+            <button class="finding-row${currentFinding?.id === finding.id ? ' is-active' : ''}" type="button" data-finding-id="${escapeHtml(finding.id)}">
+              <span class="severity-pill severity-${escapeHtml(finding.severity)}">${escapeHtml(finding.severity)}</span>
+              <span><span class="finding-row-title">${escapeHtml(finding.title)}</span><span class="finding-row-meta">${escapeHtml(titleCase(finding.category))} / ${escapeHtml(finding.cwe || finding.ruleId)} / ${escapeHtml(finding.confidence)} confidence</span></span>
+              <span class="finding-location">${escapeHtml(locationLabel(finding))}</span>
+            </button>`).join('');
+        }
+
+        function openFinding(findingId, shouldScroll = false) {
+          const finding = currentResult?.findings?.find(item => item.id === findingId);
+          if (!finding) return;
+          currentFinding = finding;
+          const detail = document.querySelector('#finding-detail');
+          detail.classList.add('has-finding');
+          const severity = document.querySelector('#detail-severity');
+          severity.textContent = finding.severity;
+          severity.className = `severity-pill severity-${finding.severity}`;
+          document.querySelector('#detail-title').textContent = finding.title;
+          document.querySelector('#detail-meta').textContent = `${locationLabel(finding)} / ${finding.cwe || finding.ruleId} / ${finding.confidence} confidence`;
+          document.querySelector('#detail-code').textContent = finding.snippet || 'No source snippet is available for this finding.';
+          document.querySelector('#detail-description').textContent = finding.description;
+          document.querySelector('#detail-impact').textContent = finding.impact;
+          document.querySelector('#detail-remediation').textContent = finding.remediation;
+          document.querySelector('#fix-result').classList.remove('is-visible');
+          renderFindings();
+          if (shouldScroll && innerWidth < 901) detail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function languageForFile(file = '') {
+          const extension = file.split('.').pop()?.toLowerCase();
+          return ({ ts: 'TypeScript', tsx: 'TypeScript', js: 'JavaScript', jsx: 'JavaScript', py: 'Python', rb: 'Ruby', php: 'PHP', go: 'Go', java: 'Java', kt: 'Kotlin' })[extension] || undefined;
+        }
+
+        async function generateFix() {
+          if (!currentFinding) return;
+          const button = document.querySelector('#fix-button');
+          const resultHost = document.querySelector('#fix-result');
+          button.disabled = true;
+          button.textContent = 'Forging remediation…';
+          resultHost.classList.remove('is-visible');
+          try {
+            const response = await fetch('/api/fix', {
+              method: 'POST', headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ finding: currentFinding, language: languageForFile(currentFinding.file) }),
+            });
+            const fix = await response.json().catch(() => ({}));
+            if (!response.ok) throw new Error(fix.error || 'The fix suggestion could not be generated.');
+            document.querySelector('#fix-title').textContent = fix.status === 'suggested' ? 'Patch generated' : 'Suggested remediation';
+            document.querySelector('#fix-provider').textContent = fix.provider || 'deterministic';
+            document.querySelector('#fix-summary').textContent = fix.summary || currentFinding.remediation;
+            const steps = document.querySelector('#fix-steps');
+            steps.replaceChildren(...(fix.steps || []).map(step => { const item = document.createElement('li'); item.textContent = step.replace(/^\s*\d+[.)]\s*/, ''); return item; }));
+            document.querySelector('#fix-before').textContent = fix.before || currentFinding.snippet || '';
+            document.querySelector('#fix-after').textContent = fix.after || currentFinding.remediation;
+            document.querySelector('#fix-diff').textContent = fix.diff || 'Suggested change only — review before applying.';
+            resultHost.classList.add('is-visible');
+          } catch (error) {
+            document.querySelector('#fix-provider').textContent = 'deterministic';
+            document.querySelector('#fix-summary').textContent = error?.message || currentFinding.remediation;
+            document.querySelector('#fix-before').textContent = currentFinding.snippet || '';
+            document.querySelector('#fix-after').textContent = currentFinding.remediation;
+            document.querySelector('#fix-diff').textContent = 'Review the deterministic remediation above before changing the repository.';
+            resultHost.classList.add('is-visible');
+          } finally {
+            button.disabled = false;
+            button.textContent = 'Fix with BreakSmith ↗';
+          }
+        }
+
+        async function loadInsights(result) {
+          const status = document.querySelector('#report-status');
+          renderFindings();
+          try {
+            const response = await fetch('/api/insights', {
+              method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(result),
+            });
+            const insights = await response.json().catch(() => ({}));
+            if (!response.ok) throw new Error(insights.error || 'Insights unavailable');
+            renderInsights(insights);
+            status.textContent = 'Repository intelligence ready';
+          } catch {
+            renderInsights(deriveLocalInsights(result));
+            status.textContent = 'Deterministic report ready';
+          }
+          if (result.findings?.[0]) openFinding(result.findings[0].id);
+        }
+
+        function normalizeRepoUrl(value) {
+          const trimmed = value.trim();
+          if (/^github\.com\//i.test(trimmed)) return `https://${trimmed}`;
+          if (/^[\w.-]+\/[\w.-]+\/?$/.test(trimmed)) return `https://github.com/${trimmed.replace(/\/$/, '')}`;
+          return trimmed;
+        }
+
+        function setStage(index, percentOverride) {
+          activeStage = Math.max(0, Math.min(index, stages.length - 1));
+          const [label, defaultPercent] = stages[activeStage];
+          const percent = percentOverride ?? defaultPercent;
+          stage.textContent = label;
+          stageIndex.textContent = `${String(activeStage + 1).padStart(2, '0')} / ${String(stages.length).padStart(2, '0')}`;
+          stagePercent.textContent = `${percent}%`;
+          progress.style.width = `${percent}%`;
+        }
+
+        function stopTimers() {
+          clearInterval(stageTimer);
+          clearInterval(elapsedTimer);
+        }
+
+        function closeScan() {
+          controller?.abort();
+          stopTimers();
+          overlay.classList.remove('is-open', 'is-complete', 'has-error');
+          overlay.setAttribute('aria-hidden', 'true');
+          document.body.classList.remove('scan-active');
+          submitButton.disabled = false;
+          submitButton.textContent = 'Forge scan ↗';
+          closeButton.textContent = 'Cancel scan';
+          currentFinding = undefined;
+          document.querySelector('#finding-detail')?.classList.remove('has-finding');
+          document.querySelector('#fix-result')?.classList.remove('is-visible');
+          window.dispatchEvent(new Event('breaksmith:scan-close'));
+        }
+
+        function openScan(repoUrl) {
+          overlay.classList.remove('is-complete', 'has-error');
+          overlay.classList.add('is-open');
+          overlay.setAttribute('aria-hidden', 'false');
+          document.body.classList.add('scan-active');
+          repoLabel.textContent = repoUrl;
+          errorBox.textContent = '';
+          closeButton.textContent = 'Cancel scan';
+          startedAt = performance.now();
+          setStage(0);
+          window.dispatchEvent(new Event('breaksmith:scan-open'));
+
+          elapsedTimer = setInterval(() => {
+            const seconds = (performance.now() - startedAt) / 1000;
+            const minutes = Math.floor(seconds / 60);
+            elapsed.textContent = `${String(minutes).padStart(2, '0')}:${(seconds % 60).toFixed(1).padStart(4, '0')}`;
+          }, 100);
+
+          stageTimer = setInterval(() => {
+            if (activeStage < stages.length - 2) setStage(activeStage + 1);
+          }, 1150);
+        }
+
+        function showComplete(result) {
+          stopTimers();
+          currentResult = result;
+          activeSeverity = 'all';
+          activeCategory = 'all';
+          document.querySelectorAll('.finding-filter').forEach(button => button.classList.toggle('is-active', button.dataset.severity === 'all'));
+          document.querySelector('#finding-category').value = 'all';
+          setStage(stages.length - 1, 100);
+          document.querySelector('#scan-complete-repo').textContent = `${result.repo.owner} / ${result.repo.name}`;
+          document.querySelector('#scan-duration').textContent = `${result.scannedFiles} files / ${(result.durationMs / 1000).toFixed(1)}s`;
+          document.querySelector('#scan-score').textContent = result.score;
+          document.querySelector('#scan-risk').textContent = `${result.riskLevel} risk`;
+          document.querySelector('#scan-total').textContent = result.summary.total;
+          document.querySelector('#scan-critical').textContent = result.summary.critical;
+          document.querySelector('#scan-high').textContent = result.summary.high;
+          document.querySelector('#scan-medium').textContent = result.summary.medium;
+          document.querySelector('#scan-low').textContent = result.summary.low;
+          closeButton.textContent = 'Close report';
+          setTimeout(() => overlay.classList.add('is-complete'), 550);
+          loadInsights(result);
+          try { sessionStorage.setItem('breaksmith:lastScan', JSON.stringify(result)); } catch {}
+          window.breaksmithLastScan = result;
+          window.dispatchEvent(new CustomEvent('breaksmith:scan-complete', { detail: result }));
+        }
+
+        function showError(message) {
+          stopTimers();
+          overlay.classList.add('has-error');
+          stage.textContent = 'Scan interrupted';
+          stageIndex.textContent = 'ACTION REQUIRED';
+          stagePercent.textContent = '—';
+          errorBox.textContent = message || 'The repository could not be scanned. Check the URL and try again.';
+          closeButton.textContent = 'Return';
+          submitButton.disabled = false;
+          submitButton.textContent = 'Forge scan ↗';
+        }
+
+        form.addEventListener('submit', async (event) => {
+          event.preventDefault();
+          const repoUrl = normalizeRepoUrl(input.value);
+          if (!repoUrl) return;
+          input.value = repoUrl;
+          submitButton.disabled = true;
+          submitButton.textContent = 'Analysing…';
+          controller = new AbortController();
+          openScan(repoUrl);
+
+          try {
+            const response = await fetch('/api/scan', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ repoUrl }),
+              signal: controller.signal,
+            });
+            const payload = await response.json().catch(() => ({}));
+            if (!response.ok) throw new Error(payload.error || payload.message || 'The repository could not be scanned.');
+            showComplete(payload);
+          } catch (error) {
+            if (error?.name !== 'AbortError') showError(error?.message);
+          }
+        });
+
+        closeButton.addEventListener('click', closeScan);
+        document.querySelector('#priority-list').addEventListener('click', event => {
+          const row = event.target.closest('[data-finding-id]');
+          if (!row) return;
+          openFinding(row.dataset.findingId, true);
+          document.querySelector('#findings-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        document.querySelector('#finding-list').addEventListener('click', event => {
+          const row = event.target.closest('[data-finding-id]');
+          if (row) openFinding(row.dataset.findingId, true);
+        });
+        document.querySelector('#finding-tools').addEventListener('click', event => {
+          const button = event.target.closest('[data-severity]');
+          if (!button) return;
+          activeSeverity = button.dataset.severity;
+          document.querySelectorAll('.finding-filter').forEach(item => item.classList.toggle('is-active', item === button));
+          renderFindings();
+        });
+        document.querySelector('#finding-category').addEventListener('change', event => {
+          activeCategory = event.target.value;
+          renderFindings();
+        });
+        document.querySelector('#fix-button').addEventListener('click', generateFix);
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape' && overlay.classList.contains('is-open')) closeScan();
+        });
+      })();
+    </script>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.137.5/build/three.module.js",
+          "three/": "https://unpkg.com/three@0.137.5/",
+          "omega/": "https://cdn.jsdelivr.net/gh/ycw/omega@0.0.2/"
+        }
+      }
+    </script>
+    <script type="module">
+      // Tunnel geometry and post-processing adapted from ycw/omega (MIT).
+      let tunnelRuntime;
+      let tunnelLoading;
+
+      async function createTunnel() {
+        const host = document.querySelector('#scan-tunnel');
+        if (!host || matchMedia('(prefers-reduced-motion: reduce)').matches) return null;
+
+        const [THREE, composerModule, renderModule, curvesModule, stripModule, bloomModule, radialModule] = await Promise.all([
+          import('three'),
+          import('three/examples/jsm/postprocessing/EffectComposer.js'),
+          import('three/examples/jsm/postprocessing/RenderPass.js'),
+          import('three/examples/jsm/curves/CurveExtras.js'),
+          import('omega/dist/Strip.js'),
+          import('omega/dist/DualBloom.js'),
+          import('omega/dist/RadialBlur.js'),
+        ]);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true, powerPreference: 'high-performance' });
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, 2, .1, 100);
+        scene.fog = new THREE.FogExp2(0x060606, .028);
+        scene.add(new THREE.HemisphereLight(0xc24f20, 0x102332, 1.15));
+        scene.add(new THREE.AmbientLight(0x4a311f, .75));
+
+        const segments = innerWidth < 700 ? 650 : 1100;
+        const curve = new curvesModule.Curves.TorusKnot();
+        const radius = (i, total) => 2 * Math.abs(i / total - .5) * 10 + 1;
+        const strip = new stripModule.Strip(curve, radius, 0);
+        const firstFrames = strip.computeFrames(segments);
+        const deltaAngle = firstFrames[0][1].angleTo(firstFrames[firstFrames.length - 1][1]);
+        strip.tilt = (i, total) => i / total * -deltaAngle;
+        const frames = strip.computeFrames(segments);
+        const geometry = new stripModule.StripGeometry(strip, segments, stripModule.UvPreset.strip[1]);
+
+        const textureSource = document.createElement('canvas');
+        textureSource.width = 1024;
+        textureSource.height = 256;
+        const context = textureSource.getContext('2d');
+        context.fillStyle = '#070707';
+        context.fillRect(0, 0, 1024, 256);
+        context.strokeStyle = 'rgba(194,79,32,.72)';
+        context.lineWidth = 4;
+        for (let x = 0; x <= 1024; x += 128) {
+          context.beginPath(); context.moveTo(x, 0); context.lineTo(x, 256); context.stroke();
+        }
+        context.fillStyle = '#efeee9';
+        context.font = '700 54px Arial';
+        context.fillText('BREAK / SMITH', 44, 105);
+        context.fillStyle = '#c24f20';
+        context.font = '600 24px Arial';
+        context.fillText('REPOSITORY ANALYSIS / EVIDENCE LOCKED', 46, 158);
+
+        const map = new THREE.CanvasTexture(textureSource);
+        map.repeat.set(segments / 90, 2);
+        map.wrapT = map.wrapS = THREE.RepeatWrapping;
+        const material = new THREE.MeshLambertMaterial({ map, side: THREE.DoubleSide });
+        scene.add(new THREE.Mesh(geometry, material));
+
+        const composer = new composerModule.EffectComposer(renderer);
+        composer.addPass(new renderModule.RenderPass(scene, camera));
+        composer.addPass(new bloomModule.DualBloomPass({ intensity: .42, threshold: .12, blurriness: .32 }));
+        composer.addPass(new radialModule.RadialBlurPass({ intensity: .065, iterations: innerWidth < 700 ? 7 : 12 }));
+        camera.matrixAutoUpdate = false;
+        host.append(renderer.domElement);
+
+        const resize = () => {
+          const width = host.clientWidth || innerWidth;
+          const height = host.clientHeight || innerHeight;
+          const dpr = Math.min(devicePixelRatio || 1, 1.4);
+          renderer.setPixelRatio(dpr);
+          renderer.setSize(width, height, false);
+          composer.setPixelRatio(dpr);
+          composer.setSize(width, height);
+          camera.aspect = width / height;
+          camera.updateProjectionMatrix();
+        };
+        addEventListener('resize', resize, { passive: true });
+        resize();
+
+        const speed = .035 / 1000;
+        const renderFrame = (time) => {
+          const ratio = speed * time % 1;
+          const [B, N, T] = frames[Math.floor(ratio * segments)];
+          const position = curve.getPointAt(ratio).add(N.clone().multiplyScalar(2));
+          camera.matrix.makeBasis(B, N, T).setPosition(position);
+          camera.matrixWorldNeedsUpdate = true;
+          composer.render();
+        };
+
+        return {
+          start() { renderer.setAnimationLoop(renderFrame); },
+          stop() { renderer.setAnimationLoop(null); },
+        };
+      }
+
+      addEventListener('breaksmith:scan-open', async () => {
+        if (!tunnelRuntime && !tunnelLoading) tunnelLoading = createTunnel().catch(() => null);
+        if (!tunnelRuntime) tunnelRuntime = await tunnelLoading;
+        tunnelRuntime?.start();
+      });
+      addEventListener('breaksmith:scan-close', () => tunnelRuntime?.stop());
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
